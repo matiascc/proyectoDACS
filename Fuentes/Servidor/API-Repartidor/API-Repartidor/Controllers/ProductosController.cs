@@ -11,5 +11,40 @@ namespace API_Repartidor.Controllers
     [ApiController]
     public class ProductosController : ControllerBase
     {
+        private readonly Services.ProductosService productosSrv; 
+
+        public ProductosController(Services.ProductosService productosSrv )
+        {
+            this.productosSrv = productosSrv;
+        }
+
+        [HttpGet]
+        public IActionResult GetProductos ()
+        {
+            var result = this.productosSrv.GetProductos();
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetProductosById(int id)
+        {
+            var result = this.productosSrv.GetProductoByID(id);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }
