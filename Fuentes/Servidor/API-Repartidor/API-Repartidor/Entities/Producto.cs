@@ -8,13 +8,15 @@ namespace API_Repartidor.Entities
 {
     public class Producto : BaseEntity
     {
-        public virtual int Store_number { get; set; }
-        public virtual int Corridor { get; set; }
-        public virtual char Side { get; set; }
-        public virtual int Cabinet { get; set; }
-        public virtual int Shelf { get; set; }
-        public virtual Position Position { get; set; }
-        public virtual string CodigoQR { get; set; }
+        public virtual int store_number { get; set; }
+        public virtual int corridor { get; set; }
+        public virtual char side { get; set; }
+        public virtual int cabinet { get; set; }
+        public virtual int shelf { get; set; }
+        //public virtual Position position { get; set; }
+        public virtual string codigoQR { get; set; }
+        public virtual double precio { get; set; }
+        public virtual ICollection<ItemPedido> itemPedido { get; set; }
 
     }
 }

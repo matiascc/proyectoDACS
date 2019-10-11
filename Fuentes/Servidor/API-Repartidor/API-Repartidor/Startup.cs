@@ -18,6 +18,8 @@ using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using API_Repartidor.DataComponents;
 using API_Repartidor.Entities;
+using System.Reflection;
+using NHibernate.Tool.hbm2ddl;
 
 namespace API_Repartidor
 {
@@ -46,20 +48,19 @@ namespace API_Repartidor
                 {
                     config.ConnectionProvider<DriverConnectionProvider>();
                     config.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-                    config.Timeout = 60;
-                    config.LogFormattedSql = true;
-                    config.LogSqlInConsole = false;
-                    config.AutoCommentSql = false;
+                    //config.Timeout = 60;
+                    //config.LogFormattedSql = true;
+                    //config.LogSqlInConsole = false;
+                    //config.AutoCommentSql = false;
                     config.Dialect<PostgreSQL83Dialect>();
                     config.Driver<NpgsqlDriver>();
                     config.ConnectionString = connectionString;
                     config.SchemaAction = SchemaAutoAction.Recreate;
                 });
-
-                ConventionModelMapper conventionalMappings = CreateConventionalMappings();
-                var mapping = conventionalMappings.CompileMappingFor(GetType().Assembly.GetExportedTypes().Where(t => t.Namespace.EndsWith("Entities")));
-                cfg.AddDeserializedMapping(mapping, "dacs");
-
+                var mapper = new ModelMapper();
+                mapper.AddMappings(Assembly.GetExecutingAssembly().GetExportedTypes());
+                var domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
+                cfg.AddMapping(domainMapping);
 
                 return cfg.BuildSessionFactory();
             });
@@ -71,43 +72,8 @@ namespace API_Repartidor
             });
         }
 
-    private ConventionModelMapper CreateConventionalMappings()
-    {
-        var mapper = new ConventionModelMapper();
-
-        var baseEntityType = typeof(BaseEntity);
-        mapper.IsEntity((t, declared) => baseEntityType.IsAssignableFrom(t) && baseEntityType != t && !t.IsInterface);
-        mapper.IsRootEntity((t, declared) => baseEntityType.Equals(t.BaseType));
-
-        mapper.BeforeMapManyToOne += (insp, prop, map) => map.Column(prop.LocalMember.GetPropertyOrFieldType().Name + "Id");
-        mapper.BeforeMapManyToOne += (insp, prop, map) => map.Cascade(Cascade.Persist);
-        mapper.BeforeMapBag += (insp, prop, map) => map.Key(km => km.Column(prop.GetContainerEntity(insp).Name + "Id"));
-        mapper.BeforeMapBag += (insp, prop, map) => map.Cascade(Cascade.All);
-        mapper.BeforeMapClass += (modelInspector, type, map) =>
-        {
-            map.Table($"{type.Name}s");
-            map.Id(m =>
-            {
-                m.Column($"{type.Name.ToUpper()}ID");
-            });
-        };
-
-        mapper.Class<BaseEntity>(map =>
-        {
-            map.Id(x => x.Id, m => m.Generator(Generators.Increment));
-        });
-
-        mapper.Class<Producto>(map => map.Component<Position>(x => x.Position, cm =>
-        {
-            cm.Property(p => p.Latitude, mc => mc.Column("Latitude"));
-            cm.Property(p => p.Longitude, mc => mc.Column("Longitude"));
-        }));
-
-        return mapper;
-    }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ISession sessionService)
         {
             if (env.IsDevelopment())
             {
@@ -123,18 +89,20 @@ namespace API_Repartidor
 
             app.Use(async (context, next) =>
             {
-                var session = app.ApplicationServices.GetService<ISession>();
-                if (session == null) throw new ArgumentNullException(nameof(session));
+
+                if (sessionService == null) throw new ArgumentNullException(nameof(sessionService));
 
                 try
                 {
-                    session.BeginTransaction();
+                    //sessionService.BeginTransaction();
+                    sessionService.Transaction.Begin();
+                    sessionService.CreateSQLQuery("select * from pedido");
                     await next.Invoke();
-                    session.Transaction.Commit();
+                    sessionService.Transaction.Commit();
                 }
                 catch (Exception e)
                 {
-                    session.Transaction.Rollback();
+                    sessionService.Transaction.Rollback();
                 }
             });
                                 
