@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 
 namespace API_Repartidor.Entities
 {
-    public abstract class BaseEntity
-    {
-        public virtual long Id { get; protected set; }
-    }
+    public enum Estado
+    { Pendiente, EnCurso, Finalizado }
 }

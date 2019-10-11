@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace API_Repartidor.Entities
 {
-    public class ItemPedido : BaseEntity
+    public class Stock : BaseEntity
     {
-        public virtual int cantidad { get; set; }
-        public virtual int cantidadRechazada { get; set; }
+        public virtual int zone_id { get; set; }
+        public virtual int quantity { get; set; }
         public virtual Producto producto { get; set; }
-        public virtual Pedido pedido { get; set; }
     }
 }
