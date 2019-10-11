@@ -1,0 +1,26 @@
+<ion-header no-border>
+  <ion-toolbar>
+
+    <ion-buttons slot="start" >
+      <ion-menu-button color="primary" menu="primerMenu"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Repartidor App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- los [] son porque viene desde el modelo hacia la interfaz y los () cuando van de la interfaz al modelo-->
+ <ion-list >
+
+   <ion-item *ngFor="let componente of componentes"
+             [routerLink]="componente.redirecTo" 
+             detail>
+     <ion-icon slot="start" [name]="componente.icon"></ion-icon>
+     <ion-label>{{componente.name}}</ion-label>
+   </ion-item>
+
+  </ion-list>  
+
+</ion-content>
