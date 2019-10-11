@@ -73,7 +73,7 @@ namespace API_Repartidor
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ISession sessionService)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -89,20 +89,22 @@ namespace API_Repartidor
 
             app.Use(async (context, next) =>
             {
-
-                if (sessionService == null) throw new ArgumentNullException(nameof(sessionService));
+                var serviceScope = app.ApplicationServices.CreateScope();
+                var session = serviceScope.ServiceProvider.GetService<ISession>();
 
                 try
                 {
-                    //sessionService.BeginTransaction();
-                    sessionService.Transaction.Begin();
-                    sessionService.CreateSQLQuery("select * from pedido");
+                    session.Transaction.Begin();
                     await next.Invoke();
-                    sessionService.Transaction.Commit();
+                    session.Transaction.Commit();
                 }
                 catch (Exception e)
                 {
-                    sessionService.Transaction.Rollback();
+                    session.Transaction.Rollback();
+                }
+                finally
+                {
+                    session.Close();
                 }
             });
                                 
