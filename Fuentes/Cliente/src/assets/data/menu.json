@@ -1,0 +1,7 @@
+ [ 
+  {
+    "icon": "reorder",
+    "name": "Listas de pedidos",
+    "redirecTo": "/list-reorder"
+  }
+ ]
