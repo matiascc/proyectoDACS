@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API-Repartidor</name>
+    </assembly>
+    <members>
+        <member name="M:API_Repartidor.Controllers.PedidosController.Get">
+            <summary>
+            Trae todos los pedidos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.PedidosController.Post(API_Repartidor.DTOs.PedidoDTO)">
+            <summary>
+            Agrega un nuevo pedido
+            </summary>
+            <param name="pedido"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using NHibernate.Cfg;
 
 namespace API_Repartidor
 {
@@ -16,7 +15,6 @@ namespace API_Repartidor
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
-
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

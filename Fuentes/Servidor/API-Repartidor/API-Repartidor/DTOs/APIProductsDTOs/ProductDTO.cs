@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace API_Repartidor.DTOs.APIProductsDTOs
+{
+    public class ProductDTO
+    {
+        public virtual int id { get; set; }
+
+        public virtual string code { get; set; }
+
+        public virtual string name { get; set; }
+
+        public virtual string description { get; set; }
+
+        public virtual string brand { get; set; }
+
+        //public virtual int id { get; set; }
+
+        public virtual List<StockDTO> stock{ get; set; }
+    }
+}
