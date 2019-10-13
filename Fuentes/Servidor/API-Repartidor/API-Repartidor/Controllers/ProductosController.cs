@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_Repartidor.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/productos")]
     [ApiController]
     public class ProductosController : ControllerBase
     {
@@ -21,12 +21,11 @@ namespace API_Repartidor.Controllers
         [HttpGet]
         public IActionResult GetProductos ()
         {
-            var result = this.productosSrv.GetProductos();
-            if (result != null)
+            try
             {
-                return Ok(result);
+                return Ok(this.productosSrv.GetProductos());
             }
-            else
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -36,12 +35,11 @@ namespace API_Repartidor.Controllers
         [Route("{id}")]
         public IActionResult GetProductosById(int id)
         {
-            var result = this.productosSrv.GetProductoByID(id);
-            if (result != null)
+            try
             {
-                return Ok(result);
+                return Ok(this.productosSrv.GetProductoByID(id));
             }
-            else
+            catch (Exception)
             {
                 return BadRequest();
             }

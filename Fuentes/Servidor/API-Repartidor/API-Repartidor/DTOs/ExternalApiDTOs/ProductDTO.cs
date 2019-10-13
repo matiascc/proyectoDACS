@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API_Repartidor.DTOs.APIProductsDTOs
+namespace API_Repartidor.DTOs.ExternalApiDTOs
 {
     public class ProductDTO
     {
@@ -17,7 +17,7 @@ namespace API_Repartidor.DTOs.APIProductsDTOs
 
         public virtual string brand { get; set; }
 
-        //public virtual int id { get; set; }
+        public virtual string image { get; set; }
 
         public virtual List<StockDTO> stock{ get; set; }
     }
