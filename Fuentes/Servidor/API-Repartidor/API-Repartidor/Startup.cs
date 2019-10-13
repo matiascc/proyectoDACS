@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API_Repartidor.DTOs;
-using API_Repartidor.DTOs.APIProductsDTOs;
+using API_Repartidor.DTOs.ExternalApiDTOs;
 using API_Repartidor.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -55,10 +55,10 @@ namespace API_Repartidor
                 {
                     config.ConnectionProvider<DriverConnectionProvider>();
                     config.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-                    //config.Timeout = 60;
-                    //config.LogFormattedSql = true;
-                    //config.LogSqlInConsole = false;
-                    //config.AutoCommentSql = false;
+                    config.Timeout = 60;
+                    config.LogFormattedSql = true;
+                    config.LogSqlInConsole = false;
+                    config.AutoCommentSql = false;
                     config.Dialect<PostgreSQL83Dialect>();
                     config.Driver<NpgsqlDriver>();
                     config.ConnectionString = connectionString;
@@ -83,6 +83,7 @@ namespace API_Repartidor
             services.AddSingleton<PedidosService>();
             services.AddSingleton<RepartosService>();
             services.AddSingleton<ProductosService>();
+            services.AddSingleton<ClientesService>();
 
 
             services.AddSwaggerGen(c =>
@@ -147,15 +148,30 @@ namespace API_Repartidor
                 .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
                 .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
                 .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.code))
-                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description))
-                .ForMember(dest => dest.fabricante, origin => origin.MapFrom(c => c.brand));
+                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description));
 
-                
-                cfg.CreateMap<DTOs.APIProductsDTOs.StockDTO, DTOs.StockDTO>()
+                cfg.CreateMap<ProductDTO, ProductoCompletoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.code))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
+                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description))
+                .ForMember(dest => dest.fabricante, origin => origin.MapFrom(c => c.brand))
+                .ForMember(dest => dest.imagen, origin => origin.MapFrom(c => c.image));
+
+
+                cfg.CreateMap<DTOs.ExternalApiDTOs.StockDTO, DTOs.StockDTO>()
                 .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.stock_id))
                 .ForMember(dest => dest.idZona, origin => origin.MapFrom(c => c.zone_id))
                 .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.quantity));
                 
+                cfg.CreateMap<DTOs.ExternalApiDTOs.ClientDTO, DTOs.ClienteDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
+                .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.address))
+                .ForMember(dest => dest.email, origin => origin.MapFrom(c => c.email))
+                .ForMember(dest => dest.telefonoFijo, origin => origin.MapFrom(c => c.fixed_phone))
+                .ForMember(dest => dest.telefonoCelular, origin => origin.MapFrom(c => c.cell_phone))
+                .ForMember(dest => dest.cuit, origin => origin.MapFrom(c => c.legal_id));
             });
         }
 

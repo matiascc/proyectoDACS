@@ -23,7 +23,6 @@ namespace API_Repartidor.Mappings
             Property(x => x.nombre);
             Property(x => x.descripcion);
             Property(x => x.imagen);
-            //Property(x => x.position);
             Property(x => x.codigoQR);
             Property(x => x.precio);
 
