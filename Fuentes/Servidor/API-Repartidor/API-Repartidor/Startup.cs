@@ -55,10 +55,10 @@ namespace API_Repartidor
                 {
                     config.ConnectionProvider<DriverConnectionProvider>();
                     config.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-                    //config.Timeout = 60;
-                    //config.LogFormattedSql = true;
-                    //config.LogSqlInConsole = false;
-                    //config.AutoCommentSql = false;
+                    config.Timeout = 60;
+                    config.LogFormattedSql = true;
+                    config.LogSqlInConsole = false;
+                    config.AutoCommentSql = false;
                     config.Dialect<PostgreSQL83Dialect>();
                     config.Driver<NpgsqlDriver>();
                     config.ConnectionString = connectionString;

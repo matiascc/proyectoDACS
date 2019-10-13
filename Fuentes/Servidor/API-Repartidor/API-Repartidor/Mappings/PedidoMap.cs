@@ -20,11 +20,14 @@ namespace API_Repartidor.Mappings
                 m.UnsavedValue(0);
             });
 
-            Property(x => x.fechaCreación);
+            Property(x => x.fechaCreacion);
             Property(x => x.fechaFinalizacion);
             Property(x => x.fechaLimite);
             Property(x => x.entregado);
-            Property(x => x.precioTotal);
+            Property(x => x.precioTotal, map =>
+            {
+                map.Formula(@"(SELECT SUM(ip.cantidad * ip.precio) from itempedido ip where ip.pedido = Id)");
+            });
 
             Set(x => x.itemPedido,
                 cm =>
@@ -32,6 +35,8 @@ namespace API_Repartidor.Mappings
                     cm.Lazy(CollectionLazy.Lazy);
                 },
             action => action.OneToMany());
+
+            
 
         }
     }
