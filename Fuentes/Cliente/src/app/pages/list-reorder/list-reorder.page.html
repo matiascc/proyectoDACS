@@ -4,10 +4,10 @@
 
   <ion-list>
     <ion-reorder-group [disabled]="false"
-                       (ionItemReorder)="reorder( $event )">
+                       (ionItemReorder)="reorder( $event )"> 
 
-        <ion-item *ngFor="let usuario of pedidos" (click)="verDetalles(usuario)">
-            <ion-label>{{usuario.id}} - {{usuario.name}}</ion-label>
+        <ion-item *ngFor="let usuario of pedidos" >
+            <ion-label>Producto</ion-label>
             <ion-reorder slot="end"></ion-reorder>
         </ion-item>
 

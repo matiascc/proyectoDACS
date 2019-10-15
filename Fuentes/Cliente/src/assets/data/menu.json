@@ -3,5 +3,10 @@
     "icon": "reorder",
     "name": "Listas de pedidos",
     "redirecTo": "/list-reorder"
+  },
+  {
+    "icon": "logo-model-s",
+    "name": "Entregas pendientes",
+    "redirecTo": "/entregas-pendientes"
   }
  ]

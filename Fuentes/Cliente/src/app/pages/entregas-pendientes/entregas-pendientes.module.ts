@@ -6,12 +6,12 @@ import { ComponentsModule } from 'src/app/components/components.module';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ListReorderPage } from './list-reorder.page';
+import { EntregasPendientesPage } from './entregas-pendientes.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListReorderPage
+    component: EntregasPendientesPage
   }
 ];
 
@@ -21,8 +21,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
+    ComponentsModule
   ],
-  declarations: [ListReorderPage]
+  declarations: [EntregasPendientesPage]
 })
-export class ListReorderPageModule {}
+export class EntregasPendientesPageModule {}

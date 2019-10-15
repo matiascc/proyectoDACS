@@ -12,7 +12,7 @@ export class Proveedor1Service {
   }
 
   obtenerDatos(){
-    return this.http.get('https://jsonplaceholder.typicode.com/users');
+    return this.http.get('https://localhost:5001/api/Productos');
   }
 
 
