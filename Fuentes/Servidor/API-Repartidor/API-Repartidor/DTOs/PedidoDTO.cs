@@ -2,29 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_Repartidor.Entities;
 
 namespace API_Repartidor.DTOs
 {
     public class PedidoDTO
     {
-        public enum Estado
-        {
-            Pendiente = 0,
-            EnCurso = 1,
-            Finalizado = 2
-        }
-
-
+        public virtual long id { get; set; }
         public virtual DateTime fechaCreacion { get; set; }
 
         public virtual DateTime fechaFinalizacion { get; set; }
 
         public virtual DateTime fechaLimite { get; set; }
 
-        public virtual Estado entregado { get; set; }
+        public virtual string entregado { get; set; }
 
         public virtual double precioTotal { get; set; }
+        public virtual long idCliente { get; set; }
 
-        
+        public virtual ICollection<ItemPedidoDTO> itemPedido { get; set; }
     }
 }

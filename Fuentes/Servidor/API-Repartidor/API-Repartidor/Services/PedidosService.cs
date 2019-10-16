@@ -1,21 +1,54 @@
 ﻿using API_Repartidor.DTOs;
+using API_Repartidor.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using NHibernate;
 
 namespace API_Repartidor.Services
 {
     public class PedidosService
     {
-
-
-        //para cada unos de los metodos falta la parte de la interaccion con la DAO correspondiente.
-
-        public List<PedidoDTO> GetPedidos()
+        private PedidosDAO pedidosDAO= new PedidosDAO();
+        
+        public List<PedidoDTO> GetPedidos(ISession sess)
         {
-            List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
-            return pedidosDTO;
+            try
+            {
+                List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
+                
+                foreach (var pedido in pedidosDAO.findAll(sess))
+                {
+                    PedidoDTO pedDTO = new PedidoDTO();
+                    ItemPedidoDTO itemPedDTO = new ItemPedidoDTO();
+                    List<ItemPedidoDTO> listItemPedidos = new List<ItemPedidoDTO>();
+                    pedDTO.id = pedido.Id;
+                    pedDTO.fechaCreacion = pedido.fechaCreacion;
+                    pedDTO.fechaFinalizacion = pedido.fechaFinalizacion;
+                    pedDTO.fechaLimite = pedido.fechaLimite;
+                    pedDTO.entregado = pedido.entregado.ToString();
+                    pedDTO.precioTotal = pedido.precioTotal;
+                    pedDTO.idCliente = pedido.idCliente;
+                    foreach (var item in pedido.itemPedido)
+                    {
+                        itemPedDTO.id = item.Id;
+                        itemPedDTO.cantidad = item.cantidad;
+                        itemPedDTO.cantidadRechazada = item.cantidadRechazada;
+                        itemPedDTO.precio = item.precio;
+                        itemPedDTO.idProducto = item.producto.Id;
+                        listItemPedidos.Add(itemPedDTO);
+                    }
+                    pedDTO.itemPedido = listItemPedidos;
+                    pedidosDTO.Add(Mapper.Map<PedidoDTO, PedidoDTO>(pedDTO));
+                }
+                return pedidosDTO;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public PedidoDTO AddPedido(PedidoDTO pedido)
