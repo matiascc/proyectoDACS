@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Proveedor2Service } from '../../servicios/proveedor2/proveedor2.service';
+import { Router } from '@angular/router';
 import { Pedido } from '../../components/interfaces/interfaces';
+import { ObtenerPedidosService } from '../../servicios/pedidos-service/obtener-pedidos.service';
 
 
 @Component({
@@ -10,15 +11,15 @@ import { Pedido } from '../../components/interfaces/interfaces';
 })
 export class EntregasPendientesPage implements OnInit {
 
-  pedidos;
+  pedidos: Pedido[] = [];
   entregas: any = [];
 
-  constructor(private serviciosPedido: Proveedor2Service) { }
+  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router) { }
 
   ngOnInit() {
-    this.serviciosPedido.verPedidos()
+    this.serviciosPedido.obtenerPedidos()
     .subscribe(
-      (pedidos) => {this.pedidos = pedidos;},
+      (pedidos) => {this.pedidos= pedidos;},
       (error) => {console.log(error);}
     )
   }
@@ -50,5 +51,9 @@ export class EntregasPendientesPage implements OnInit {
  mostrarPedido(){
 
  }
+ verDetalles(pedido: Pedido){
+
+  this.router.navigate(['detalle-pedido', {pedido: JSON.stringify(pedido)} ])
+}
 
 }

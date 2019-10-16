@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Proveedor2Service } from '../../servicios/proveedor2/proveedor2.service';
 import { Pedido } from '../../components/interfaces/interfaces';
 import { Router } from '@angular/router';
-import { Proveedor1Service } from 'src/app/servicios/proveedor1/proveedor1.service';
+import { ObtenerPedidosService } from '../../servicios/pedidos-service/obtener-pedidos.service';
+
 
 @Component({
   selector: 'app-list-reorder',
@@ -13,10 +13,10 @@ export class ListReorderPage implements OnInit {
 
   pedidos
 
-  constructor(private noticiasServicio: Proveedor1Service , private router: Router) { }
+  constructor(private pedidosServicio: ObtenerPedidosService , private router: Router) { }
 
   ngOnInit() {
-    this.noticiasServicio.obtenerDatos()
+    this.pedidosServicio.obtenerPedidos()
     .subscribe(
       (noticias) => {this.pedidos = noticias;},
       (error) => {console.log(error)}

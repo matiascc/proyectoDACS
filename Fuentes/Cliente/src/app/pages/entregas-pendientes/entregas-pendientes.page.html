@@ -1,19 +1,22 @@
 <app-header titulo="Entregas pendientes"></app-header>
 
 <ion-content>
-
-      <ion-list>
-        <ion-item *ngFor="let usuario of pedidos">
-          <ion-checkbox color="primary" slot="start" (ionChange)="agregarPedido($event, usuario)"></ion-checkbox>
-          <ion-label>
-             {{usuario.id}} - {{usuario.name}}
-          </ion-label>
-          <span (click)= "mostrarPedido()" item-right>
-              <ion-icon name="information-circle"></ion-icon>
-            </span>
-        </ion-item>
-      </ion-list>
-
+  
+        <ion-card *ngFor="let usuario of pedidos">
+          <ion-item>
+            <ion-icon name="pin" slot="start" color="primary"></ion-icon>
+            <ion-label>Calle: {{usuario.name}} </ion-label>
+            <ion-checkbox color="primary" fill="outline" slot="end" (ionChange)="agregarPedido($event, usuario)"></ion-checkbox>
+          </ion-item>
+        
+          <ion-card-content (click)="verDetalles(usuario)">
+            <p> <strong>Fecha:</strong> 18/8/19</p> 
+           <span>{{usuario.name}}</span>
+          </ion-card-content>
+          
+        </ion-card>
+      
+        
       <ion-button expand="full"
                   (click)="obtenerPedidosSeleccionados()">
         Armar recorrido

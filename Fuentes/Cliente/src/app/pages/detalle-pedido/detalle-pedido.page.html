@@ -1,8 +1,19 @@
 <app-header titulo="Detallle pedido"></app-header>
 
 <ion-content>
-  <h3>Nombre: {{pedido.name}}</h3>
- <h3>Ciudad: {{pedido.address.city}}</h3>
- <h3>Telefono: {{pedido.phone}}</h3>
+    <ion-card>
+        <ion-item>
+          <ion-icon name="pin" slot="start"></ion-icon>
+          <ion-label>{{pedido.fechaCreacion}}</ion-label>
+          <ion-button fill="outline" slot="end">Ver mapa</ion-button>
+        </ion-item>
+      
+        <ion-card-content>
+            <ion-item>
+            <ion-icon name="information-circle" slot="start"></ion-icon>
+            <ion-label>{{pedido.fechaFinalizacion}}</ion-label>
+           </ion-item>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

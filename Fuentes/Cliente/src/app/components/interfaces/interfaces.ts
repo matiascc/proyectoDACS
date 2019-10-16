@@ -4,7 +4,7 @@ export interface Componente {
     redirecTo: string;
   }
 
-export interface Pedido {
+export interface Usuario {
   id: number;
   name: string;
   email: string,
@@ -31,4 +31,17 @@ interface Company {
   name: string,
   catchPhrase: string,
   bs: string
+}
+
+export interface Pedido {
+  id: number,
+  fechaCreacion: Date,
+  fechaFinalizacion: Date,
+  fechaLimite: Date,
+  Entregado: Estado,
+  precioTotal: number
+}
+
+interface Estado {
+
 }
