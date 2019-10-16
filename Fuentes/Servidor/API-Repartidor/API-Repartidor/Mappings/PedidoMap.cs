@@ -20,7 +20,7 @@ namespace API_Repartidor.Mappings
                 m.UnsavedValue(0);
             });
 
-            Property(x => x.fechaCreación);
+            Property(x => x.fechaCreacion);
             Property(x => x.fechaFinalizacion);
             Property(x => x.fechaLimite);
             Property(x => x.entregado);

@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_Repartidor.DataComponents;
 
 namespace API_Repartidor.DTOs
 {
     public class PedidoDTO
     {
-        public enum Estado
-        {
-            Pendiente = 0,
-            EnCurso = 1,
-            Finalizado = 2
-        }
-
-
         public virtual DateTime fechaCreacion { get; set; }
 
         public virtual DateTime fechaFinalizacion { get; set; }
