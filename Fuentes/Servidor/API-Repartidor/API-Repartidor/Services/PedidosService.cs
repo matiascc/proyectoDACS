@@ -37,7 +37,7 @@ namespace API_Repartidor.Services
                         itemPedDTO.cantidad = item.cantidad;
                         itemPedDTO.cantidadRechazada = item.cantidadRechazada;
                         itemPedDTO.precio = item.precio;
-                        itemPedDTO.idProducto = item.idProducto;
+                        itemPedDTO.idProducto = item.producto.Id;
                         listItemPedidos.Add(itemPedDTO);
                     }
                     pedDTO.itemPedido = listItemPedidos;

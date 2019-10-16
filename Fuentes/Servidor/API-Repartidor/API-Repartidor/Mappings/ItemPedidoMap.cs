@@ -22,7 +22,7 @@ namespace API_Repartidor.Mappings
             Property(x => x.cantidad);
             Property(x => x.cantidadRechazada);
             Property(x => x.precio);
-            Property(x => x.idProducto);
+            ManyToOne(x => x.producto);
             ManyToOne(x => x.pedido);
         }
     }
