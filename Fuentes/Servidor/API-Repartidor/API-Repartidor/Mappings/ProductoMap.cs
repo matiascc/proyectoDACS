@@ -19,21 +19,9 @@ namespace API_Repartidor.Mappings
                 m.UnsavedValue(0);
             });
 
-            Property(x => x.codigo);
-            Property(x => x.nombre);
-            Property(x => x.descripcion);
-            Property(x => x.imagen);
-            Property(x => x.codigoQR);
             Property(x => x.precio);
 
             Set(x => x.itemPedido,
-                cm =>
-                {
-                    cm.Lazy(CollectionLazy.Lazy);
-                },
-            action => action.OneToMany());
-
-            Set(x => x.stock,
                 cm =>
                 {
                     cm.Lazy(CollectionLazy.Lazy);

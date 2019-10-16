@@ -25,6 +25,7 @@ namespace API_Repartidor.Mappings
             Property(x => x.fechaLimite);
             Property(x => x.entregado);
             Property(x => x.precioTotal);
+            Property(x => x.idCliente);
 
             Set(x => x.itemPedido,
                 cm =>

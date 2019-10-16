@@ -22,12 +22,25 @@ namespace API_Repartidor.Services
                 foreach (var pedido in pedidosDAO.findAll(sess))
                 {
                     PedidoDTO pedDTO = new PedidoDTO();
+                    ItemPedidoDTO itemPedDTO = new ItemPedidoDTO();
+                    List<ItemPedidoDTO> listItemPedidos = new List<ItemPedidoDTO>();
                     pedDTO.id = pedido.Id;
                     pedDTO.fechaCreacion = pedido.fechaCreacion;
                     pedDTO.fechaFinalizacion = pedido.fechaFinalizacion;
                     pedDTO.fechaLimite = pedido.fechaLimite;
-                    pedDTO.entregado = pedido.entregado;
+                    pedDTO.entregado = pedido.entregado.ToString();
                     pedDTO.precioTotal = pedido.precioTotal;
+                    pedDTO.idCliente = pedido.idCliente;
+                    foreach (var item in pedido.itemPedido)
+                    {
+                        itemPedDTO.id = item.Id;
+                        itemPedDTO.cantidad = item.cantidad;
+                        itemPedDTO.cantidadRechazada = item.cantidadRechazada;
+                        itemPedDTO.precio = item.precio;
+                        itemPedDTO.idProducto = item.idProducto;
+                        listItemPedidos.Add(itemPedDTO);
+                    }
+                    pedDTO.itemPedido = listItemPedidos;
                     pedidosDTO.Add(Mapper.Map<PedidoDTO, PedidoDTO>(pedDTO));
                 }
                 return pedidosDTO;

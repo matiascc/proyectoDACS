@@ -14,5 +14,6 @@ namespace API_Repartidor.Entities
         public virtual Estado entregado { get; set; }
         public virtual double precioTotal { get; set; }
         public virtual ICollection<ItemPedido> itemPedido { get; set; }
+        public virtual long idCliente { get; set; }
     }
 }
