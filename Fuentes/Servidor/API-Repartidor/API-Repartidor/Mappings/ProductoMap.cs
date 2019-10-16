@@ -26,8 +26,7 @@ namespace API_Repartidor.Mappings
                 {
                     cm.Lazy(CollectionLazy.Lazy);
                 },
-            action => action.OneToMany());
-
+            action => action.OneToMany());            
         }
     }
 }
