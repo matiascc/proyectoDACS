@@ -41,7 +41,7 @@ namespace API_Repartidor.Services
                         listItemPedidos.Add(itemPedDTO);
                     }
                     pedDTO.itemPedido = listItemPedidos;
-                    pedidosDTO.Add(Mapper.Map<PedidoDTO, PedidoDTO>(pedDTO));
+                    pedidosDTO.Add(pedDTO);
                 }
                 return pedidosDTO;
             }
