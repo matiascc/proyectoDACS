@@ -14,11 +14,13 @@ namespace API_Repartidor.Controllers
     public class PedidosController : ControllerBase
     {
         private readonly Services.PedidosService pedidosSrv;
+        private readonly NHibernate.ISession session;
 
 
-        public PedidosController(Services.PedidosService pedidosSrv)
+        public PedidosController(Services.PedidosService pedidosSrv, NHibernate.ISession sess)
         {
             this.pedidosSrv = pedidosSrv;
+            this.session = sess;
         }
 
 
@@ -29,8 +31,14 @@ namespace API_Repartidor.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            this.pedidosSrv.GetPedidos();
-            return Ok("pedidos");
+            try
+            {
+                return Ok(this.pedidosSrv.GetPedidos(this.session));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>

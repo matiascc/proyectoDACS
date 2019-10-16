@@ -8,36 +8,35 @@ namespace API_Repartidor.DAO
 {
     public abstract class GenericDAO<T,ID>
     {
-        private ISessionFactory sessionFactory { get; }
-        public T findByID(ID id)
+        public T findByID(ID id, ISession session)
         {
             try
             {
-                return getSession.Load<T>(id);
+                return session.Load<T>(id);
             }
             catch
             {
                 throw;
             }
         }
-        public IList<T> findAll()
+        public IList<T> findAll(ISession session)
         {
             try
             {
-                return getSession.CreateCriteria(typeof(T)).List<T>();
+                return session.CreateCriteria(typeof(T)).List<T>();
             }
             catch
             {
                 throw;
             }
         }
-        public T makePersistent(T entity)
+        public T makePersistent(T entity, ISession session)
         {
-            using (ITransaction transaction = getSession.BeginTransaction())
+            using (ITransaction transaction = session.BeginTransaction())
             {
                 try
                 {
-                    getSession.Save(entity);
+                    session.Save(entity);
                     transaction.Commit();
                     return entity;
                 }
@@ -48,13 +47,13 @@ namespace API_Repartidor.DAO
                 }
             }
         }
-        public void delete(T entity)
+        public void delete(T entity, ISession session)
         {
-            using (ITransaction transaction = getSession.BeginTransaction())
+            using (ITransaction transaction = session.BeginTransaction())
             {
                 try
                 {
-                    getSession.Delete(entity);
+                    session.Delete(entity);
                     transaction.Commit();
                 }
                 catch
@@ -63,10 +62,6 @@ namespace API_Repartidor.DAO
                     throw;
                 }
             }
-        }
-        protected ISession getSession
-        {
-            get { return sessionFactory.GetCurrentSession(); }
         }
     }
 }

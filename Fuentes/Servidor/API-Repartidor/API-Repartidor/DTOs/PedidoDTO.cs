@@ -8,6 +8,7 @@ namespace API_Repartidor.DTOs
 {
     public class PedidoDTO
     {
+        public virtual long id { get; set; }
         public virtual DateTime fechaCreacion { get; set; }
 
         public virtual DateTime fechaFinalizacion { get; set; }

@@ -5,23 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using NHibernate;
 
 namespace API_Repartidor.Services
 {
     public class PedidosService
     {
-
-        PedidosDAO pedidosDAO = new PedidosDAO();
-        //para cada unos de los metodos falta la parte de la interaccion con la DAO correspondiente.
-
-        public List<PedidoDTO> GetPedidos()
+        private PedidosDAO pedidosDAO= new PedidosDAO();
+        
+        public List<PedidoDTO> GetPedidos(ISession sess)
         {
             try
             {
                 List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
-                PedidoDTO pedDTO = new PedidoDTO();
-                foreach (var pedido in pedidosDAO.GetPedidos())
+                
+                foreach (var pedido in pedidosDAO.findAll(sess))
                 {
+                    PedidoDTO pedDTO = new PedidoDTO();
+                    pedDTO.id = pedido.Id;
                     pedDTO.fechaCreacion = pedido.fechaCreacion;
                     pedDTO.fechaFinalizacion = pedido.fechaFinalizacion;
                     pedDTO.fechaLimite = pedido.fechaLimite;
