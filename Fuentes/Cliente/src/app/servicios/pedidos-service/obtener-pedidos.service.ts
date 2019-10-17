@@ -8,7 +8,8 @@ import { Pedido } from '../../components/interfaces/interfaces';
 })
 export class ObtenerPedidosService {
 
-  pedidos: Pedido[];
+  pedidos: Pedido[] = [];
+
   constructor(public http: HttpClient) { }
 
   //Acomodar aca

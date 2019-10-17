@@ -35,6 +35,7 @@ interface Company {
 
 export interface Pedido {
   id: number,
+  cliente: Cliente,
   fechaCreacion: Date,
   fechaFinalizacion: Date,
   fechaLimite: Date,
@@ -43,5 +44,13 @@ export interface Pedido {
 }
 
 interface Estado {
+ id: number
+}
 
+interface Cliente {
+
+  nombre: string,
+  apellido: string,
+  address: string
+  cell_phone: string
 }

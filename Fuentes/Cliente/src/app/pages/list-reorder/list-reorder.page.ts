@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../../components/interfaces/interfaces';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ObtenerPedidosService } from '../../servicios/pedidos-service/obtener-pedidos.service';
 
 
@@ -13,14 +13,10 @@ export class ListReorderPage implements OnInit {
 
   pedidos
 
-  constructor(private pedidosServicio: ObtenerPedidosService , private router: Router) { }
+  constructor(private pedidosServicio: ObtenerPedidosService , private router: Router, private state: ActivatedRoute) { }
 
   ngOnInit() {
-    this.pedidosServicio.obtenerPedidos()
-    .subscribe(
-      (noticias) => {this.pedidos = noticias;},
-      (error) => {console.log(error)}
-      )
+    this.pedidos = JSON.parse(this.state.snapshot.params.pedido);
   }
 
   reorder(event){

@@ -7,7 +7,7 @@
                        (ionItemReorder)="reorder( $event )"> 
 
         <ion-item *ngFor="let pedido of pedidos" >
-            <ion-label>{{pedido.fechaCreacion}}</ion-label>
+            <ion-label>Direccion: {{pedido.cliente.address}}</ion-label>
             <ion-reorder slot="end"></ion-reorder>
         </ion-item>
 
@@ -16,9 +16,12 @@
 
   </ion-list>
   
-  <ion-button expand="full"
-              (click)="OnClick()">
-    Modificar recorrido
-  </ion-button>
+ 
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      <ion-button expand="full" class="shadow-red" shape="round">Modificar recorrido </ion-button>
+  </ion-toolbar>
+</ion-footer>
