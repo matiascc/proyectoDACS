@@ -25,7 +25,7 @@ using API_Repartidor.Entities;
 using System.Reflection;
 using NHibernate.Tool.hbm2ddl;
 using Microsoft.OpenApi.Models;
-
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
 namespace API_Repartidor
 {
@@ -43,7 +43,16 @@ namespace API_Repartidor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddCors();
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            }));
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("MyPolicy"));
+            });
+
 
             services.AddSingleton<ISessionFactory>((provider) =>
             {
@@ -128,7 +137,9 @@ namespace API_Repartidor
                     session.Close();
                 }
             });
-                                
+
+            app.UseCors("MyPolicy");
+            
             app.UseMvc();
 
             app.UseSwagger();
