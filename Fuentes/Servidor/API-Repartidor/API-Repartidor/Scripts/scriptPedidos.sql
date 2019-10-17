@@ -1,3 +1,4 @@
+INSERT INTO producto (id,precio) VALUES (0,111);
 INSERT INTO producto (id,precio) VALUES (1,100);
 INSERT INTO producto (id,precio) VALUES (2,150);
 INSERT INTO producto (id,precio) VALUES (3,300);

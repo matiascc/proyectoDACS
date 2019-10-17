@@ -17,8 +17,9 @@ namespace API_Repartidor.DTOs
 
         public virtual string fabricante { get; set; }
 
-        //public virtual int id { get; set; }
-
         public virtual List<StockDTO> stock { get; set; }
+
+        public virtual double precio { get; set; }
+
     }
 }

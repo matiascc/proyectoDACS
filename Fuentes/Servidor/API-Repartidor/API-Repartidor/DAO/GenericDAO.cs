@@ -12,7 +12,7 @@ namespace API_Repartidor.DAO
         {
             try
             {
-                return session.Load<T>(id);
+                return session.Get<T>(id);
             }
             catch
             {

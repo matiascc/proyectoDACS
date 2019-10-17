@@ -6,7 +6,7 @@ using API_Repartidor.Entities;
 
 namespace API_Repartidor.DAO
 {
-    public class PedidosDAO : GenericDAO<Pedido,long>
+    public class ProductosDAO : GenericDAO<Producto,long>
     {
 
     }

@@ -8,12 +8,15 @@ using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 using RestSharp.Serialization.Json;
+using NHibernate;
+using API_Repartidor.DAO;
 
 namespace API_Repartidor.Services
 {
     public class ProductosService
     {
         private string baseURL = null;
+        private ProductosDAO productosDAO = new ProductosDAO();
         public ProductosService (IConfiguration configuration)
         {
             this.baseURL = configuration.GetValue<string>("ExternalApiURL");
@@ -23,14 +26,21 @@ namespace API_Repartidor.Services
         /// Obtiene y mapea todos los productos recibidos de la API externa
         /// </summary>
         /// <returns></returns>
-        public List<ProductoDTO> GetProductos()
+        public List<ProductoDTO> GetProductos(ISession sess)
         {
             try
             {
                 List<ProductoDTO> result = new List<ProductoDTO>();
+                ProductoDTO prodConPrecio = new ProductoDTO();
                 foreach (var producto in ApiProductsGetAll())
                 {
-                    result.Add(Mapper.Map<ProductDTO, ProductoDTO>(producto));
+                    prodConPrecio = Mapper.Map<ProductDTO, ProductoDTO>(producto);
+                    var prod = productosDAO.findByID(Convert.ToInt64(producto.id), sess);
+                    if (prod != null)
+                    {
+                        prodConPrecio.precio = prod.precio;
+                    }
+                    result.Add(prodConPrecio);
                 }
                 return result;
             }
