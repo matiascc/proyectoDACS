@@ -11,11 +11,13 @@ namespace API_Repartidor.Controllers
     [ApiController]
     public class ProductosController : ControllerBase
     {
-        private readonly Services.ProductosService productosSrv; 
+        private readonly Services.ProductosService productosSrv;
+        private readonly NHibernate.ISession session;
 
-        public ProductosController(Services.ProductosService productosSrv )
+        public ProductosController(Services.ProductosService productosSrv, NHibernate.ISession sess)
         {
             this.productosSrv = productosSrv;
+            this.session = sess;
         }
 
         [HttpGet]
@@ -23,7 +25,7 @@ namespace API_Repartidor.Controllers
         {
             try
             {
-                return Ok(this.productosSrv.GetProductos());
+                return Ok(this.productosSrv.GetProductos(this.session));
             }
             catch (Exception)
             {
