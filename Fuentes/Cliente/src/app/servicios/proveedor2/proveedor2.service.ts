@@ -11,7 +11,7 @@ export class Proveedor2Service {
   constructor(public http: HttpClient) { }
 
   verPedidos() : Observable<Pedido> {
-    return this.http.get<Pedido>("https://jsonplaceholder.typicode.com/users");
+    return this.http.get<Pedido>("https://localhost:5001/api/productos");
   }
 
   getMenuOpts(){

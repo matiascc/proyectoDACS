@@ -1,7 +1,13 @@
  [ 
   {
+    "icon": "logo-model-s",
+    "name": "Entregas pendientes",
+    "redirecTo": "/entregas-pendientes"
+  },
+  {
     "icon": "reorder",
     "name": "Listas de pedidos",
     "redirecTo": "/list-reorder"
   }
+  
  ]
