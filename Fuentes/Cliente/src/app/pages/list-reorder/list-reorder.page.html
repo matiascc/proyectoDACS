@@ -1,23 +1,34 @@
 <app-header titulo="Pedidos"></app-header>
 
 <ion-content>
+<!--  <ion-list> 
 
-  <ion-list>
-    <ion-reorder-group [disabled]="false"
+     <ion-reorder-group [disabled]="false"
                        (ionItemReorder)="reorder( $event )"> 
 
+              
         <ion-item *ngFor="let pedido of pedidos" >
             <ion-label>Direccion: {{pedido.cliente.address}}</ion-label>
             <ion-reorder slot="end"></ion-reorder>
         </ion-item>
-
+           
     </ion-reorder-group>
-    
 
-  </ion-list>
-  
+  </ion-list>-->
+   <ion-card *ngFor="let pedido of pedidos">
+    <ion-item>
+      <ion-icon name="pin" slot="start" color="primary"></ion-icon>
+      <ion-label>Calle: {{pedido.cliente.address}} </ion-label>
+    </ion-item>
+
+    <ion-card-content (click)="verDetalles(pedido)">
+      <ion-item>
+        <ion-icon name="person" slot="start" color="primary"></ion-icon>
+        <ion-label>Cliente: {{pedido.cliente.nombre}} {{pedido.cliente.apellido}} </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
  
-
 </ion-content>
 
 <ion-footer>

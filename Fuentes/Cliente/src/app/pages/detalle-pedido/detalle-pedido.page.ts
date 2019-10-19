@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Pedido } from '../../components/interfaces/interfaces';
+import { Pedido } from '../../interfaces/Pedido';
 
 @Component({
   selector: 'app-detalle-pedido',

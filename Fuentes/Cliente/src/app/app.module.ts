@@ -10,8 +10,7 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { Proveedor1Service } from './servicios/proveedor1/proveedor1.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Proveedor2Service } from './servicios/proveedor2/proveedor2.service';
-import { ObtenerPedidosService } from './servicios/pedidos-service/obtener-pedidos.service';
+import { ObtenerPedidosService } from './servicios/pedidos-service/pedidos-service.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +26,6 @@ import { ObtenerPedidosService } from './servicios/pedidos-service/obtener-pedid
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Proveedor1Service,
-    Proveedor2Service,
     ObtenerPedidosService
   ],
   bootstrap: [AppComponent]

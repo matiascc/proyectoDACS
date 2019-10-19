@@ -4,8 +4,8 @@
   
         <ion-card *ngFor="let pedido of pedidos">
           <ion-item>
-            <ion-icon name="pin" slot="start" color="primary"></ion-icon>
-            <ion-label>Calle: {{pedido.cliente.address}} </ion-label>
+            <ion-icon name="person" slot="start" color="primary"></ion-icon>
+            <ion-label>Cliente: {{pedido.cliente.nombre}} {{pedido.cliente.apellido}}  </ion-label>
             <ion-checkbox color="primary" fill="outline" slot="end" (ionChange)="agregarPedido($event, pedido)"></ion-checkbox>
           </ion-item>
         
@@ -23,8 +23,8 @@
 <ion-footer>
   <ion-toolbar >
      
-     <ion-item button  color="primary" shape="round" slot="end" (click)="obtenerPedidosSeleccionados()">
-       <ion-label>Armar recorrido</ion-label>
+     <ion-item button  color="primary" shape="round"  (click)="obtenerPedidosSeleccionados()">
+       <p text-align="center" >Armar recorrido</p>
        <ion-icon slot="start" name="car"></ion-icon>
      </ion-item>
         

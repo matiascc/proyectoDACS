@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pedido } from '../../components/interfaces/interfaces';
-import { ObtenerPedidosService } from '../../servicios/pedidos-service/obtener-pedidos.service';
+import { Pedido } from '../../interfaces/Pedido';
+import { ObtenerPedidosService } from '../../servicios/pedidos-service/pedidos-service.service';
 
 
 @Component({
@@ -20,7 +20,6 @@ export class EntregasPendientesPage implements OnInit {
               apellido: "Raffo",
               address: "Rondeau 123",
               cell_phone: "11111"
-
       },
     fechaCreacion: new Date,
     fechaFinalizacion: new Date,
