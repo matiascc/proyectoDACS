@@ -27,6 +27,7 @@ using NHibernate.Tool.hbm2ddl;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using System.IO;
+using API_Repartidor.DAO;
 
 namespace API_Repartidor
 {
@@ -115,7 +116,8 @@ namespace API_Repartidor
             services.AddScoped<RepartosService>();
             services.AddScoped<ProductosService>();
             services.AddScoped<ClientesService>();
-
+            services.AddScoped<ProductosDAO>();
+            services.AddScoped<PedidosDAO>();
 
             services.AddSwaggerGen(c =>
             {

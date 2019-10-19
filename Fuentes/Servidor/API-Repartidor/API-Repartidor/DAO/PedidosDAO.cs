@@ -9,7 +9,7 @@ namespace API_Repartidor.DAO
 {
     public class PedidosDAO : GenericDAO<Pedido, long>
     {
-        public PedidosDAO(ISessionFactory sessionFactory) : base(sessionFactory)
+        public PedidosDAO(ISession session) : base(session)
         {
         }
     }
