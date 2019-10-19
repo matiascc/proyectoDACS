@@ -8,59 +8,63 @@ namespace API_Repartidor.DAO
 {
     public abstract class GenericDAO<T,ID>
     {
-        public T findByID(ID id, ISession session)
+        private readonly ISessionFactory sessionFactory;
+        public GenericDAO(ISessionFactory sessionfactory)
+        {
+            this.sessionFactory = sessionfactory;
+        }
+
+        protected ISession Session
+        {
+            get
+            {
+                return this.sessionFactory.GetCurrentSession();
+            }
+        }
+
+        public T findByID(ID id)
         {
             try
             {
-                return session.Get<T>(id);
+                return this.Session.Get<T>(id);
             }
             catch
             {
                 throw;
             }
         }
-        public IList<T> findAll(ISession session)
+        public IList<T> findAll()
         {
             try
             {
-                return session.CreateCriteria(typeof(T)).List<T>();
+                return this.Session.CreateCriteria(typeof(T)).List<T>();
             }
             catch
             {
                 throw;
             }
         }
-        public T makePersistent(T entity, ISession session)
+        public T save(T entity)
         {
-            using (ITransaction transaction = session.BeginTransaction())
+            try
             {
-                try
-                {
-                    session.Save(entity);
-                    transaction.Commit();
-                    return entity;
-                }
-                catch
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+                this.Session.Save(entity);
+                return entity;
+            }
+            catch
+            {
+                throw;
             }
         }
-        public void delete(T entity, ISession session)
+        public void delete(T entity)
         {
-            using (ITransaction transaction = session.BeginTransaction())
+            try
             {
-                try
-                {
-                    session.Delete(entity);
-                    transaction.Commit();
-                }
-                catch
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+                this.Session.Delete(entity);
+            }
+            catch
+            {
+                throw;
             }
         }
     }

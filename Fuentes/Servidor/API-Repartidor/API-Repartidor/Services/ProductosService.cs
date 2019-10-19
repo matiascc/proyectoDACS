@@ -16,31 +16,25 @@ namespace API_Repartidor.Services
     public class ProductosService
     {
         private string baseURL = null;
-        private ProductosDAO productosDAO = new ProductosDAO();
-        public ProductosService (IConfiguration configuration)
+        private readonly ProductosDAO productosDAO;
+        public ProductosService (IConfiguration configuration, ProductosDAO productosDAO)
         {
             this.baseURL = configuration.GetValue<string>("ExternalApiURL");
+            this.productosDAO = productosDAO;
         }
 
         /// <summary>
         /// Obtiene y mapea todos los productos recibidos de la API externa
         /// </summary>
         /// <returns></returns>
-        public List<ProductoDTO> GetProductos(ISession sess)
+        public List<ProductoDTO> GetProductos()
         {
             try
             {
                 List<ProductoDTO> result = new List<ProductoDTO>();
-                ProductoDTO prodConPrecio = new ProductoDTO();
                 foreach (var producto in ApiProductsGetAll())
                 {
-                    prodConPrecio = Mapper.Map<ProductDTO, ProductoDTO>(producto);
-                    var prod = productosDAO.findByID(Convert.ToInt64(producto.id), sess);
-                    if (prod != null)
-                    {
-                        prodConPrecio.precio = prod.precio;
-                    }
-                    result.Add(prodConPrecio);
+                    result.Add(Mapper.Map<ProductDTO, ProductoDTO>(producto));
                 }
                 return result;
             }
@@ -61,7 +55,14 @@ namespace API_Repartidor.Services
             ProductDTO result = this.ApiProductsGetByID(id);
             if (result != null)
             {
-                return Mapper.Map<ProductDTO, ProductoCompletoDTO>(result);
+                ProductoCompletoDTO prodConPrecio = new ProductoCompletoDTO();
+                prodConPrecio = Mapper.Map<ProductDTO, ProductoCompletoDTO>(result);
+                var prod = productosDAO.findByID(Convert.ToInt64(result.id));
+                if (prod != null)
+                {
+                    prodConPrecio.precio = prod.precio;
+                }
+                return prodConPrecio;
             }
             else
             {

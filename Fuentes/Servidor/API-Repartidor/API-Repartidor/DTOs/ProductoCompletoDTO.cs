@@ -20,5 +20,7 @@ namespace API_Repartidor.DTOs
         public virtual string imagen { get; set; }
 
         public virtual List<StockDTO> stock { get; set; }
+
+        public virtual double precio { get; set; }
     }
 }
