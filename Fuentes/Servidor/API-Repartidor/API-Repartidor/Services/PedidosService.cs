@@ -11,33 +11,28 @@ namespace API_Repartidor.Services
 {
     public class PedidosService
     {
-        private PedidosDAO pedidosDAO= new PedidosDAO();
-        
-        public List<PedidoDTO> GetPedidos(ISession sess)
+        private readonly PedidosDAO pedidosDAO;
+        public PedidosService(PedidosDAO pedidosDAO)
+        {
+            this.pedidosDAO = pedidosDAO;
+        }
+        public List<PedidoDTO> GetPedidos()
         {
             try
             {
                 List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
                 
-                foreach (var pedido in pedidosDAO.findAll(sess))
+                foreach (var pedido in pedidosDAO.findAll())
                 {
                     PedidoDTO pedDTO = new PedidoDTO();
-                    ItemPedidoDTO itemPedDTO = new ItemPedidoDTO();
                     List<ItemPedidoDTO> listItemPedidos = new List<ItemPedidoDTO>();
-                    pedDTO.id = pedido.Id;
-                    pedDTO.fechaCreacion = pedido.fechaCreacion;
-                    pedDTO.fechaFinalizacion = pedido.fechaFinalizacion;
-                    pedDTO.fechaLimite = pedido.fechaLimite;
-                    pedDTO.entregado = pedido.entregado.ToString();
-                    pedDTO.precioTotal = pedido.precioTotal;
-                    pedDTO.idCliente = pedido.idCliente;
+
+                    pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(pedido);
                     foreach (var item in pedido.itemPedido)
                     {
-                        itemPedDTO.id = item.Id;
-                        itemPedDTO.cantidad = item.cantidad;
-                        itemPedDTO.cantidadRechazada = item.cantidadRechazada;
-                        itemPedDTO.precio = item.precio;
-                        itemPedDTO.idProducto = item.producto.Id;
+                        ItemPedidoDTO itemPedDTO = new ItemPedidoDTO();
+
+                        itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoDTO>(item);
                         listItemPedidos.Add(itemPedDTO);
                     }
                     pedDTO.itemPedido = listItemPedidos;

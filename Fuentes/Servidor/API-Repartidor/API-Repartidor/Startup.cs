@@ -26,6 +26,8 @@ using System.Reflection;
 using NHibernate.Tool.hbm2ddl;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using System.IO;
+using API_Repartidor.DAO;
 
 namespace API_Repartidor
 {
@@ -78,7 +80,28 @@ namespace API_Repartidor
                 var domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
                 cfg.AddMapping(domainMapping);
 
-                return cfg.BuildSessionFactory();
+                var sessionFactory = cfg.BuildSessionFactory();
+#if DEBUG
+                using (var session = sessionFactory.OpenSession())
+                using (var transaction = session.BeginTransaction())
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("API_Repartidor.Scripts.import.sql"))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    var lines = reader.ReadToEnd().Split(System.Environment.NewLine);
+                    foreach (var line in lines)
+                    {
+                        var sqlStatement = line.Trim();
+                        if (sqlStatement != string.Empty)
+                        {
+                            session.CreateSQLQuery(sqlStatement).ExecuteUpdate();
+                        }
+                    }
+
+                    transaction.Commit();
+                }
+#endif
+
+                return sessionFactory;
             });
 
             services.AddScoped<ISession>((provider) =>
@@ -89,11 +112,12 @@ namespace API_Repartidor
 
             this.ConfigureAutomapper();
 
-            services.AddSingleton<PedidosService>();
-            services.AddSingleton<RepartosService>();
-            services.AddSingleton<ProductosService>();
-            services.AddSingleton<ClientesService>();
-
+            services.AddScoped<PedidosService>();
+            services.AddScoped<RepartosService>();
+            services.AddScoped<ProductosService>();
+            services.AddScoped<ClientesService>();
+            services.AddScoped<ProductosDAO>();
+            services.AddScoped<PedidosDAO>();
 
             services.AddSwaggerGen(c =>
             {
@@ -183,6 +207,24 @@ namespace API_Repartidor
                 .ForMember(dest => dest.telefonoFijo, origin => origin.MapFrom(c => c.fixed_phone))
                 .ForMember(dest => dest.telefonoCelular, origin => origin.MapFrom(c => c.cell_phone))
                 .ForMember(dest => dest.cuit, origin => origin.MapFrom(c => c.legal_id));
+
+
+                //Mapeos entre Entites y DTOs
+                cfg.CreateMap<Entities.Pedido, DTOs.PedidoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
+                .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
+                .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
+                .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
+                .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
+                .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
+                .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente));
+
+                cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
+                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
+                .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
+                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
+                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.producto.Id));
             });
         }
 

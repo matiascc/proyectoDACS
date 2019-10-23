@@ -15,7 +15,7 @@ namespace API_Repartidor.Services
     {
         private string baseURL;
 
-        public ClientesService (IConfiguration configuration)
+        public ClientesService(IConfiguration configuration)
         {
             this.baseURL = configuration.GetValue<string>("externalApiURL");
         }
