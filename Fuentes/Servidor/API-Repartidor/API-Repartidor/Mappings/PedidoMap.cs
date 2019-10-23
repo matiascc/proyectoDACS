@@ -38,7 +38,7 @@ namespace API_Repartidor.Mappings
                 },
             action => action.OneToMany());
 
-            
+            ManyToOne(x => x.reparto);
 
         }
     }

@@ -60,7 +60,7 @@ namespace API_Repartidor.Controllers
         [Route("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok("return pedidoByID" + id);
+            return Ok(this.pedidosSrv.GetPedidoByID(id));
         }
 
         /// <summary>
@@ -72,20 +72,22 @@ namespace API_Repartidor.Controllers
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok("DeletePedidoResponse" + id);
+            this.pedidosSrv.DeletePedidoByID(id);
+            return Ok();
         }
 
 
         /// <summary>
         /// Actualiza un pedido por ID
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="pedido"></param>
         /// <returns></returns>
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update(int id)
+        public IActionResult Update([FromBody] PedidoDTO pedido)
         {
-            return Ok("UpdatePedidoResponse" + id);
+            this.pedidosSrv.UpdatePedidoByID(pedido);
+            return Ok();
         }
     }
 }
