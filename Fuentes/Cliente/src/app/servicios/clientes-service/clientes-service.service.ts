@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cliente } from 'src/app/interfaces/Cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +10,10 @@ export class ClientesServiceService {
 
   constructor(public http: HttpClient) { }
 
-  clientes: any;
+  clientes: Cliente[];
 
-  obtenerClientes():any {
-    return this.http.get<any>('https://localhost:5001/api/pedidos');
+  obtenerClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>('https://localhost:5001/api/cliente');
   }
  
 }
