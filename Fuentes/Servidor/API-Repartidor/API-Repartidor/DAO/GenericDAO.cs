@@ -53,6 +53,19 @@ namespace API_Repartidor.DAO
             try
             {
                 this.session.Delete(entity);
+                this.session.Flush();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void update(T entity)
+        {
+            try
+            {
+                this.session.Update(entity);
             }
             catch
             {
