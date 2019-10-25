@@ -3,15 +3,14 @@
 <ion-content>
   
         <ion-card *ngFor="let pedido of pedidos">
-          <ion-item>
+          <ion-item >
             <ion-icon name="person" slot="start" color="primary"></ion-icon>
-            <ion-label>Cliente: {{pedido.idCliente}}   </ion-label>
+            <ion-label>Cliente: {{cliente.nombre}}  </ion-label>
             <ion-checkbox color="primary" fill="outline" slot="end" (ionChange)="agregarPedido($event, pedido)"></ion-checkbox>
           </ion-item>
         
           <ion-card-content (click)="verDetalles(pedido)">
             <p> <strong>FechaCreacion:</strong> {{pedido.fechaCreacion|| DD-MM-YYYY}}</p> 
-           
             <p> <strong>FechaLimite:</strong> {{pedido.fechaLimite | date}}</p> 
          
           </ion-card-content>

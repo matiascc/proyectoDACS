@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Pedido } from '../../interfaces/Pedido';
 import { ObtenerPedidosService } from '../../servicios/pedidos-service/pedidos-service.service';
 import { Cliente } from 'src/app/interfaces/Cliente';
+import { ClientesServiceService } from '../../servicios/clientes-service/clientes-service.service';
 
 
 @Component({
@@ -14,71 +15,44 @@ export class EntregasPendientesPage implements OnInit {
 
   // pedidos: Pedido[] = [
   //   {
-  //   id: 1,
-  //   cliente:
-  //    {
-  //             nombre: "Juan",
-  //             apellido: "Raffo",
-  //             address: "Rondeau 123",
-  //             cell_phone: "11111"
-  //     },
-  //   fechaCreacion: new Date,
-  //   fechaFinalizacion: new Date,
-  //   fechaLimite: new Date,
-  //   Entregado: {id: 1},
-  //   precioTotal: 11
-  //   },
-  //   {
-  //     id: 2,
-  //     cliente:
-  //    {
-  //             nombre: "Nahuel",
-  //             apellido: "Montesino",
-  //             address: "Zaninetu 44",
-  //             cell_phone: "11111"
-
-  //     },
+  //     id: 1,
   //     fechaCreacion: new Date,
   //     fechaFinalizacion: new Date,
   //     fechaLimite: new Date,
-  //     Entregado: {id: 2},
-  //     precioTotal: 3
-  //   },
-  //   {
-  //     id: 3,
-  //     cliente:
-  //    {
-  //             nombre: "Matias",
-  //             apellido: "Caporale",
-  //             address: "Moreno 111",
-  //             cell_phone: "11111"
-
-  //     },
-  //     fechaCreacion: new Date,
-  //     fechaFinalizacion: new Date,
-  //     fechaLimite: new Date,
-  //     Entregado: {id: 2},
-  //     precioTotal: 5
+  //     Entregado: {id: 1},
+  //     precioTotal: 11,
+  //     idcliente: 2,
+  //     itemPedido: {
+  //       id: 1,
+  //       cantidad: 3,
+  //       cantidadRechazada: 3,
+  //       precio: 4,
+  //       idProducto: 3
+  //     }
   //   }
   // ];
-  pedidos : Pedido[];
-  clientes : Cliente[];
-  entregas: any = [];
+   pedidos : Pedido[];
+   cliente : Cliente;
+   entregas: any = [];
 
-  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router) { }
+  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router, private servicioCliente: ClientesServiceService) { }
 
-  ngOnInit() {
-       this.serviciosPedido.obtenerPedidos()
-       .subscribe(
-       (pedidos) => {this.pedidos= pedidos;},
-       (error) => {console.log(error);}
-    )
-       this.serviciosPedido.obtenerClientes()
-      .subscribe(
-      (cliente) => {this.clientes= cliente;},
-      (error) => {console.log(error);}
-    )
-  }
+     ngOnInit() { 
+        this.serviciosPedido.obtenerPedidos()
+        .subscribe(
+        (pedidos) => {this.pedidos= pedidos;},
+        (error) => {console.log(error);}
+     )
+   }
+
+   obtenerCliente(idCliente: number): Cliente {
+      this.servicioCliente.obtenerCliente(idCliente)
+          .subscribe(
+          (cliente) => {this.cliente = cliente;},
+          (error) => {console.log(error);}
+        )
+      return this.cliente;
+   }
 
 
  agregarPedido(event, pedido: any){
