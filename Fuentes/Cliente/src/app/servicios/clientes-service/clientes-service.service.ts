@@ -10,10 +10,9 @@ export class ClientesServiceService {
 
   constructor(public http: HttpClient) { }
 
-  clientes: Cliente[];
 
   obtenerCliente(idCliente: number): Observable<Cliente> {
-    return this.http.get<Cliente>('https://localhost:5001/api/cliente/'+idCliente);
+    return this.http.get<Cliente>('https://localhost:5001/api/clientes/'+idCliente);
   }
  
 }

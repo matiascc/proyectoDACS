@@ -7,7 +7,7 @@ export interface Pedido {
     fechaLimite: Date,
     Entregado: Estado,
     precioTotal: number,
-    idcliente: number,
+    idCliente: number,
     itemPedido: Item_Pedido
   }
   

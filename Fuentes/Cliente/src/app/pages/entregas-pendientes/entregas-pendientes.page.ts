@@ -32,7 +32,7 @@ export class EntregasPendientesPage implements OnInit {
   //   }
   // ];
    pedidos : Pedido[];
-   cliente : Cliente;
+  
    entregas: any = [];
 
   constructor(private serviciosPedido: ObtenerPedidosService, private router: Router, private servicioCliente: ClientesServiceService) { }
@@ -43,15 +43,6 @@ export class EntregasPendientesPage implements OnInit {
         (pedidos) => {this.pedidos= pedidos;},
         (error) => {console.log(error);}
      )
-   }
-
-   obtenerCliente(idCliente: number): Cliente {
-      this.servicioCliente.obtenerCliente(idCliente)
-          .subscribe(
-          (cliente) => {this.cliente = cliente;},
-          (error) => {console.log(error);}
-        )
-      return this.cliente;
    }
 
 

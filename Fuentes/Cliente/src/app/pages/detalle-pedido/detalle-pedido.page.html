@@ -8,7 +8,7 @@
           <ion-button fill="outline" slot="end">Ver mapa</ion-button>
         </ion-item>
 
-        <ion-card-content>
+        <ion-card-content *ngIf="cliente">
             <ion-item>
                 <ion-icon name="person" slot="start"></ion-icon>
                 <ion-label>Cliente: {{cliente.nombre}}</ion-label>

@@ -9,6 +9,8 @@ import { ClientesServiceService } from '../../servicios/clientes-service/cliente
   templateUrl: './detalle-pedido.page.html',
   styleUrls: ['./detalle-pedido.page.scss'],
 })
+
+
 export class DetallePedidoPage implements OnInit {
   pedido: Pedido;
   cliente: Cliente;
@@ -17,15 +19,17 @@ export class DetallePedidoPage implements OnInit {
 
   ngOnInit() {
     this.pedido = JSON.parse(this.state.snapshot.params.pedido);
+    //debugger;
+     this.obtenerCliente(this.pedido.idCliente);
   }
 
-  obtenerCliente(idCliente: number): Cliente {
+  obtenerCliente(idCliente: number) {
     this.servicioCliente.obtenerCliente(idCliente)
         .subscribe(
-        (cliente) => {this.cliente = cliente;},
+        (cliente) => {this.cliente = cliente;
+        console.log(this.cliente)},
         (error) => {console.log(error);}
-      )
-    return this.cliente;
+        )
  }
 
 }
