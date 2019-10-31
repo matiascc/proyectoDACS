@@ -35,6 +35,7 @@ namespace API_Repartidor.Mappings
                 cm =>
                 {
                     cm.Lazy(CollectionLazy.Lazy);
+                    cm.Cascade(Cascade.All);
                 },
             action => action.OneToMany());
 

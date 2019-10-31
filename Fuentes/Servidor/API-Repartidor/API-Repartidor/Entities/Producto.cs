@@ -9,7 +9,7 @@ namespace API_Repartidor.Entities
     public class Producto : BaseEntity
     {
         public virtual double precio { get; set; }
-        public virtual ICollection<ItemPedido> itemPedido { get; set; }
+        //public virtual ICollection<ItemPedido> itemPedido { get; set; }
 
     }
 }

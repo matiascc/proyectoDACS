@@ -118,6 +118,7 @@ namespace API_Repartidor
             services.AddScoped<ClientesService>();
             services.AddScoped<ProductosDAO>();
             services.AddScoped<PedidosDAO>();
+            services.AddScoped<ItemPedidosDAO>();
             services.AddScoped<RepartosDAO>();
 
             //Agrega el servicio del Swagger
@@ -222,14 +223,15 @@ namespace API_Repartidor
                 .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
                 .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente))
                 .ReverseMap();
-                
+
                 cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoDTO>()
                 .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
                 .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
                 .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
                 .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
-                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.producto.Id));
-                
+                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.idProducto))
+                .ReverseMap();
+
                 cfg.CreateMap<Entities.Reparto, DTOs.RepartoDTO>()
                 .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
                 .ForMember(dest => dest.fecha, origin => origin.MapFrom(c => c.fecha))

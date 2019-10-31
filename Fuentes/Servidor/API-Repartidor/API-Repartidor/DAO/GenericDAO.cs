@@ -41,6 +41,7 @@ namespace API_Repartidor.DAO
             try
             {
                 this.session.Save(entity);
+                this.session.Flush();
                 return entity;
             }
             catch
@@ -66,6 +67,7 @@ namespace API_Repartidor.DAO
             try
             {
                 this.session.Update(entity);
+                this.session.Flush();
             }
             catch
             {
