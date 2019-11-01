@@ -11,9 +11,11 @@ namespace API_Repartidor.Services
     public class PedidosService
     {
         private readonly PedidosDAO pedidosDAO;
-        public PedidosService(PedidosDAO pedidosDAO)
+        private readonly ItemPedidosDAO itemPedidosDAO;
+        public PedidosService(PedidosDAO pedidosDAO, ItemPedidosDAO itemPedidosDAO)
         {
             this.pedidosDAO = pedidosDAO;
+            this.itemPedidosDAO = itemPedidosDAO;
         }
         public List<PedidoDTO> GetPedidos()
         {
