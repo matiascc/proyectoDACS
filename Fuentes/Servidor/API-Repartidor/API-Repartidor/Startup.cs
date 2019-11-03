@@ -27,6 +27,9 @@ using NHibernate.Tool.hbm2ddl;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using System.IO;
+using API_Repartidor.DAO;
+using API_Repartidor.Exceptions;
+using System.Text;
 
 namespace API_Repartidor
 {
@@ -115,6 +118,7 @@ namespace API_Repartidor
             services.AddScoped<RepartosService>();
             services.AddScoped<ProductosService>();
             services.AddScoped<ClientesService>();
+            services.AddScoped<ProductosDAO>();
 
 
             services.AddSwaggerGen(c =>
@@ -139,6 +143,30 @@ namespace API_Repartidor
 
             app.UseHttpsRedirection();
 
+            //Middleware - Manejo de Excepciones
+            app.Use(async (context, next) =>
+            {
+                try
+                {
+                    await next.Invoke();
+                }
+                catch (UnauthorizedException e)
+                {
+                    context.Response.StatusCode = 401;
+                    Console.WriteLine(e.Message);
+                }
+                catch (IdNotFoundException e)
+                {
+                    context.Response.StatusCode = 400;
+                    Console.WriteLine(e.Message);
+                }
+                catch (Exception) //Para cualquier excepcion desconocida
+                {
+                    context.Response.StatusCode = 500;
+                }
+            });
+
+            //Middleware - Inicio y fin de transaccion con BD
             app.Use(async (context, next) =>
             {
                 var serviceScope = app.ApplicationServices.CreateScope();
@@ -153,6 +181,7 @@ namespace API_Repartidor
                 catch (Exception e)
                 {
                     session.Transaction.Rollback();
+                    throw e;
                 }
                 finally
                 {

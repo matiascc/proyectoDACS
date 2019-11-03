@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API_Repartidor.DTOs;
 using API_Repartidor.DTOs.ExternalApiDTOs;
+using API_Repartidor.Exceptions;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
@@ -77,14 +78,14 @@ namespace API_Repartidor.Services
 
             IRestResponse response = client.Execute(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.Content != null)
             {
                 result = new JsonDeserializer().Deserialize<List<ClientDTO>>(response);
                 return result;
             }
             else
             {
-                return null;
+                throw new IdNotFoundException("Cliente");
             }
         }
 

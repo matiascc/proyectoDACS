@@ -30,7 +30,7 @@ namespace API_Repartidor.DAO
             }
             catch
             {
-                throw;
+                throw new NullReferenceException();
             }
         }
         public IList<T> findAll()

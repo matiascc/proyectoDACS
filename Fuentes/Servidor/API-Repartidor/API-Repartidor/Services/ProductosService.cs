@@ -10,6 +10,7 @@ using RestSharp;
 using RestSharp.Serialization.Json;
 using NHibernate;
 using API_Repartidor.DAO;
+using API_Repartidor.Exceptions;
 
 namespace API_Repartidor.Services
 {
@@ -53,21 +54,14 @@ namespace API_Repartidor.Services
         public ProductoCompletoDTO GetProductoByID(int id)
         {
             ProductDTO result = this.ApiProductsGetByID(id);
-            if (result != null)
+            ProductoCompletoDTO prodConPrecio = new ProductoCompletoDTO();
+            prodConPrecio = Mapper.Map<ProductDTO, ProductoCompletoDTO>(result);
+            var prod = productosDAO.findByID(Convert.ToInt64(result.id));
+            if (prod != null)
             {
-                ProductoCompletoDTO prodConPrecio = new ProductoCompletoDTO();
-                prodConPrecio = Mapper.Map<ProductDTO, ProductoCompletoDTO>(result);
-                var prod = productosDAO.findByID(Convert.ToInt64(result.id));
-                if (prod != null)
-                {
-                    prodConPrecio.precio = prod.precio;
-                }
-                return prodConPrecio;
+                prodConPrecio.precio = prod.precio;
             }
-            else
-            {
-                throw new Exception();
-            }
+            return prodConPrecio;
         }
 
 
@@ -88,14 +82,14 @@ namespace API_Repartidor.Services
 
             IRestResponse response = client.Execute(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.Content != "null")
             {
                 resultwithID = new JsonDeserializer().Deserialize<ProductDTO>(response);
                 return resultwithID;
             }
             else
             {
-                return resultwithID;
+                throw new IdNotFoundException("Producto");
             }
         }
 

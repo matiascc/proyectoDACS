@@ -23,29 +23,14 @@ namespace API_Repartidor.Controllers
         [HttpGet]
         public IActionResult GetClientes()
         {
-            try
-            {
-                return Ok(this.clientesSrv.GetClientes());
-            }
-            catch (Exception)
-            { 
-                return BadRequest();
-            }
-            
+            return Ok(this.clientesSrv.GetClientes());
         }
 
         [HttpGet]
         [Route ("{id}")]
         public IActionResult GetClientByID(int id)
         {
-            try
-            {
-                return Ok(this.clientesSrv.GetClienteByID(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
+             return Ok(this.clientesSrv.GetClienteByID(id));
         }
     }
 }

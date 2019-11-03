@@ -21,28 +21,14 @@ namespace API_Repartidor.Controllers
         [HttpGet]
         public IActionResult GetProductos ()
         {
-            try
-            {
-                return Ok(this.productosSrv.GetProductos());
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
+            return Ok(this.productosSrv.GetProductos());
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetProductosById(int id)
         {
-            try
-            {
-                return Ok(this.productosSrv.GetProductoByID(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
+            return Ok(this.productosSrv.GetProductoByID(id));
         }
     }
 }
