@@ -29,7 +29,8 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using System.IO;
 using API_Repartidor.DAO;
 using API_Repartidor.Exceptions;
-using System.Text;
+
+
 
 namespace API_Repartidor
 {
@@ -119,6 +120,7 @@ namespace API_Repartidor
             services.AddScoped<ProductosService>();
             services.AddScoped<ClientesService>();
             services.AddScoped<ProductosDAO>();
+            services.AddScoped<PedidosDAO>();
 
 
             services.AddSwaggerGen(c =>

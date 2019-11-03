@@ -8,25 +8,17 @@ namespace API_Repartidor.DAO
 {
     public abstract class GenericDAO<T,ID>
     {
-        private readonly ISessionFactory sessionFactory;
-        public GenericDAO(ISessionFactory sessionfactory)
+        protected ISession session;
+        public GenericDAO(ISession session)
         {
-            this.sessionFactory = sessionfactory;
-        }
-
-        protected ISession Session
-        {
-            get
-            {
-                return this.sessionFactory.GetCurrentSession();
-            }
+            this.session = session;
         }
 
         public T findByID(ID id)
         {
             try
             {
-                return this.Session.Get<T>(id);
+                return this.session.Get<T>(id);
             }
             catch
             {
@@ -37,7 +29,7 @@ namespace API_Repartidor.DAO
         {
             try
             {
-                return this.Session.CreateCriteria(typeof(T)).List<T>();
+                return this.session.CreateCriteria(typeof(T)).List<T>();
             }
             catch
             {
@@ -48,7 +40,7 @@ namespace API_Repartidor.DAO
         {
             try
             {
-                this.Session.Save(entity);
+                this.session.Save(entity);
                 return entity;
             }
             catch
@@ -60,7 +52,7 @@ namespace API_Repartidor.DAO
         {
             try
             {
-                this.Session.Delete(entity);
+                this.session.Delete(entity);
             }
             catch
             {
