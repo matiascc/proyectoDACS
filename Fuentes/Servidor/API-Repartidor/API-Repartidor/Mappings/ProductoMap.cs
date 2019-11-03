@@ -21,12 +21,12 @@ namespace API_Repartidor.Mappings
 
             Property(x => x.precio);
 
-            Set(x => x.itemPedido,
+            /*Set(x => x.itemPedido,
                 cm =>
                 {
                     cm.Lazy(CollectionLazy.Lazy);
                 },
-            action => action.OneToMany());            
+            action => action.OneToMany());      */      
         }
     }
 }

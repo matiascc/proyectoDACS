@@ -7,9 +7,9 @@ using NHibernate;
 
 namespace API_Repartidor.DAO
 {
-    public class RepartosDAO : GenericDAO<Reparto, long>
+    public class ItemPedidosDAO : GenericDAO<ItemPedido, long>
     {
-        public RepartosDAO(ISession session) : base(session)
+        public ItemPedidosDAO(ISession session) : base(session)
         {
         }
     }

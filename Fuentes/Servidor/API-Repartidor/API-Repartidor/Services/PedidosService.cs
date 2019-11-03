@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using NHibernate;
 
 namespace API_Repartidor.Services
 {
     public class PedidosService
     {
         private readonly PedidosDAO pedidosDAO;
-        public PedidosService(PedidosDAO pedidosDAO)
+        private readonly ItemPedidosDAO itemPedidosDAO;
+        public PedidosService(PedidosDAO pedidosDAO, ItemPedidosDAO itemPedidosDAO)
         {
             this.pedidosDAO = pedidosDAO;
+            this.itemPedidosDAO = itemPedidosDAO;
         }
         public List<PedidoDTO> GetPedidos()
         {
@@ -30,9 +31,7 @@ namespace API_Repartidor.Services
                     pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(pedido);
                     foreach (var item in pedido.itemPedido)
                     {
-                        ItemPedidoDTO itemPedDTO = new ItemPedidoDTO();
-
-                        itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoDTO>(item);
+                        ItemPedidoDTO itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoDTO>(item);
                         listItemPedidos.Add(itemPedDTO);
                     }
                     pedDTO.itemPedido = listItemPedidos;
@@ -48,22 +47,26 @@ namespace API_Repartidor.Services
 
         public PedidoDTO AddPedido(PedidoDTO pedido)
         {
+            Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
+            this.pedidosDAO.save(pedidoEntity);
             return pedido;
         }
 
         public PedidoDTO GetPedidoByID(int id)
         {
-            return null;
+            PedidoDTO pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(this.pedidosDAO.findByID(id));
+            return pedDTO;
         }
 
         public void DeletePedidoByID(int id)
         {
-
+            this.pedidosDAO.delete(this.pedidosDAO.findByID(id));
         }
 
-        public void UpdatePedidoByID(int id)
+        public void UpdatePedidoByID(PedidoDTO pedido)
         {
-
+            Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
+            this.pedidosDAO.update(pedidoEntity);
         }
     }
 }

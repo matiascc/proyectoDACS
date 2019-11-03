@@ -20,10 +20,7 @@ using NHibernate.Connection;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
-using API_Repartidor.DataComponents;
-using API_Repartidor.Entities;
 using System.Reflection;
-using NHibernate.Tool.hbm2ddl;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using System.IO;
@@ -58,7 +55,7 @@ namespace API_Repartidor
                 options.Filters.Add(new CorsAuthorizationFilterFactory("MyPolicy"));
             });
 
-
+            //Crea el SessionFactory para la conexión con la BD
             services.AddSingleton<ISessionFactory>((provider) =>
             {
                 var cfg = new NHibernate.Cfg.Configuration();
@@ -84,6 +81,8 @@ namespace API_Repartidor
                 cfg.AddMapping(domainMapping);
 
                 var sessionFactory = cfg.BuildSessionFactory();
+
+//Carga script de la base de datos
 #if DEBUG
                 using (var session = sessionFactory.OpenSession())
                 using (var transaction = session.BeginTransaction())
@@ -115,14 +114,17 @@ namespace API_Repartidor
 
             this.ConfigureAutomapper();
 
+            //Agrega Servicios vinculados a las entidades
             services.AddScoped<PedidosService>();
             services.AddScoped<RepartosService>();
             services.AddScoped<ProductosService>();
             services.AddScoped<ClientesService>();
             services.AddScoped<ProductosDAO>();
             services.AddScoped<PedidosDAO>();
+            services.AddScoped<ItemPedidosDAO>();
+            services.AddScoped<RepartosDAO>();
 
-
+            //Agrega el servicio del Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Repartidor", Version = "v-1.0" });
@@ -144,6 +146,7 @@ namespace API_Repartidor
             }
 
             app.UseHttpsRedirection();
+
 
             //Middleware - Manejo de Excepciones
             app.Use(async (context, next) =>
@@ -169,6 +172,7 @@ namespace API_Repartidor
             });
 
             //Middleware - Inicio y fin de transaccion con BD
+            //Middleware para las transacciones de la BD
             app.Use(async (context, next) =>
             {
                 var serviceScope = app.ApplicationServices.CreateScope();
@@ -203,6 +207,7 @@ namespace API_Repartidor
             });
         }
 
+        //Crea los mapeos necesarios
         public void ConfigureAutomapper()
         {
             
@@ -221,8 +226,7 @@ namespace API_Repartidor
                 .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description))
                 .ForMember(dest => dest.fabricante, origin => origin.MapFrom(c => c.brand))
                 .ForMember(dest => dest.imagen, origin => origin.MapFrom(c => c.image));
-
-
+                
                 cfg.CreateMap<DTOs.ExternalApiDTOs.StockDTO, DTOs.StockDTO>()
                 .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.stock_id))
                 .ForMember(dest => dest.idZona, origin => origin.MapFrom(c => c.zone_id))
@@ -246,14 +250,23 @@ namespace API_Repartidor
                 .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
                 .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
                 .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
-                .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente));
+                .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente))
+                .ReverseMap();
 
                 cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoDTO>()
                 .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
                 .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
                 .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
                 .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
-                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.producto.Id));
+                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.idProducto))
+                .ReverseMap();
+
+                cfg.CreateMap<Entities.Reparto, DTOs.RepartoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
+                .ForMember(dest => dest.fecha, origin => origin.MapFrom(c => c.fecha))
+                .ForMember(dest => dest.finalizado, origin => origin.MapFrom(c => c.finalizado))
+                .ForMember(dest => dest.pedidos, origin => origin.MapFrom(c => c.pedidos))
+                .ReverseMap();
             });
         }
 

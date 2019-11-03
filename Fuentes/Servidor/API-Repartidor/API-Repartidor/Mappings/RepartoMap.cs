@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace API_Repartidor.Mappings
 {
-    public class PedidoMap : ClassMapping<Pedido>
+    public class RepartoMap : ClassMapping<Reparto>
     {
-        public PedidoMap()
+        public RepartoMap()
         {
-            Table("Pedido");
+            Table("Reparto");
 
             Id(x => x.Id, m => 
             {
@@ -20,26 +20,16 @@ namespace API_Repartidor.Mappings
                 m.UnsavedValue(0);
             });
 
-            Property(x => x.fechaCreacion);
-            Property(x => x.fechaFinalizacion);
-            Property(x => x.fechaLimite);
-            Property(x => x.entregado);
-            Property(x => x.idCliente);
-            
-            Property(x => x.precioTotal, map =>
-            {
-                map.Formula(@"(SELECT SUM(ip.cantidad * ip.precio) from itempedido ip where ip.pedido = Id)");
-            });
+            Property(x => x.fecha);
+            Property(x => x.finalizado);
 
-            Set(x => x.itemPedido,
+            Set(x => x.pedidos,
                 cm =>
                 {
                     cm.Lazy(CollectionLazy.Lazy);
                     cm.Cascade(Cascade.All);
                 },
             action => action.OneToMany());
-
-            ManyToOne(x => x.reparto);
 
         }
     }
