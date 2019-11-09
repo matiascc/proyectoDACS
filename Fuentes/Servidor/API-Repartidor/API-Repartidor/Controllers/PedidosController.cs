@@ -40,6 +40,25 @@ namespace API_Repartidor.Controllers
         }
 
         /// <summary>
+        /// Trae todos los pedidos pendientes
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("/pedidos/pendientes")]
+        public IActionResult GetPendientes()
+        {
+            try
+            {
+                return Ok(this.pedidosSrv.GetPedidosCompletos());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+
+        /// <summary>
         /// Agrega un nuevo pedido
         /// </summary>
         /// <param name="pedido"></param>
