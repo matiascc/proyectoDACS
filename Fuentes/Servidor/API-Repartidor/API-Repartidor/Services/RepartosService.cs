@@ -94,12 +94,10 @@ namespace API_Repartidor.Services
 
         private ClienteDTO ClienteMenorDistancia(Posicion ubicActual, ClienteDTO cliente1, ClienteDTO cliente2)
         {
-            //Calcula la distancia al 1er y 2di cliente con pitágoras
-            double distanciaCli1 = Math.Sqrt( Math.Pow(Decimal.ToDouble(Math.Abs(ubicActual.Latitude - cliente1.posicion.Latitude)),2) +
-                                    Math.Pow(Decimal.ToDouble(Math.Abs(ubicActual.Longitude - cliente1.posicion.Longitude)), 2));
+            //Calcula la distancia al 1er y 2di cliente
+            double distanciaCli1 = 1; //Corregir esto
 
-            double distanciaCli2 = Math.Sqrt(Math.Pow(Decimal.ToDouble(Math.Abs(ubicActual.Latitude - cliente2.posicion.Latitude)), 2) +
-                                    Math.Pow(Decimal.ToDouble(Math.Abs(ubicActual.Longitude - cliente2.posicion.Longitude)), 2));
+            double distanciaCli2 = 2; //Corregir esto
 
             if (distanciaCli1 <= distanciaCli2)
             {
