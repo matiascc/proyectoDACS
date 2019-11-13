@@ -26,14 +26,14 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using System.IO;
 using API_Repartidor.DAO;
 using API_Repartidor.Exceptions;
-
-
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 namespace API_Repartidor
 {
     public class Startup
     {
-
+        private const string TOKEN_HEADER_ITEM = "token-id";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -112,6 +112,17 @@ namespace API_Repartidor
                 return factory.OpenSession();
             });
 
+            services.AddSingleton((provider) =>
+            {
+                var firebaseApp = FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromFile("privatekey.json"),
+                });
+                
+                return firebaseApp;
+            });
+
+
             this.ConfigureAutomapper();
 
             //Agrega Servicios vinculados a las entidades
@@ -165,9 +176,10 @@ namespace API_Repartidor
                     context.Response.StatusCode = 400;
                     Console.WriteLine(e.Message);
                 }
-                catch (Exception) //Para cualquier excepcion desconocida
+                catch (Exception e) //Para cualquier excepcion desconocida
                 {
                     context.Response.StatusCode = 500;
+                    Console.WriteLine(e.Message);
                 }
             });
 
@@ -195,6 +207,57 @@ namespace API_Repartidor
                 }
             });
 
+
+            //Middleware autenticacion Firebase
+            app.Use(async (context, next) =>
+            {
+                    try
+                    {
+                        var firebaseAuth = new Firebase.Auth.FirebaseAuthProvider(new Firebase.Auth.FirebaseConfig("AIzaSyAhKx_ibS2ENE2Kw01E8mD-KKaXjiQGybU"));
+                        var link = await firebaseAuth.SignInWithEmailAndPasswordAsync("miltonalbornoz07@gmail.com", "14108748");
+
+                        context.Request.Headers.Add(TOKEN_HEADER_ITEM, link.FirebaseToken);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                    await next.Invoke();
+            });
+
+            //Middleware autenticacion Firebase
+
+            app.Use(async (context, next) =>
+            {
+                var firebaseApp = app.ApplicationServices.GetService<FirebaseApp>();
+
+                var firebaseAuth = FirebaseAdmin.Auth.FirebaseAuth.GetAuth(firebaseApp);
+
+                if (context.Request.Headers.ContainsKey(TOKEN_HEADER_ITEM))
+                {
+                    try
+                    {
+                        var idToken = context.Request.Headers[TOKEN_HEADER_ITEM];
+                        var token = await firebaseAuth.VerifyIdTokenAsync(idToken.First());
+
+                        var user = await firebaseAuth.GetUserAsync(token.Uid);
+                        context.Items.Add("CurrentUser", user);
+
+                        await next.Invoke();
+                    }
+                    catch (Exception)
+                    {
+                        throw new UnauthorizedException();
+                    }
+            }
+                else
+            {
+                throw new UnauthorizedException();
+            }
+        });
+
+
             app.UseCors("MyPolicy");
             
             app.UseMvc();
@@ -203,7 +266,7 @@ namespace API_Repartidor
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json" , "MyAPI");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI");
             });
         }
 
