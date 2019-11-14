@@ -109,6 +109,7 @@ namespace API_Repartidor.Services
             }
         }
 
+        //Utiliza la Fórmula de Haversine para calcular ditancia entre 2 coordenadas
         private double CalcularDistanciaDeUbicaciones(Posicion origen, Posicion destino)
         {
             var difLatitud = EnRadianes(Convert.ToSingle(destino.Latitude) - Convert.ToSingle(origen.Latitude));
