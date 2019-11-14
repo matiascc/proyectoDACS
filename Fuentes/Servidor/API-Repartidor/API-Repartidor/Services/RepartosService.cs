@@ -95,9 +95,9 @@ namespace API_Repartidor.Services
         private ClienteDTO ClienteMenorDistancia(Posicion ubicActual, ClienteDTO cliente1, ClienteDTO cliente2)
         {
             //Calcula la distancia al 1er y 2di cliente
-            double distanciaCli1 = 1; //Corregir esto
+            double distanciaCli1 = CalcularDistanciaDeUbicaciones(ubicActual, cliente1.posicion);
 
-            double distanciaCli2 = 2; //Corregir esto
+            double distanciaCli2 = CalcularDistanciaDeUbicaciones(ubicActual, cliente2.posicion);
 
             if (distanciaCli1 <= distanciaCli2)
             {
@@ -107,6 +107,30 @@ namespace API_Repartidor.Services
             {
                 return cliente2;
             }
+        }
+
+        private double CalcularDistanciaDeUbicaciones(Posicion origen, Posicion destino)
+        {
+            var difLatitud = EnRadianes(Convert.ToSingle(destino.Latitude) - Convert.ToSingle(origen.Latitude));
+            var difLongitud = EnRadianes(Convert.ToSingle(destino.Longitude) - Convert.ToSingle(origen.Longitude));
+
+            float radioTierraKm = 6378.0F;
+
+            var a = Math.Pow(Math.Sin(difLatitud / 2), 2) +
+                      Math.Cos(EnRadianes(Convert.ToSingle(origen.Latitude))) *
+                      Math.Cos(EnRadianes(Convert.ToSingle(destino.Latitude))) *
+                      Math.Pow(Math.Sin(difLongitud / 2), 2);
+
+
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+
+            return radioTierraKm * c;
+        }
+
+        private float EnRadianes(float valor)
+        {
+            return Convert.ToSingle(Math.PI / 180) * valor;
         }
 
         public RepartoDTO GetRepartoByID(int id)
