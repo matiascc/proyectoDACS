@@ -49,8 +49,8 @@ namespace API_Repartidor.Services
             //Cambiar la ubicacion por la que viene del dispositivo!!!
             Posicion ubicacionActual = new Posicion
             {
-                Longitude = 0,
-                Latitude = 0
+                Longitud = 0,
+                Latitud = 0
             };
 
             reparto.pedidos = OrdenarPedidos(ubicacionActual, reparto.pedidos.ToList());
@@ -112,14 +112,14 @@ namespace API_Repartidor.Services
         //Utiliza la Fórmula de Haversine para calcular ditancia entre 2 coordenadas
         private double CalcularDistanciaDeUbicaciones(Posicion origen, Posicion destino)
         {
-            var difLatitud = EnRadianes(Convert.ToSingle(destino.Latitude) - Convert.ToSingle(origen.Latitude));
-            var difLongitud = EnRadianes(Convert.ToSingle(destino.Longitude) - Convert.ToSingle(origen.Longitude));
+            var difLatitud = EnRadianes(Convert.ToSingle(destino.Latitud) - Convert.ToSingle(origen.Latitud));
+            var difLongitud = EnRadianes(Convert.ToSingle(destino.Longitud) - Convert.ToSingle(origen.Longitud));
 
             float radioTierraKm = 6378.0F;
 
             var a = Math.Pow(Math.Sin(difLatitud / 2), 2) +
-                      Math.Cos(EnRadianes(Convert.ToSingle(origen.Latitude))) *
-                      Math.Cos(EnRadianes(Convert.ToSingle(destino.Latitude))) *
+                      Math.Cos(EnRadianes(Convert.ToSingle(origen.Latitud))) *
+                      Math.Cos(EnRadianes(Convert.ToSingle(destino.Latitud))) *
                       Math.Pow(Math.Sin(difLongitud / 2), 2);
 
 
