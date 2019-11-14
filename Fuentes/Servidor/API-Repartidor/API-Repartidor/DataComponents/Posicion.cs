@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace API_Repartidor.DataComponents
 {
-    public class Position
+    public class Posicion
     {
-        public decimal Latitude { get; set; }
+        public decimal Latitud { get; set; }
 
-        public decimal Longitude { get; set; }
+        public decimal Longitud { get; set; }
     }
 }

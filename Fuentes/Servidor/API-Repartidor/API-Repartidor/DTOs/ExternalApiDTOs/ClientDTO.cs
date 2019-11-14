@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API_Repartidor.DataComponents;
 
 namespace API_Repartidor.DTOs.ExternalApiDTOs
 {
@@ -13,7 +14,7 @@ namespace API_Repartidor.DTOs.ExternalApiDTOs
 
         public virtual string address { get; set; }
 
-        //public virtual string position { get; set; }
+        public virtual Posicion position { get; set; }
 
         public virtual string email { get; set; }
 
