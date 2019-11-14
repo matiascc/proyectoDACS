@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using API_Repartidor.Exceptions;
 using API_Repartidor.DataComponents;
 
 namespace API_Repartidor.Services
@@ -136,8 +137,17 @@ namespace API_Repartidor.Services
 
         public RepartoDTO GetRepartoByID(int id)
         {
-            RepartoDTO repDTO = Mapper.Map<Entities.Reparto, RepartoDTO>(this.repartosDAO.findByID(id));
-            return repDTO;
+            var reparto = this.repartosDAO.findByID(id);
+            if (reparto != null)
+            {
+                RepartoDTO repDTO = Mapper.Map<Entities.Reparto, RepartoDTO>(reparto);
+                return repDTO;
+            }
+            else
+            {
+                throw new IdNotFoundException("Pedido");
+            }
+            
         }
 
         public void DeleteRepartoByID(int id)
