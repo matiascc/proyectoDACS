@@ -237,6 +237,7 @@ namespace API_Repartidor
                 .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
                 .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.address))
                 .ForMember(dest => dest.email, origin => origin.MapFrom(c => c.email))
+                .ForMember(dest => dest.posicion, origin => origin.MapFrom(c => c.position))
                 .ForMember(dest => dest.telefonoFijo, origin => origin.MapFrom(c => c.fixed_phone))
                 .ForMember(dest => dest.telefonoCelular, origin => origin.MapFrom(c => c.cell_phone))
                 .ForMember(dest => dest.cuit, origin => origin.MapFrom(c => c.legal_id));
