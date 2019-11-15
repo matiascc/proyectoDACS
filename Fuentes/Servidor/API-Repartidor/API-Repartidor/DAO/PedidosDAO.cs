@@ -11,6 +11,19 @@ namespace API_Repartidor.DAO
     {
         public PedidosDAO(ISession session) : base(session)
         {
+
+        }
+        public IList<Pedido> findAllPending()
+        {
+            try
+            {
+                return this.session.QueryOver<Pedido>().Where(x => x.entregado == 0).List();
+                //return this.session.CreateCriteria(typeof(Pedido)).List<Pedido>();
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

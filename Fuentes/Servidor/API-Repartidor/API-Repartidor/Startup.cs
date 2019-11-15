@@ -28,6 +28,8 @@ using API_Repartidor.Exceptions;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using API_Repartidor.Mappings;
+using System.Text;
+using System.Text.Json;
 
 namespace API_Repartidor
 {
@@ -170,17 +172,51 @@ namespace API_Repartidor
                 catch (UnauthorizedException e)
                 {
                     context.Response.StatusCode = 401;
-                    Console.WriteLine(e.Message);
+                    context.Response.ContentType = "application/json";
+
+                    using (var writer = new StreamWriter(context.Response.Body))
+                    {
+                        writer.Write(
+                            JsonSerializer.Serialize(
+                                new
+                                {
+                                    message = e.Message
+                                }));
+                        await writer.FlushAsync().ConfigureAwait(false);
+                    }
                 }
                 catch (IdNotFoundException e)
                 {
                     context.Response.StatusCode = 400;
-                    Console.WriteLine(e.Message);
+                    context.Response.ContentType = "application/json";
+
+                    using (var writer = new StreamWriter(context.Response.Body))
+                    {
+                        writer.Write(
+                            JsonSerializer.Serialize(
+                                new
+                                {
+                                    message = e.Message
+                                }));
+                        await writer.FlushAsync().ConfigureAwait(false);
+                    }
                 }
                 catch (Exception e) //Para cualquier excepcion desconocida
                 {
                     context.Response.StatusCode = 500;
-                    Console.WriteLine(e.Message);
+                    context.Response.ContentType = "application/json";
+
+                    using (var writer = new StreamWriter(context.Response.Body))
+                    {
+                        writer.Write(
+                            JsonSerializer.Serialize(
+                                new
+                                {
+                                    message = "Error desconocido",
+                                    detail = e.Message
+                                }));
+                        await writer.FlushAsync().ConfigureAwait(false);
+                    }
                 }
             });
 
@@ -267,7 +303,96 @@ namespace API_Repartidor
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json" , "MyAPI");
+            });
+        }
+
+        //Crea los mapeos necesarios
+        public void ConfigureAutomapper()
+        {
+            
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<ProductDTO, ProductoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
+                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.code))
+                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description));
+
+                cfg.CreateMap<ProductDTO, ProductoCompletoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.code))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
+                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description))
+                .ForMember(dest => dest.fabricante, origin => origin.MapFrom(c => c.brand))
+                .ForMember(dest => dest.imagen, origin => origin.MapFrom(c => c.image));
+                
+                cfg.CreateMap<DTOs.ExternalApiDTOs.StockDTO, DTOs.StockDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.stock_id))
+                .ForMember(dest => dest.idZona, origin => origin.MapFrom(c => c.zone_id))
+                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.quantity));
+                
+                cfg.CreateMap<DTOs.ExternalApiDTOs.ClientDTO, DTOs.ClienteDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
+                .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.address))
+                .ForMember(dest => dest.email, origin => origin.MapFrom(c => c.email))
+                .ForMember(dest => dest.posicion, origin => origin.MapFrom(c => c.position))
+                .ForMember(dest => dest.telefonoFijo, origin => origin.MapFrom(c => c.fixed_phone))
+                .ForMember(dest => dest.telefonoCelular, origin => origin.MapFrom(c => c.cell_phone))
+                .ForMember(dest => dest.cuit, origin => origin.MapFrom(c => c.legal_id));
+
+                cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoCompletoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
+                .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
+                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
+                .ReverseMap();
+
+                cfg.CreateMap<DTOs.ClienteDTO, DTOs.ClienteReducidoDTO>()
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.nombre))
+                .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.direccion));
+
+                cfg.CreateMap<DTOs.ProductoCompletoDTO, DTOs.ProductoCompletoReducidoDTO>()
+                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.nombre))
+                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.codigoQR));
+
+
+                //Mapeos entre Entites y DTOs
+                cfg.CreateMap<Entities.Pedido, DTOs.PedidoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
+                .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
+                .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
+                .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
+                .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
+                .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente))
+                .ReverseMap();
+
+                cfg.CreateMap<Entities.Pedido, DTOs.PedidoCompletoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
+                .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
+                .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
+                .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
+                .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
+                .ReverseMap();
+
+                cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
+                .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
+                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
+                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.idProducto))
+                .ReverseMap();
+                
+                cfg.CreateMap<Entities.Reparto, DTOs.RepartoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.fecha, origin => origin.MapFrom(c => c.fecha))
+                .ForMember(dest => dest.finalizado, origin => origin.MapFrom(c => c.finalizado))
+                .ForMember(dest => dest.pedidos, origin => origin.MapFrom(c => c.pedidos))
+                .ReverseMap();
             });
         }
     }

@@ -14,7 +14,7 @@ namespace API_Repartidor.Mappings
         {
             Table("Producto");
 
-            Id(x => x.Id, m => {
+            Id(x => x.id, m => {
                 m.Generator(Generators.Increment);
                 m.UnsavedValue(0);
             });

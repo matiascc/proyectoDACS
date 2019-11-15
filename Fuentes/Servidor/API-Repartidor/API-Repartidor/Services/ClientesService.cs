@@ -106,14 +106,14 @@ namespace API_Repartidor.Services
 
             IRestResponse response = client.Execute(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.Content != "null")
             {
                 resultwithID = new JsonDeserializer().Deserialize<ClientDTO>(response);
                 return resultwithID;
             }
             else
             {
-                return resultwithID;
+                throw new IdNotFoundException("Cliente");
             }
         }
 
