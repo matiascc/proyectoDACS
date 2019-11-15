@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pedido } from '../../interfaces/Pedido';
-import { ObtenerPedidosService } from '../../servicios/pedidos-service/pedidos-service.service';
-import { Cliente } from 'src/app/interfaces/Cliente';
-import { ClientesService } from '../../servicios/clientes-service/clientes-service.service';
+import { Pedido } from '../../components/interfaces/interfaces';
+import { ObtenerPedidosService } from '../../servicios/pedidos-service/obtener-pedidos.service';
 
 
 @Component({
@@ -13,19 +11,67 @@ import { ClientesService } from '../../servicios/clientes-service/clientes-servi
 })
 export class EntregasPendientesPage implements OnInit {
 
-   pedidos : Pedido[];
-  
-   entregas: any = [];
+  pedidos: Pedido[] = [
+    {
+    id: 1,
+    cliente:
+     {
+              nombre: "Juan",
+              apellido: "Raffo",
+              address: "Rondeau 123",
+              cell_phone: "11111"
 
-  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router, private servicioCliente: ClientesService) { }
+      },
+    fechaCreacion: new Date,
+    fechaFinalizacion: new Date,
+    fechaLimite: new Date,
+    Entregado: {id: 1},
+    precioTotal: 11
+    },
+    {
+      id: 2,
+      cliente:
+     {
+              nombre: "Nahuel",
+              apellido: "Montesino",
+              address: "Zaninetu 44",
+              cell_phone: "11111"
 
-     ngOnInit() { 
-        this.serviciosPedido.obtenerPedidos()
-        .subscribe(
-        (pedidos) => {this.pedidos= pedidos;},
-        (error) => {console.log(error);}
-     )
-   }
+      },
+      fechaCreacion: new Date,
+      fechaFinalizacion: new Date,
+      fechaLimite: new Date,
+      Entregado: {id: 2},
+      precioTotal: 3
+    },
+    {
+      id: 3,
+      cliente:
+     {
+              nombre: "Matias",
+              apellido: "Caporale",
+              address: "Moreno 111",
+              cell_phone: "11111"
+
+      },
+      fechaCreacion: new Date,
+      fechaFinalizacion: new Date,
+      fechaLimite: new Date,
+      Entregado: {id: 2},
+      precioTotal: 5
+    }
+  ];
+  entregas: any = [];
+
+  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router) { }
+
+  ngOnInit() {
+    // this.serviciosPedido.obtenerPedidos()
+    // .subscribe(
+    //   (pedidos) => {this.pedidos= pedidos;},
+    //   (error) => {console.log(error);}
+    // )
+  }
 
 
  agregarPedido(event, pedido: any){

@@ -10,8 +10,7 @@ const routes: Routes = [
   { path: 'inicio', loadChildren: './pages/inicio/inicio.module#InicioPageModule' },
   { path: 'list-reorder', loadChildren: './pages/list-reorder/list-reorder.module#ListReorderPageModule' },
   { path: 'detalle-pedido', loadChildren: './pages/detalle-pedido/detalle-pedido.module#DetallePedidoPageModule' },
-  { path: 'entregas-pendientes', loadChildren: './pages/entregas-pendientes/entregas-pendientes.module#EntregasPendientesPageModule' },
-  { path: 'escanear-codigo', loadChildren: './pages/escanear-codigo/escanear-codigo.module#EscanearCodigoPageModule' },  { path: 'agregar-pedido', loadChildren: './pages/agregar-pedido/agregar-pedido.module#AgregarPedidoPageModule' },
+  { path: 'entregas-pendientes', loadChildren: './pages/entregas-pendientes/entregas-pendientes.module#EntregasPendientesPageModule' }
 
 ];
 @NgModule({

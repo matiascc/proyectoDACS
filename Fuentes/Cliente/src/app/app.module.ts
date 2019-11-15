@@ -10,8 +10,8 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { Proveedor1Service } from './servicios/proveedor1/proveedor1.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ObtenerPedidosService } from './servicios/pedidos-service/pedidos-service.service';
-import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { Proveedor2Service } from './servicios/proveedor2/proveedor2.service';
+import { ObtenerPedidosService } from './servicios/pedidos-service/obtener-pedidos.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,15 +20,15 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
     IonicModule.forRoot(), 
     AppRoutingModule,
     ComponentsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
     providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Proveedor1Service,
-    ObtenerPedidosService,
-    QRScanner
+    Proveedor2Service,
+    ObtenerPedidosService
   ],
   bootstrap: [AppComponent]
 })
