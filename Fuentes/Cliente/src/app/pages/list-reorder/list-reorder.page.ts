@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Pedido } from '../../interfaces/Pedido';
+import { Pedido } from '../../components/interfaces/interfaces';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ObtenerPedidosService } from '../../servicios/pedidos-service/pedidos-service.service';
+import { ObtenerPedidosService } from '../../servicios/pedidos-service/obtener-pedidos.service';
 
 
 @Component({
@@ -35,6 +35,5 @@ export class ListReorderPage implements OnInit {
   OnClick() {
     console.log(this.pedidos);
   }
-
 
 }
