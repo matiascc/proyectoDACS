@@ -41,14 +41,31 @@ namespace API_Repartidor.Mappings
                 .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
                 .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.address))
                 .ForMember(dest => dest.email, origin => origin.MapFrom(c => c.email))
+                .ForMember(dest => dest.posicion, origin => origin.MapFrom(c => c.position))
                 .ForMember(dest => dest.telefonoFijo, origin => origin.MapFrom(c => c.fixed_phone))
                 .ForMember(dest => dest.telefonoCelular, origin => origin.MapFrom(c => c.cell_phone))
                 .ForMember(dest => dest.cuit, origin => origin.MapFrom(c => c.legal_id));
 
+                cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoCompletoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
+                .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
+                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
+                .ReverseMap();
+
+                cfg.CreateMap<DTOs.ClienteDTO, DTOs.ClienteReducidoDTO>()
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.nombre))
+                .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.direccion));
+
+                cfg.CreateMap<DTOs.ProductoCompletoDTO, DTOs.ProductoCompletoReducidoDTO>()
+                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
+                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.nombre))
+                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.codigoQR));
+
 
                 //Mapeos entre Entites y DTOs
                 cfg.CreateMap<Entities.Pedido, DTOs.PedidoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
                 .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
                 .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
                 .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
@@ -57,8 +74,17 @@ namespace API_Repartidor.Mappings
                 .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente))
                 .ReverseMap();
 
+                cfg.CreateMap<Entities.Pedido, DTOs.PedidoCompletoDTO>()
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
+                .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
+                .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
+                .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
+                .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
+                .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
+                .ReverseMap();
+
                 cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
                 .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
                 .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
                 .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
@@ -66,7 +92,7 @@ namespace API_Repartidor.Mappings
                 .ReverseMap();
 
                 cfg.CreateMap<Entities.Reparto, DTOs.RepartoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.Id))
+                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
                 .ForMember(dest => dest.fecha, origin => origin.MapFrom(c => c.fecha))
                 .ForMember(dest => dest.finalizado, origin => origin.MapFrom(c => c.finalizado))
                 .ForMember(dest => dest.pedidos, origin => origin.MapFrom(c => c.pedidos))

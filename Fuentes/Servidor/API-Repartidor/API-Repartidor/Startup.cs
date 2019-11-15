@@ -161,6 +161,55 @@ namespace API_Repartidor
 
             app.UseHttpsRedirection();
 
+            //Middleware autenticacion Firebase
+            app.Use(async (context, next) =>
+            {
+                try
+                {
+                    var firebaseAuth = new Firebase.Auth.FirebaseAuthProvider(new Firebase.Auth.FirebaseConfig("AIzaSyAhKx_ibS2ENE2Kw01E8mD-KKaXjiQGybU"));
+                    var link = await firebaseAuth.SignInWithEmailAndPasswordAsync("miltonalbornoz07@gmail.com", "14108744");
+
+                    context.Request.Headers.Add(TOKEN_HEADER_ITEM, link.FirebaseToken);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    throw e;
+                }
+
+                await next.Invoke();
+            });
+
+            //Middleware autenticacion Firebase
+
+            app.Use(async (context, next) =>
+            {
+                var firebaseApp = app.ApplicationServices.GetService<FirebaseApp>();
+
+                var firebaseAuth = FirebaseAdmin.Auth.FirebaseAuth.GetAuth(firebaseApp);
+
+                if (context.Request.Headers.ContainsKey(TOKEN_HEADER_ITEM))
+                {
+                    try
+                    {
+                        var idToken = context.Request.Headers[TOKEN_HEADER_ITEM];
+                        var token = await firebaseAuth.VerifyIdTokenAsync(idToken.First());
+
+                        var user = await firebaseAuth.GetUserAsync(token.Uid);
+                        context.Items.Add("CurrentUser", user);
+
+                        await next.Invoke();
+                    }
+                    catch (Exception)
+                    {
+                        throw new UnauthorizedException();
+                    }
+                }
+                else
+                {
+                    throw new UnauthorizedException();
+                }
+            });
 
             //Middleware - Manejo de Excepciones
             app.Use(async (context, next) =>
@@ -245,56 +294,6 @@ namespace API_Repartidor
             });
 
 
-            //Middleware autenticacion Firebase
-            app.Use(async (context, next) =>
-            {
-                    try
-                    {
-                        var firebaseAuth = new Firebase.Auth.FirebaseAuthProvider(new Firebase.Auth.FirebaseConfig("AIzaSyAhKx_ibS2ENE2Kw01E8mD-KKaXjiQGybU"));
-                        var link = await firebaseAuth.SignInWithEmailAndPasswordAsync("miltonalbornoz07@gmail.com", "14108744");
-
-                        context.Request.Headers.Add(TOKEN_HEADER_ITEM, link.FirebaseToken);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
-                    await next.Invoke();
-            });
-
-            //Middleware autenticacion Firebase
-
-            app.Use(async (context, next) =>
-            {
-                var firebaseApp = app.ApplicationServices.GetService<FirebaseApp>();
-
-                var firebaseAuth = FirebaseAdmin.Auth.FirebaseAuth.GetAuth(firebaseApp);
-
-                if (context.Request.Headers.ContainsKey(TOKEN_HEADER_ITEM))
-                {
-                    try
-                    {
-                        var idToken = context.Request.Headers[TOKEN_HEADER_ITEM];
-                        var token = await firebaseAuth.VerifyIdTokenAsync(idToken.First());
-
-                        var user = await firebaseAuth.GetUserAsync(token.Uid);
-                        context.Items.Add("CurrentUser", user);
-
-                        await next.Invoke();
-                    }
-                    catch (Exception)
-                    {
-                        throw new UnauthorizedException();
-                    }
-            }
-                else
-            {
-                throw new UnauthorizedException();
-            }
-        });
-
-
             app.UseCors("MyPolicy");
             
             app.UseMvc();
@@ -307,93 +306,5 @@ namespace API_Repartidor
             });
         }
 
-        //Crea los mapeos necesarios
-        public void ConfigureAutomapper()
-        {
-            
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<ProductDTO, ProductoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
-                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.code))
-                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description));
-
-                cfg.CreateMap<ProductDTO, ProductoCompletoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.code))
-                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
-                .ForMember(dest => dest.descripcion, origin => origin.MapFrom(c => c.description))
-                .ForMember(dest => dest.fabricante, origin => origin.MapFrom(c => c.brand))
-                .ForMember(dest => dest.imagen, origin => origin.MapFrom(c => c.image));
-                
-                cfg.CreateMap<DTOs.ExternalApiDTOs.StockDTO, DTOs.StockDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.stock_id))
-                .ForMember(dest => dest.idZona, origin => origin.MapFrom(c => c.zone_id))
-                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.quantity));
-                
-                cfg.CreateMap<DTOs.ExternalApiDTOs.ClientDTO, DTOs.ClienteDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.name))
-                .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.address))
-                .ForMember(dest => dest.email, origin => origin.MapFrom(c => c.email))
-                .ForMember(dest => dest.posicion, origin => origin.MapFrom(c => c.position))
-                .ForMember(dest => dest.telefonoFijo, origin => origin.MapFrom(c => c.fixed_phone))
-                .ForMember(dest => dest.telefonoCelular, origin => origin.MapFrom(c => c.cell_phone))
-                .ForMember(dest => dest.cuit, origin => origin.MapFrom(c => c.legal_id));
-
-                cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoCompletoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
-                .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
-                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
-                .ReverseMap();
-
-                cfg.CreateMap<DTOs.ClienteDTO, DTOs.ClienteReducidoDTO>()
-                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.nombre))
-                .ForMember(dest => dest.direccion, origin => origin.MapFrom(c => c.direccion));
-
-                cfg.CreateMap<DTOs.ProductoCompletoDTO, DTOs.ProductoCompletoReducidoDTO>()
-                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
-                .ForMember(dest => dest.nombre, origin => origin.MapFrom(c => c.nombre))
-                .ForMember(dest => dest.codigoQR, origin => origin.MapFrom(c => c.codigoQR));
-
-
-                //Mapeos entre Entites y DTOs
-                cfg.CreateMap<Entities.Pedido, DTOs.PedidoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
-                .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
-                .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
-                .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
-                .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
-                .ForMember(dest => dest.idCliente, origin => origin.MapFrom(c => c.idCliente))
-                .ReverseMap();
-
-                cfg.CreateMap<Entities.Pedido, DTOs.PedidoCompletoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.fechaCreacion, origin => origin.MapFrom(c => c.fechaCreacion))
-                .ForMember(dest => dest.fechaFinalizacion, origin => origin.MapFrom(c => c.fechaFinalizacion))
-                .ForMember(dest => dest.fechaLimite, origin => origin.MapFrom(c => c.fechaLimite))
-                .ForMember(dest => dest.entregado, origin => origin.MapFrom(c => c.entregado))
-                .ForMember(dest => dest.precioTotal, origin => origin.MapFrom(c => c.precioTotal))
-                .ReverseMap();
-
-                cfg.CreateMap<Entities.ItemPedido, DTOs.ItemPedidoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.cantidad, origin => origin.MapFrom(c => c.cantidad))
-                .ForMember(dest => dest.cantidadRechazada, origin => origin.MapFrom(c => c.cantidadRechazada))
-                .ForMember(dest => dest.precio, origin => origin.MapFrom(c => c.precio))
-                .ForMember(dest => dest.idProducto, origin => origin.MapFrom(c => c.idProducto))
-                .ReverseMap();
-                
-                cfg.CreateMap<Entities.Reparto, DTOs.RepartoDTO>()
-                .ForMember(dest => dest.id, origin => origin.MapFrom(c => c.id))
-                .ForMember(dest => dest.fecha, origin => origin.MapFrom(c => c.fecha))
-                .ForMember(dest => dest.finalizado, origin => origin.MapFrom(c => c.finalizado))
-                .ForMember(dest => dest.pedidos, origin => origin.MapFrom(c => c.pedidos))
-                .ReverseMap();
-            });
-        }
     }
 }
