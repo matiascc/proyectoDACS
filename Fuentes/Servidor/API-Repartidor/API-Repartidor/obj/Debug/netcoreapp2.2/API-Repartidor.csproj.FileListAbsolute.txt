@@ -1,0 +1,14 @@
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.csprojAssemblyReference.cache
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.csproj.CoreCompileInputs.cache
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.deps.json
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.runtimeconfig.json
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.runtimeconfig.dev.json
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.dll
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.pdb
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.RazorAssemblyInfo.cache
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.RazorAssemblyInfo.cs
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.AssemblyInfoInputs.cache
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.AssemblyInfo.cs
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.RazorTargetAssemblyInfo.cache
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.dll
+C:\Users\Agustin\Documents\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.pdb

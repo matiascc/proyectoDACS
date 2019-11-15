@@ -5,9 +5,14 @@
     "redirecTo": "/entregas-pendientes"
   },
   {
-    "icon": "reorder",
-    "name": "Listas de pedidos",
-    "redirecTo": "/list-reorder"
+    "icon": "qr-scanner",
+    "name": "Escanear",
+    "redirecTo": "/escanear-codigo"
+  },
+  {
+    "icon": "add",
+    "name": "Agregar pedido",
+    "redirecTo": "/agregar-pedido"
   }
   
  ]

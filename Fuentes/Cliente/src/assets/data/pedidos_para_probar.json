@@ -1,0 +1,168 @@
+[
+    {
+      "id": 1,
+      "fechaCreacion": "2019-04-15T00:00:00",
+      "fechaFinalizacion": "0001-01-01T00:00:00",
+      "fechaLimite": "2019-05-28T00:00:00",
+      "entregado": 0,
+      "precioTotal": 10150,
+      "cliente": {
+        "nombre": "3T Federal Solutions LLC",
+        "direccion": "405 Kingsford Point"
+      },
+      "itemPedido": [
+        {
+          "id": 1,
+          "cantidad": 4,
+          "cantidadRechazada": 0,
+          "precio": 400,
+          "producto": {
+            "codigoQR": "65862-599",
+            "nombre": "Rizatriptan Benzoate",
+            "precio": 100
+          }
+        },
+        {
+          "id": 2,
+          "cantidad": 7,
+          "cantidadRechazada": 0,
+          "precio": 1050,
+          "producto": {
+            "codigoQR": "54575-325",
+            "nombre": "STANDARDIZED MITE D FARINAE",
+            "precio": 150
+          }
+        },
+        {
+          "id": 3,
+          "cantidad": 2,
+          "cantidadRechazada": 0,
+          "precio": 600,
+          "producto": {
+            "codigoQR": "57520-0239",
+            "nombre": "2 Gallbladder",
+            "precio": 300
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "fechaCreacion": "2019-05-15T00:00:00",
+      "fechaFinalizacion": "0001-01-01T00:00:00",
+      "fechaLimite": "2019-06-28T00:00:00",
+      "entregado": 0,
+      "precioTotal": 4500,
+      "cliente": {
+        "nombre": "Geri-Care Pharmaceutical Corp",
+        "direccion": "65 Valley Edge Avenue"
+      },
+      "itemPedido": [
+        {
+          "id": 4,
+          "cantidad": 5,
+          "cantidadRechazada": 0,
+          "precio": 250,
+          "producto": {
+            "codigoQR": "21749-251",
+            "nombre": "PURELL Advanced Hand Sanitizer Fresh Peppermint Cheer",
+            "precio": 50
+          }
+        },
+        {
+          "id": 5,
+          "cantidad": 1,
+          "cantidadRechazada": 0,
+          "precio": 550,
+          "producto": {
+            "codigoQR": "49999-593",
+            "nombre": "Diclofenac Potassium",
+            "precio": 550
+          }
+        },
+        {
+          "id": 6,
+          "cantidad": 2,
+          "cantidadRechazada": 0,
+          "precio": 1350,
+          "producto": {
+            "codigoQR": "76282-257",
+            "nombre": "Nabumetone",
+            "precio": 675
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "fechaCreacion": "2019-06-15T00:00:00",
+      "fechaFinalizacion": "0001-01-01T00:00:00",
+      "fechaLimite": "2019-07-28T00:00:00",
+      "entregado": 0,
+      "precioTotal": 6740,
+      "cliente": {
+        "nombre": "Sun Pharma Global FZE",
+        "direccion": "48741 Thackeray Center"
+      },
+      "itemPedido": [
+        {
+          "id": 7,
+          "cantidad": 3,
+          "cantidadRechazada": 0,
+          "precio": 330,
+          "producto": {
+            "codigoQR": "52686-321",
+            "nombre": "SHISEIDO RADIANT LIFTING FOUNDATION",
+            "precio": 110
+          }
+        },
+        {
+          "id": 8,
+          "cantidad": 5,
+          "cantidadRechazada": 0,
+          "precio": 1150,
+          "producto": {
+            "codigoQR": "33992-4250",
+            "nombre": "Assured Instant Hand Sanitizer Spray",
+            "precio": 230
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "fechaCreacion": "2019-07-15T00:00:00",
+      "fechaFinalizacion": "0001-01-01T00:00:00",
+      "fechaLimite": "2019-08-28T00:00:00",
+      "entregado": 0,
+      "precioTotal": 1550,
+      "cliente": {
+        "nombre": "NINGBO MEIDUO GENERAL PRODUCTS CO., LTD",
+        "direccion": "80993 Twin Pines Terrace"
+      },
+      "itemPedido": [
+        {
+          "id": 9,
+          "cantidad": 1,
+          "cantidadRechazada": 0,
+          "precio": 500,
+          "producto": {
+            "codigoQR": "10967-584",
+            "nombre": "Mens Mitchum Advanced Invisible",
+            "precio": 500
+          }
+        },
+        {
+          "id": 10,
+          "cantidad": 1,
+          "cantidadRechazada": 0,
+          "precio": 1050,
+          "producto": {
+            "codigoQR": "68084-468",
+            "nombre": "Lansoprazole",
+            "precio": 1050
+          }
+        }
+      ]
+    }
+  ]

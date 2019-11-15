@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { Componente } from '../../components/interfaces/interfaces';
+import { Componente } from '../../interfaces/Interfaces';
 
 @Component({
   selector: 'app-inicio',
