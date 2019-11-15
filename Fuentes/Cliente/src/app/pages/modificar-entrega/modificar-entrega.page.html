@@ -1,0 +1,26 @@
+<app-header titulo="Modificar"></app-header>
+
+
+<ion-content>
+   
+   <ion-card *ngFor="let pedido of pedidos">
+    <ion-item>
+      <ion-icon name="pin" slot="start" color="primary"></ion-icon>
+      <ion-label>Calle: {{pedido.idCliente}} </ion-label>
+    </ion-item>
+
+    <ion-card-content (click)="verDetalles(pedido)">
+      <ion-item>
+        <ion-icon name="person" slot="start" color="primary"></ion-icon>
+        <ion-label>Cliente: {{pedido.idCliente}} </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+ 
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+  
+  </ion-toolbar>
+</ion-footer>

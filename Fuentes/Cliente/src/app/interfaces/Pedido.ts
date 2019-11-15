@@ -5,14 +5,17 @@ export interface Pedido {
     fechaCreacion: Date,
     fechaFinalizacion: Date,
     fechaLimite: Date,
-    Entregado: Estado,
+    Entregado: number,
     precioTotal: number,
-    idCliente: number,
+    cliente: Cliente,
     itemPedido: Item_Pedido
   }
   
-  interface Estado {
-   id: number
-  }
+
+
+interface Cliente{
+    nombre: string,
+   dirreccion : string
+}
   
  

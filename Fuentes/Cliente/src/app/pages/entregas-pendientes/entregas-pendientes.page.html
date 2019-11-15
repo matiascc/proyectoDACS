@@ -5,7 +5,7 @@
         <ion-card *ngFor="let pedido of pedidos">
           <ion-item >
             <ion-icon name="person" slot="start" color="primary"></ion-icon>
-            <ion-label>Cliente: {{pedido.idCliente}}  </ion-label>
+             <ion-label>Cliente: {{pedido.cliente.nombre}}  </ion-label> 
             <ion-checkbox color="primary" fill="outline" slot="end" (ionChange)="agregarPedido($event, pedido)"></ion-checkbox>
           </ion-item>
         

@@ -36,4 +36,7 @@ export class ListReorderPage implements OnInit {
     console.log(this.pedidos);
   }
 
+  pasarPedAModificar(){
+    this.router.navigate(['modificar-entrega', {pedido: JSON.stringify(this.pedidos)} ])
+ }
 }

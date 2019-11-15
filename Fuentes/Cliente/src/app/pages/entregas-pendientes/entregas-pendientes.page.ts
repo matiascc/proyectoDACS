@@ -40,7 +40,8 @@ export class EntregasPendientesPage implements OnInit {
      ngOnInit() { 
         this.serviciosPedido.obtenerPedidos()
         .subscribe(
-        (pedidos) => {this.pedidos= pedidos;},
+        (pedidos) => {this.pedidos= pedidos;
+        console.log(this.pedidos)},
         (error) => {console.log(error);}
      )
    }
