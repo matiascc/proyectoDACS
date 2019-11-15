@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from 'src/app/components/components.module';
-
 import { IonicModule } from '@ionic/angular';
 
-import { ModificarEntregaPage } from './modificar-entrega.page';
+import { AgregarPedidoPage } from './agregar-pedido.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ModificarEntregaPage
+    component: AgregarPedidoPage
   }
 ];
 
@@ -21,8 +20,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
+    ComponentsModule
   ],
-  declarations: [ModificarEntregaPage]
+  declarations: [AgregarPedidoPage]
 })
-export class ModificarEntregaPageModule {}
+export class AgregarPedidoPageModule {}

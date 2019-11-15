@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Pedido } from '../../interfaces/Pedido';
 import { ObtenerPedidosService } from '../../servicios/pedidos-service/pedidos-service.service';
 import { Cliente } from 'src/app/interfaces/Cliente';
-import { ClientesServiceService } from '../../servicios/clientes-service/clientes-service.service';
+import { ClientesService } from '../../servicios/clientes-service/clientes-service.service';
 
 
 @Component({
@@ -13,35 +13,16 @@ import { ClientesServiceService } from '../../servicios/clientes-service/cliente
 })
 export class EntregasPendientesPage implements OnInit {
 
-  // pedidos: Pedido[] = [
-  //   {
-  //     id: 1,
-  //     fechaCreacion: new Date,
-  //     fechaFinalizacion: new Date,
-  //     fechaLimite: new Date,
-  //     Entregado: {id: 1},
-  //     precioTotal: 11,
-  //     idcliente: 2,
-  //     itemPedido: {
-  //       id: 1,
-  //       cantidad: 3,
-  //       cantidadRechazada: 3,
-  //       precio: 4,
-  //       idProducto: 3
-  //     }
-  //   }
-  // ];
    pedidos : Pedido[];
   
    entregas: any = [];
 
-  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router, private servicioCliente: ClientesServiceService) { }
+  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router, private servicioCliente: ClientesService) { }
 
      ngOnInit() { 
         this.serviciosPedido.obtenerPedidos()
         .subscribe(
-        (pedidos) => {this.pedidos= pedidos;
-        console.log(this.pedidos)},
+        (pedidos) => {this.pedidos= pedidos;},
         (error) => {console.log(error);}
      )
    }

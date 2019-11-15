@@ -8,6 +8,11 @@
     "icon": "qr-scanner",
     "name": "Escanear",
     "redirecTo": "/escanear-codigo"
+  },
+  {
+    "icon": "add",
+    "name": "Agregar pedido",
+    "redirecTo": "/agregar-pedido"
   }
   
  ]
