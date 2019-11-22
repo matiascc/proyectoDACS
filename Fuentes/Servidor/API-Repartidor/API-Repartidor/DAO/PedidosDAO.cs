@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using API_Repartidor.Entities;
 using NHibernate;
 
@@ -18,7 +15,6 @@ namespace API_Repartidor.DAO
             try
             {
                 return this.session.QueryOver<Pedido>().Where(x => x.entregado == 0).List();
-                //return this.session.CreateCriteria(typeof(Pedido)).List<Pedido>();
             }
             catch
             {

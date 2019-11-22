@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace API_Repartidor.DTOs
+﻿namespace API_Repartidor.DTOs
 {
     public class ClienteReducidoDTO
     {

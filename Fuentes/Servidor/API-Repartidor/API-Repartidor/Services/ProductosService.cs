@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API_Repartidor.DTOs;
 using API_Repartidor.DTOs.ExternalApiDTOs;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 using RestSharp.Serialization.Json;
-using NHibernate;
 using API_Repartidor.DAO;
 using API_Repartidor.Exceptions;
 
