@@ -1,0 +1,17 @@
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\privatekey.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.deps.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.runtimeconfig.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.runtimeconfig.dev.json
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.dll
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\bin\Debug\netcoreapp2.2\API-Repartidor.pdb
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.csprojAssemblyReference.cache
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.RazorAssemblyInfo.cache
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.RazorAssemblyInfo.cs
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.AssemblyInfoInputs.cache
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.AssemblyInfo.cs
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.RazorTargetAssemblyInfo.cache
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.dll
+C:\Users\agusr\OneDrive\Documentos\GitHub\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\obj\Debug\netcoreapp2.2\API-Repartidor.pdb
