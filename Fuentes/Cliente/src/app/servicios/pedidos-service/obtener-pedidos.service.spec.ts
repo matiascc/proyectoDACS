@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ObtenerPedidosService } from './pedidos-service.service';
+import { ObtenerPedidosService } from './obtener-pedidos.service';
 
 
 describe('ObtenerPedidosService', () => {
