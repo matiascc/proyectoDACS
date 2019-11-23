@@ -134,6 +134,8 @@ namespace API_Repartidor
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Repartidor", Version = "v-1.0" });
+
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "API-Repartidor.xml"));
             });
 
         }

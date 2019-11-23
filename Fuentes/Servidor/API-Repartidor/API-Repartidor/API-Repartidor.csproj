@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>C:\Users\Matias\Desktop\grupo_repartidor\Fuentes\Servidor\API-Repartidor\API-Repartidor\API-Repartidor.xml</DocumentationFile>
     <NoWarn>1701;1702;</NoWarn>
   </PropertyGroup>
 
