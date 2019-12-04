@@ -1,0 +1,25 @@
+<app-header titulo="Registrar entrega"></app-header>
+
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <img src="/assets/qr.png" alt="" width="200" height="200"/>
+    <ion-card-header>
+      <ion-card-title> QR Scaner </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Presione el boton escanear, para leer el codigo QR</p>
+    </ion-card-content>
+    <ion-button expand='block' margin (click)="goToQrScan()">Escanear</ion-button>
+    <div *ngIf="scannedData">
+      <p>
+        Scanned Code Text : <b>{{ scannedData["text"] }}</b>
+      </p>
+      <p>
+        Scanned Code Format : <b>{{ scannedData["format"] }}</b>
+      </p>
+    </div>
+  </ion-card>
+
+  
+</ion-content>

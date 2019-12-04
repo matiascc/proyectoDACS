@@ -59,10 +59,12 @@ export class ObtenerPedidosService {
 
   constructor(public http: HttpClient) { }
 
+
+ 
   //Acomodar aca
   obtenerPedidos(): Observable<Pedido[]>{
-    // return this.http.get<Pedido[]>('https://localhost:5001/pedidos');
-    return this.http.get<Pedido[]>('/assets/data/pedidos_para_probar.json');
+     return this.http.get<Pedido[]>('https://localhost:5001/pedidos/pendientes');
+   // return this.http.get<Pedido[]>('/assets/data/pedidos_para_probar.json');
 
   }
 
