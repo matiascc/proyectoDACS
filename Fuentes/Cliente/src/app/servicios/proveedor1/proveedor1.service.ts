@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import {HttpClientModule} from '@angular/common/http';
-import { Pedido } from '../../components/interfaces/interfaces';
+import { Pedido } from '../../interfaces/Pedido';
 
 @Injectable({
   providedIn: 'root'
