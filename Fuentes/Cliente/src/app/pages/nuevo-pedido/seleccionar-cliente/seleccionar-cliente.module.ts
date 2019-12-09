@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { SeleccionarClientePage } from './seleccionar-cliente.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+
 
 const routes: Routes = [
   {
@@ -20,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [SeleccionarClientePage]
 })

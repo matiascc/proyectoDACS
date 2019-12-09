@@ -12,6 +12,8 @@ import { Proveedor1Service } from './servicios/proveedor1/proveedor1.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ObtenerPedidosService } from './servicios/pedidos-service/pedidos-service.service';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { PipesModule } from './pipes/pipes.module';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,7 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
+    PipesModule
   ],
     providers: [
     StatusBar,

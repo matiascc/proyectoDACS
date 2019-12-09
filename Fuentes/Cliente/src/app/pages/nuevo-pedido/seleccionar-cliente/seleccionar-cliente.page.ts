@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SeleccionarClientePage implements OnInit {
 
+  textoBuscar = '';
   clientes: Cliente[] = [];
 
   constructor(private servicioClientes: ClientesService, private router: Router) { }
@@ -25,6 +26,11 @@ export class SeleccionarClientePage implements OnInit {
   seleccionado(cliente: Cliente){
 
     this.router.navigate(['agregar-productos', {cliente: JSON.stringify(cliente)} ])
+  }
+
+  buscar(event) {
+   // console.log(event);
+   this.textoBuscar = event.detail.value;
   }
 
 }
