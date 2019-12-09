@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { ComponentsModule } from 'src/app/components/components.module';
 import { IonicModule } from '@ionic/angular';
 
-import { AgregarPedidoPage } from './agregar-pedido.page';
+import { AgregarProductosPage } from './agregar-productos.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: AgregarPedidoPage
+    component: AgregarProductosPage
   }
 ];
 
@@ -22,6 +22,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ComponentsModule
   ],
-  declarations: [AgregarPedidoPage]
+  declarations: [AgregarProductosPage]
 })
-export class AgregarPedidoPageModule {}
+export class AgregarProductosPageModule {}

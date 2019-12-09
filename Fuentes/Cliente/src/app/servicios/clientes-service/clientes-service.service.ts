@@ -15,7 +15,8 @@ export class ClientesService {
     return this.http.get<Cliente>('https://localhost:5001/api/clientes/'+idCliente);
   }
   obtenerClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>('https://localhost:5001/api/clientes');
+    //return this.http.get<Cliente[]>('https://localhost:5001/api/clientes');
+    return this.http.get<Cliente[]>('/assets/data/clientes_para_probar.json');
   }
  
 }

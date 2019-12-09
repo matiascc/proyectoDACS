@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: 'detalle-pedido', loadChildren: './pages/detalle-pedido/detalle-pedido.module#DetallePedidoPageModule' },
   { path: 'entregas-pendientes', loadChildren: './pages/entregas-pendientes/entregas-pendientes.module#EntregasPendientesPageModule' },
   { path: 'escanear-codigo', loadChildren: './pages/escanear-codigo/escanear-codigo.module#EscanearCodigoPageModule' },
-  { path: 'agregar-pedido', loadChildren: './pages/agregar-pedido/agregar-pedido.module#AgregarPedidoPageModule' },
-
+  { path: 'seleccionar-cliente', loadChildren: './pages/nuevo-pedido/seleccionar-cliente/seleccionar-cliente.module#SeleccionarClientePageModule' },
+  { path: 'agregar-productos', loadChildren: './pages/nuevo-pedido/agregar-productos/agregar-productos.module#AgregarProductosPageModule' }
 ];
 @NgModule({
   imports: [
@@ -22,4 +22,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
-//hola

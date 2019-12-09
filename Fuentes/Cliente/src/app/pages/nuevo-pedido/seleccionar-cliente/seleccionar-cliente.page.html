@@ -1,0 +1,19 @@
+<app-header titulo="Seleccionar cliente"></app-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let cliente of clientes"  (click)="seleccionado(cliente)">
+      <ion-item >
+        <ion-label color="primary" position="stacked" >Cliente: </ion-label>
+        <ion-input readonly >{{cliente.nombre}}</ion-input>
+      </ion-item>
+      
+      <ion-item>
+          <ion-label color="primary" position="stacked">Direccion: </ion-label> 
+          <ion-input readonly type="text">{{cliente.direccion}}</ion-input>
+      </ion-item>
+  </ion-card>
+
+
+
+</ion-content>
