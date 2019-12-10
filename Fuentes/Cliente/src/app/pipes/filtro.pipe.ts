@@ -1,22 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Cliente } from '../interfaces/Cliente';
 
 @Pipe({
   name: 'filtro'
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(arreglo: any[], texto: string): any[] {
+  transform(clientes: Cliente[], texto: string): Cliente[] {
     
     if (texto == '') {
-      console.log(texto);
-      return arreglo;
+      return clientes;
     }
 
     texto = texto.toLowerCase();
 
-   return arreglo.filter (item => {
-      return item.nombre.toLowerCase()
-      .includes( texto );
+   return clientes.filter (cliente => {
+      return cliente.nombre.toLowerCase().includes( texto )
+      || cliente.email.toLowerCase().includes( texto )
+      || cliente.direccion.toLowerCase().includes(texto);
     });
   }
 
