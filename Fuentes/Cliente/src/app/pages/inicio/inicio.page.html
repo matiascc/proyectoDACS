@@ -9,6 +9,12 @@
   </ion-toolbar>
 </ion-header>
 
+  <ion-buttons slot="secondary">
+    <ion-button color="danger" (click)="logout()">
+      <ion-icon slot="icon-only" name="power"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
 <ion-content class="background">
 
   <!-- los [] son porque viene desde el modelo hacia la interfaz y los () cuando van de la interfaz al modelo-->

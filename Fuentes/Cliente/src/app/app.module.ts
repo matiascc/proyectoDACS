@@ -14,6 +14,12 @@ import { ObtenerPedidosService } from './servicios/pedidos-service/pedidos-servi
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { PipesModule } from './pipes/pipes.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,7 +29,11 @@ import { PipesModule } from './pipes/pipes.module';
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
-    PipesModule
+    PipesModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
     providers: [
     StatusBar,
