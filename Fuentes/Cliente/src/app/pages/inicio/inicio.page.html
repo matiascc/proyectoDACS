@@ -5,15 +5,17 @@
       <ion-menu-button  menu="primerMenu"></ion-menu-button>
     </ion-buttons>
 
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="logout()">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
     <ion-title>Repartidor App</ion-title>
   </ion-toolbar>
 </ion-header>
 
-  <ion-buttons slot="secondary">
-    <ion-button color="danger" (click)="logout()">
-      <ion-icon slot="icon-only" name="power"></ion-icon>
-    </ion-button>
-  </ion-buttons>
+ 
 
 <ion-content class="background">
 

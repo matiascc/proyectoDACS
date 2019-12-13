@@ -31,7 +31,6 @@ export class InicioPage implements OnInit {
       console.log(err);
     })
   }
-
-
+  
 }
 

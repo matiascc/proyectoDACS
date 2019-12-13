@@ -6,16 +6,17 @@
     <ion-item >
       <ion-label color="primary" position="stacked" >Cliente: </ion-label>
       <ion-input readonly >{{pedido.cliente.nombre}}</ion-input>
-
     </ion-item>
     
     <ion-item>
         <ion-label color="primary" position="stacked">Direccion: </ion-label> 
         <ion-input readonly type="text">{{pedido.cliente.direccion}}</ion-input>
     </ion-item>
+    <ion-button color="primary" (click)="onClick()">
+      <ion-icon slot="start" name="menu"></ion-icon>
+    </ion-button>
 </ion-card>
 
-</ion-content>
 
 <ion-footer>
   <ion-toolbar >
