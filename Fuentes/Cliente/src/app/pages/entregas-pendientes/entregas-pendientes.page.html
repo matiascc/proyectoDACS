@@ -9,9 +9,17 @@
             <ion-checkbox color="primary" fill="outline" slot="end" (ionChange)="agregarPedido($event, pedido)"></ion-checkbox>
           </ion-item>
         
-          <ion-card-content (click)="verDetalles(pedido)">
-             <strong> Fecha de creación:</strong>  {{pedido.fechaCreacion| date}} </br>
-             <strong> Fecha limite:</strong> {{pedido.fechaLimite | date}}
+          <ion-card-content color="light" >
+            <ion-item color="light">
+              <ion-label>Fecha de creación: </ion-label> {{pedido.fechaCreacion| date}} 
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>Fecha limite:</ion-label> {{pedido.fechaLimite | date}}
+            </ion-item>
+            <ion-toolbar class="back">
+              <ion-button (click)="verDetalles(pedido)" color="primary" fill="clear" slot="end"> Ver mas ...</ion-button>
+            </ion-toolbar>
+          
          
           </ion-card-content>
           

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pedido } from '../../interfaces/Pedido';
 import { ObtenerPedidosService } from '../../servicios/pedidos-service/pedidos-service.service';
-import { Cliente } from 'src/app/interfaces/Cliente';
 import { ClientesService } from '../../servicios/clientes-service/clientes-service.service';
+import { RepartosService } from 'src/app/servicios/repartos-service/repartos-service.service';
 
 
 @Component({
@@ -17,7 +17,10 @@ export class EntregasPendientesPage implements OnInit {
   
    entregas: any = [];
 
-  constructor(private serviciosPedido: ObtenerPedidosService, private router: Router, private servicioCliente: ClientesService) { }
+  constructor(private serviciosPedido: ObtenerPedidosService,
+     private router: Router, 
+     private servicioCliente: ClientesService,
+     private servicioReparto: RepartosService) { }
 
      ngOnInit() { 
         this.serviciosPedido.obtenerPedidos()
@@ -38,7 +41,6 @@ export class EntregasPendientesPage implements OnInit {
      this.entregas.splice(index,1);
      console.log(this.entregas);
    }
-   
  }
 
  quitarPedidoDeLista(pedido: any){
@@ -49,15 +51,11 @@ export class EntregasPendientesPage implements OnInit {
 
  obtenerPedidosSeleccionados(){
     this.router.navigate(['list-reorder', {pedido: JSON.stringify(this.entregas)} ])
+    this.servicioReparto.agregarReparto(this.pedidos);
  }
  
- mostrarPedido(){
-
- }
  verDetalles(pedido: Pedido){
-
   this.router.navigate(['detalle-pedido', {pedido: JSON.stringify(pedido)} ])
 }
-
 
 }
