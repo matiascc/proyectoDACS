@@ -2,9 +2,9 @@
 
 <ion-content>
   
-  <ion-card>
+  <ion-card *ngFor="let producto of productos">
     <ion-item>
-        {{cliente.nombre}}
+        {{producto.nombre}}
     </ion-item>
   </ion-card>
  

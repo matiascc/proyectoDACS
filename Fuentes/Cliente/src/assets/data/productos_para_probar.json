@@ -1,0 +1,502 @@
+[
+   {
+    "id": 0,
+    "codigoQR": "49852-162",
+    "nombre": "moisturizing anti-bacterial hand soap",
+    "descripcion": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 309,
+        "cantidad": 86
+      },
+      {
+        "id": 1,
+        "idZona": 495,
+        "cantidad": 47
+      },
+      {
+        "id": 2,
+        "idZona": 438,
+        "cantidad": 1
+      },
+      {
+        "id": 3,
+        "idZona": 594,
+        "cantidad": 61
+      },
+      {
+        "id": 4,
+        "idZona": 965,
+        "cantidad": 23
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 1,
+    "codigoQR": "65862-599",
+    "nombre": "Rizatriptan Benzoate",
+    "descripcion": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 7,
+        "cantidad": 91
+      },
+      {
+        "id": 1,
+        "idZona": 92,
+        "cantidad": 79
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 2,
+    "codigoQR": "54575-325",
+    "nombre": "STANDARDIZED MITE D FARINAE",
+    "descripcion": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 482,
+        "cantidad": 45
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 3,
+    "codigoQR": "57520-0239",
+    "nombre": "2 Gallbladder",
+    "descripcion": "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 726,
+        "cantidad": 32
+      },
+      {
+        "id": 1,
+        "idZona": 299,
+        "cantidad": 74
+      },
+      {
+        "id": 2,
+        "idZona": 306,
+        "cantidad": 30
+      },
+      {
+        "id": 3,
+        "idZona": 14,
+        "cantidad": 68
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 4,
+    "codigoQR": "21749-251",
+    "nombre": "PURELL Advanced Hand Sanitizer Fresh Peppermint Cheer",
+    "descripcion": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 818,
+        "cantidad": 58
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 5,
+    "codigoQR": "49999-593",
+    "nombre": "Diclofenac Potassium",
+    "descripcion": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 171,
+        "cantidad": 19
+      },
+      {
+        "id": 1,
+        "idZona": 687,
+        "cantidad": 17
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 6,
+    "codigoQR": "76282-257",
+    "nombre": "Nabumetone",
+    "descripcion": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 898,
+        "cantidad": 54
+      },
+      {
+        "id": 1,
+        "idZona": 830,
+        "cantidad": 37
+      },
+      {
+        "id": 2,
+        "idZona": 342,
+        "cantidad": 46
+      },
+      {
+        "id": 3,
+        "idZona": 611,
+        "cantidad": 18
+      },
+      {
+        "id": 4,
+        "idZona": 420,
+        "cantidad": 15
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 7,
+    "codigoQR": "52686-321",
+    "nombre": "SHISEIDO RADIANT LIFTING FOUNDATION",
+    "descripcion": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 796,
+        "cantidad": 44
+      },
+      {
+        "id": 1,
+        "idZona": 9,
+        "cantidad": 2
+      },
+      {
+        "id": 2,
+        "idZona": 806,
+        "cantidad": 13
+      },
+      {
+        "id": 3,
+        "idZona": 22,
+        "cantidad": 40
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 8,
+    "codigoQR": "33992-4250",
+    "nombre": "Assured Instant Hand Sanitizer Spray",
+    "descripcion": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 633,
+        "cantidad": 8
+      },
+      {
+        "id": 1,
+        "idZona": 334,
+        "cantidad": 94
+      },
+      {
+        "id": 2,
+        "idZona": 291,
+        "cantidad": 39
+      },
+      {
+        "id": 3,
+        "idZona": 147,
+        "cantidad": 77
+      },
+      {
+        "id": 4,
+        "idZona": 138,
+        "cantidad": 52
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 9,
+    "codigoQR": "10967-584",
+    "nombre": "Mens Mitchum Advanced Invisible",
+    "descripcion": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 351,
+        "cantidad": 82
+      },
+      {
+        "id": 1,
+        "idZona": 66,
+        "cantidad": 72
+      },
+      {
+        "id": 2,
+        "idZona": 460,
+        "cantidad": 70
+      },
+      {
+        "id": 3,
+        "idZona": 521,
+        "cantidad": 50
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 10,
+    "codigoQR": "68084-468",
+    "nombre": "Lansoprazole",
+    "descripcion": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 572,
+        "cantidad": 23
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 11,
+    "codigoQR": "36987-3159",
+    "nombre": "Carelessweed",
+    "descripcion": "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 243,
+        "cantidad": 23
+      },
+      {
+        "id": 1,
+        "idZona": 709,
+        "cantidad": 6
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 12,
+    "codigoQR": "0942-6483",
+    "nombre": "ADSOL Red Cell Preservation Solution System in Plastic Container (PL 146 Plastic)",
+    "descripcion": "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 490,
+        "cantidad": 20
+      },
+      {
+        "id": 1,
+        "idZona": 957,
+        "cantidad": 28
+      },
+      {
+        "id": 2,
+        "idZona": 176,
+        "cantidad": 64
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 13,
+    "codigoQR": "45802-107",
+    "nombre": "pseudoephedrine hydrochloride",
+    "descripcion": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 956,
+        "cantidad": 8
+      },
+      {
+        "id": 1,
+        "idZona": 181,
+        "cantidad": 18
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 14,
+    "codigoQR": "25543-001",
+    "nombre": "Oxygen",
+    "descripcion": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 738,
+        "cantidad": 62
+      },
+      {
+        "id": 1,
+        "idZona": 19,
+        "cantidad": 38
+      },
+      {
+        "id": 2,
+        "idZona": 251,
+        "cantidad": 94
+      },
+      {
+        "id": 3,
+        "idZona": 836,
+        "cantidad": 60
+      },
+      {
+        "id": 4,
+        "idZona": 202,
+        "cantidad": 76
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 15,
+    "codigoQR": "61165-2001",
+    "nombre": "ATO-K",
+    "descripcion": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 905,
+        "cantidad": 82
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 16,
+    "codigoQR": "55301-871",
+    "nombre": "Hydrogen Peroxide",
+    "descripcion": "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 661,
+        "cantidad": 34
+      },
+      {
+        "id": 1,
+        "idZona": 90,
+        "cantidad": 84
+      },
+      {
+        "id": 2,
+        "idZona": 977,
+        "cantidad": 46
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 17,
+    "codigoQR": "65649-701",
+    "nombre": "OsmoPrep",
+    "descripcion": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 623,
+        "cantidad": 28
+      },
+      {
+        "id": 1,
+        "idZona": 182,
+        "cantidad": 97
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 18,
+    "codigoQR": "0904-1103",
+    "nombre": "povidone iodine",
+    "descripcion": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 382,
+        "cantidad": 35
+      },
+      {
+        "id": 1,
+        "idZona": 368,
+        "cantidad": 61
+      },
+      {
+        "id": 2,
+        "idZona": 857,
+        "cantidad": 68
+      }
+    ],
+    "precio": 0
+  },
+  {
+    "id": 19,
+    "codigoQR": "41190-641",
+    "nombre": "Hand Wash",
+    "descripcion": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
+    "fabricante": null,
+    "stock": [
+      {
+        "id": 0,
+        "idZona": 280,
+        "cantidad": 89
+      },
+      {
+        "id": 1,
+        "idZona": 328,
+        "cantidad": 78
+      },
+      {
+        "id": 2,
+        "idZona": 525,
+        "cantidad": 39
+      },
+      {
+        "id": 3,
+        "idZona": 840,
+        "cantidad": 14
+      },
+      {
+        "id": 4,
+        "idZona": 744,
+        "cantidad": 99
+      }
+    ],
+    "precio": 0
+  }
+]

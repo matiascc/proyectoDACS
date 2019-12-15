@@ -11,7 +11,7 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>Repartidor App</ion-title>
+    <ion-title>Repartos armados</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,15 +20,27 @@
 <ion-content class="background">
 
   <!-- los [] son porque viene desde el modelo hacia la interfaz y los () cuando van de la interfaz al modelo-->
- <ion-list >
+ <ion-card *ngFor="let reparto of repartos">
 
-   <ion-item *ngFor="let componente of componentes"
-             [routerLink]="componente.redirecTo" 
-             detail>
-     <ion-icon slot="start" [name]="componente.icon"></ion-icon>
-     <ion-label>{{componente.name}}</ion-label>
+   <ion-item color="light">
+     <ion-label>Fecha de creacion: {{reparto.fecha |date}}</ion-label>
    </ion-item>
-
-  </ion-list>  
+   <ion-toolbar color="light">
+    <ion-button fill="clear" slot="end" (click)="onClick()">
+      Continuar
+    </ion-button>
+   </ion-toolbar>
+   
+ </ion-card>
 
 </ion-content>
+<ion-footer class="ion-no-padding">
+    <ion-toolbar color="primary">
+      <ion-button fill="clear" slot="end" color="dark" (click)="armarRecorrido()">
+        <ion-icon name="add"></ion-icon>
+         Nuevo Reparto
+      </ion-button>
+    </ion-toolbar>   
+</ion-footer>
+
+ 

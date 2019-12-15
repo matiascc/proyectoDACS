@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "fecha": "2019-07-30T00:00:00",
+    "finalizado": true,
+    "pedidos": [
+      {
+        "id": 1,
+        "fechaCreacion": "2019-04-15T00:00:00",
+        "fechaFinalizacion": "0001-01-01T00:00:00",
+        "fechaLimite": "2019-05-28T00:00:00",
+        "entregado": 0,
+        "precioTotal": 10150,
+        "idCliente": 1,
+        "itemPedido": [
+          {
+            "id": 1,
+            "cantidad": 4,
+            "cantidadRechazada": 0,
+            "precio": 400,
+            "idProducto": 1
+          },
+          {
+            "id": 2,
+            "cantidad": 7,
+            "cantidadRechazada": 0,
+            "precio": 1050,
+            "idProducto": 2
+          },
+          {
+            "id": 3,
+            "cantidad": 2,
+            "cantidadRechazada": 0,
+            "precio": 600,
+            "idProducto": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "fecha": "2019-07-30T00:00:00",
+    "finalizado": true,
+    "pedidos": [
+      {
+        "id": 1,
+        "fechaCreacion": "2019-04-15T00:00:00",
+        "fechaFinalizacion": "0001-01-01T00:00:00",
+        "fechaLimite": "2019-05-28T00:00:00",
+        "entregado": 0,
+        "precioTotal": 10150,
+        "idCliente": 1,
+        "itemPedido": [
+          {
+            "id": 1,
+            "cantidad": 4,
+            "cantidadRechazada": 0,
+            "precio": 400,
+            "idProducto": 1
+          },
+          {
+            "id": 2,
+            "cantidad": 7,
+            "cantidadRechazada": 0,
+            "precio": 1050,
+            "idProducto": 2
+          },
+          {
+            "id": 3,
+            "cantidad": 2,
+            "cantidadRechazada": 0,
+            "precio": 600,
+            "idProducto": 3
+          }
+        ]
+      }
+    ]
+  }
+]
