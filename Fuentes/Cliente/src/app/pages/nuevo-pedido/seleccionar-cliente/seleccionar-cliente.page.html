@@ -7,16 +7,11 @@
                   (ionChange)="buscar( $event )" ></ion-searchbar>
   </ion-toolbar>
 
-  <ion-list *ngIf="clientes.length === 0">
-    <ion-item *ngFor="let i of [1,1,1,1,1,1,1,1,1,1,1]">
-      <ion-label>
-        <ion-skeleton-text width="40%"></ion-skeleton-text>
-        <ion-skeleton-text width="80%"></ion-skeleton-text>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div *ngIf="clientes.length === 0">
+    <loading></loading>
+  </div>
   
-  <ion-list *ngIf="clientes.length > 0">
+  <div *ngIf="clientes.length > 0">
   <ion-card  *ngFor="let cliente of clientes | filtro: textoBuscar"  (click)="seleccionado(cliente)">
       <ion-item class="back">
         <ion-label  color="primary" position="stacked">Cliente: </ion-label>
@@ -33,5 +28,5 @@
           <ion-input readonly type="text">{{cliente.email}}</ion-input>
       </ion-item>
   </ion-card>
-</ion-list >
+</div>
 </ion-content>

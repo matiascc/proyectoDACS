@@ -15,7 +15,7 @@ import { Reparto } from 'src/app/interfaces/Reparto';
 export class InicioPage implements OnInit {
   
   componentes: Componente[] = [];
-  repartos: Reparto[];
+  repartos: Reparto[] = [];
 
   constructor(private menuCtrl: MenuController, 
     private authService: AuthService,

@@ -13,19 +13,18 @@ import { Producto } from 'src/app/interfaces/Producto';
 export class AgregarProductosPage implements OnInit {
   
   cliente : Cliente;
-  productos: Producto[];
+  productos: Producto[] = [];
 
   constructor(private state: ActivatedRoute, private servicioProductos: ProductosService) { }
 
   ngOnInit() {
     this.cliente = JSON.parse(this.state.snapshot.params.cliente);
-    this.servicioProductos.obtnerProductos()
-    .subscribe(
-      (productos) => {this.productos = productos;},
-      (error) => {console.log(error);}
-    )
+     this.servicioProductos.obtnerProductos()
+     .subscribe(
+       (productos) => {this.productos = productos;},
+       (error) => {console.log(error);}
+     )
   }
-
   
 
 }

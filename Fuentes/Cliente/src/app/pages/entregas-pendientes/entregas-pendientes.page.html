@@ -1,7 +1,12 @@
 <app-header titulo="Entregas pendientes"></app-header>
 
 <ion-content class="background">
-  
+
+  <div *ngIf="pedidos.length === 0">
+    <loading></loading>
+  </div>
+
+  <div *ngIf="pedidos.length > 0">
         <ion-card *ngFor="let pedido of pedidos" color="light">
           <ion-item class="back">
             <ion-icon name="person" slot="start" color="primary"></ion-icon>
@@ -24,16 +29,20 @@
           </ion-card-content>
           
         </ion-card>
+  </div>
 
 </ion-content>
 
 <ion-footer>
   <ion-toolbar >
      
-     <ion-item button color="tertiary" shape="round"  (click)="obtenerPedidosSeleccionados()">
-       <p text-align="center" >Armar recorrido</p>
+     <ion-button slot="start" fill="clear"size="small" color="tertiary" shape="round"  (click)="obtenerPedidosSeleccionados()">
+       Armar recorrido
        <ion-icon slot="start" name="car"></ion-icon>
-     </ion-item>
+     </ion-button>
+     <ion-button slot="end" fill="clear" size="small" color="tertiary" shape="round"  (click)="sugerirRecorrido()">
+      Sugerir recorrido
+    </ion-button>
         
   </ion-toolbar>
 </ion-footer>

@@ -13,9 +13,9 @@ import { RepartosService } from 'src/app/servicios/repartos-service/repartos-ser
 })
 export class EntregasPendientesPage implements OnInit {
 
-   pedidos : Pedido[];
+   pedidos : Pedido[] = [];
   
-   entregas: any = [];
+   entregas: any = [] = [];
 
   constructor(private serviciosPedido: ObtenerPedidosService,
      private router: Router, 
@@ -48,7 +48,7 @@ export class EntregasPendientesPage implements OnInit {
       return categoria === pedido;
     })
  }
-
+ 
  obtenerPedidosSeleccionados(){
     this.router.navigate(['list-reorder', {pedido: JSON.stringify(this.entregas)} ])
     this.servicioReparto.agregarReparto(this.pedidos);

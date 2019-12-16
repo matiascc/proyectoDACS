@@ -11,29 +11,36 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title>Repartos armados</ion-title>
+    <ion-title text-center>Repartos</ion-title>
   </ion-toolbar>
 </ion-header>
 
- 
+<!-- los [] son porque viene desde el modelo hacia la interfaz y los () cuando van de la interfaz al modelo-->
 
 <ion-content class="background">
+  <div *ngIf="repartos.length === 0" >
+    <ion-item text-center color="warning">
+      <p>No posee ningun reparto armado actualmente, agregue uno nuevo.</p>
+    </ion-item>
+    
+  </div>
+  
+ <div *ngIf="repartos.length > 0">
+  <ion-card *ngFor="let reparto of repartos">
+    <ion-item color="light">
+      <ion-label>Fecha de creacion: {{reparto.fecha |date}}</ion-label>
+    </ion-item>
+    <ion-toolbar color="light">
+     <ion-button fill="clear" slot="end" (click)="onClick()">
+       Continuar
+     </ion-button>
+    </ion-toolbar>
+  </ion-card>
+</div>
 
-  <!-- los [] son porque viene desde el modelo hacia la interfaz y los () cuando van de la interfaz al modelo-->
- <ion-card *ngFor="let reparto of repartos">
-
-   <ion-item color="light">
-     <ion-label>Fecha de creacion: {{reparto.fecha |date}}</ion-label>
-   </ion-item>
-   <ion-toolbar color="light">
-    <ion-button fill="clear" slot="end" (click)="onClick()">
-      Continuar
-    </ion-button>
-   </ion-toolbar>
-   
- </ion-card>
 
 </ion-content>
+
 <ion-footer class="ion-no-padding">
     <ion-toolbar color="primary">
       <ion-button fill="clear" slot="end" color="dark" (click)="armarRecorrido()">

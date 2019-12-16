@@ -23,13 +23,12 @@
       <ion-button fill="clear" slot="start" size="small" color="success">Registrar entrega</ion-button>
       <ion-button (click)="verDetalles(pedido)" color="primary" fill="clear" slot="end"> Ver mas ...</ion-button>
     </ion-toolbar>
-       
-</ion-card>
-
+  </ion-card>
+</ion-content>
 
 <ion-footer>
-  <ion-toolbar >
-      <ion-button expand="full" shape="round" routerLink="/entregas-pendientes">Modificar recorrido</ion-button>
-      <ion-button expand="full" shape="round" color="success"> Finalizar recorrido</ion-button>
+  <ion-toolbar color="light">
+      <ion-button expand="full" shape="round" color="tertiary" routerLink="/entregas-pendientes">Modificar recorrido</ion-button>
+      <ion-button expand="full" shape="round" color="tertiary"> Guardar recorrido</ion-button>
   </ion-toolbar>
 </ion-footer>
