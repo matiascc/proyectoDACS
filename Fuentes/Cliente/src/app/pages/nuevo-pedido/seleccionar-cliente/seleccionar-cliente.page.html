@@ -12,7 +12,7 @@
   </div>
   
   <div *ngIf="clientes.length > 0">
-  <ion-card  *ngFor="let cliente of clientes | filtro: textoBuscar"  (click)="seleccionado(cliente)">
+  <ion-card  *ngFor="let cliente of clientes | filtroCliente: textoBuscar"  (click)="seleccionado(cliente)">
       <ion-item class="back">
         <ion-label  color="primary" position="stacked">Cliente: </ion-label>
         <ion-input readonly >{{cliente.nombre}}</ion-input>

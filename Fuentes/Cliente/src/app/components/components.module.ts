@@ -5,12 +5,13 @@ import { IonicModule } from '@ionic/angular';
 import { MenuComponent } from './menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading/loading.component';
+import { BuscarComponent } from './buscar/buscar.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, MenuComponent, LoadingComponent],
-  exports: [HeaderComponent, MenuComponent, LoadingComponent],
+  declarations: [HeaderComponent, MenuComponent, LoadingComponent, BuscarComponent],
+  exports: [HeaderComponent, MenuComponent, LoadingComponent, BuscarComponent],
   imports: [
     CommonModule,
     IonicModule,

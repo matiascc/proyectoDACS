@@ -1,30 +1,31 @@
 <app-header titulo="Agregar producto"></app-header>
 
 <ion-content>
+  <ion-toolbar color= "tertiary">
+    <ion-searchbar placeholder="Buscar producto..."
+                   animated 
+                  (ionChange)="buscar( $event )" ></ion-searchbar>
+  </ion-toolbar>
+  
   <div *ngIf="productos.length === 0">
     <loading></loading>
   </div>
   
  <div *ngIf="productos.length > 0"> 
-  <ion-card color="light" *ngFor="let producto of productos">
-    <ion-item>
-      <ion-label  color="primary" position="stacked">Nombre: </ion-label>
+  <ion-card color="light" *ngFor="let producto of productos | filtroProductos : textoBuscar">
+    <ion-item class="back">
       <ion-input readonly >{{producto.nombre}}</ion-input>
+      <ion-checkbox (ionChange)="agregarProducto($event, producto)" slot="end" color="tertiary"></ion-checkbox>
     </ion-item>
-    <ion-list *ngFor="let stock of producto.stock">
-      <ion-item>
-        <ion-label  color="primary" position="stacked">Zona: </ion-label>
-        <ion-input readonly >{{stock.idZona}}</ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label  color="primary" position="stacked">Cantidad disponible: </ion-label>
-        <ion-input readonly >{{stock.cantidad}}</ion-input>
-      </ion-item>
-    </ion-list>
+
+    <ion-item>
+      <ion-label color="primary" position="stacked">Cantidad disponible: </ion-label>
+      <ion-input readonly> {{suma(producto)}} </ion-input>
+    </ion-item>
     
     <ion-item>
-      <ion-label  color="primary" position="stacked">{{producto.precio}} </ion-label>
-      <ion-icon color="success" slot="start" name="logo-usd"></ion-icon>
+      <ion-label position="inline"><p>{{producto.precio}} </p></ion-label>
+      <ion-icon color="success" size="small" slot="start" name="logo-usd"></ion-icon>
     </ion-item>
   </ion-card>
 </div>

@@ -13,3 +13,8 @@ interface Stock {
     idZona: number,
     cantidad: number
 }
+
+export interface ProductoSeleccionado{
+    producto: Producto,
+    cantidad: number
+}
