@@ -10,15 +10,8 @@
     <ion-card-content>
       <p>Presione el boton escanear, para leer el codigo QR</p>
     </ion-card-content>
-    <ion-button expand='block' margin (click)="goToQrScan()">Escanear</ion-button>
-    <div *ngIf="scannedData">
-      <p>
-        Scanned Code Text : <b>{{ scannedData["text"] }}</b>
-      </p>
-      <p>
-        Scanned Code Format : <b>{{ scannedData["format"] }}</b>
-      </p>
-    </div>
+    <ion-button expand='block' margin (click)="scan()">Escanear</ion-button>
+    
   </ion-card>
 
   

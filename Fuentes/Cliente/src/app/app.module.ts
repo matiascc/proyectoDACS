@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ObtenerPedidosService } from './servicios/pedidos-service/pedidos-service.service';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { PipesModule } from './pipes/pipes.module';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -37,6 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
     providers: [
     StatusBar,
+    BarcodeScanner,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Proveedor1Service,
