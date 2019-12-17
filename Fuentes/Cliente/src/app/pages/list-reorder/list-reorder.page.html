@@ -2,17 +2,26 @@
 
 
 <ion-content>
- <ion-card *ngFor="let pedido of pedidos"  (click)="verDetalles(pedido)">
+ <ion-card *ngFor="let pedido of pedidos"  > 
     <ion-item >
       <ion-label color="primary" position="stacked" >Cliente: </ion-label>
       <ion-input readonly >{{pedido.cliente.nombre}}</ion-input>
     </ion-item>
-    
+  
     <ion-item>
         <ion-label color="primary" position="stacked">Direccion: </ion-label> 
         <ion-input readonly type="text">{{pedido.cliente.direccion}}</ion-input>
     </ion-item>
-  
+
+    <ion-item button  (click)="verDetalles(pedido)">
+      <p  >Detalle</p>
+  </ion-item>
+
+    <ion-item button (click)="registarEntrega(pedido)">
+      <p text-align="center" >Registrar pedido</p>
+  </ion-item>
+
+
 </ion-card>
 
 

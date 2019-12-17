@@ -32,6 +32,10 @@ export class ListReorderPage implements OnInit {
     this.router.navigate(['detalle-pedido', {pedido: JSON.stringify(pedido)} ])
   }
 
+  registarEntrega(pedido: Pedido){
+    this.router.navigate(['registrar-entrega', {pedido: JSON.stringify(pedido)} ])
+ }
+
   OnClick() {
     console.log(this.pedidos);
   }

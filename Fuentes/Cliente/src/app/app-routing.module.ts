@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'escanear-codigo', loadChildren: './pages/escanear-codigo/escanear-codigo.module#EscanearCodigoPageModule' },
   { path: 'seleccionar-cliente', loadChildren: './pages/nuevo-pedido/seleccionar-cliente/seleccionar-cliente.module#SeleccionarClientePageModule' },
   { path: 'agregar-productos', loadChildren: './pages/nuevo-pedido/agregar-productos/agregar-productos.module#AgregarProductosPageModule' },
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },  { path: 'registrar-entrega', loadChildren: './pages/registrar-entrega/registrar-entrega.module#RegistrarEntregaPageModule' }
+
 
 ];
 @NgModule({
