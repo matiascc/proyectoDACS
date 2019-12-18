@@ -23,7 +23,7 @@ namespace API_Repartidor.Services
         {
             List<RepartoDTO> repartosDTO = new List<RepartoDTO>();
 
-            foreach (var reparto in repartosDAO.findAll())
+            foreach (var reparto in repartosDAO.FindAll())
             {
                 RepartoDTO repDTO = new RepartoDTO();
 
@@ -56,7 +56,7 @@ namespace API_Repartidor.Services
             reparto.pedidos = OrdenarPedidos(ubicacionActual, reparto.pedidos.ToList());
 
             Entities.Reparto repartoEntity = Mapper.Map<RepartoDTO, Entities.Reparto>(reparto);
-            this.repartosDAO.save(repartoEntity);
+            this.repartosDAO.Save(repartoEntity);
             return reparto;
         }
 
@@ -136,7 +136,7 @@ namespace API_Repartidor.Services
 
         public RepartoDTO GetRepartoByID(int id)
         {
-            var reparto = this.repartosDAO.findByID(id);
+            var reparto = this.repartosDAO.FindByID(id);
             if (reparto != null)
             {
                 RepartoDTO repDTO = Mapper.Map<Entities.Reparto, RepartoDTO>(reparto);
@@ -151,13 +151,13 @@ namespace API_Repartidor.Services
 
         public void DeleteRepartoByID(int id)
         {
-            this.repartosDAO.delete(this.repartosDAO.findByID(id));
+            this.repartosDAO.Delete(this.repartosDAO.FindByID(id));
         }
 
         public void UpdateRepartoByID(RepartoDTO reparto)
         {
             Entities.Reparto repartoEntity = Mapper.Map<RepartoDTO, Entities.Reparto>(reparto);
-            this.repartosDAO.update(repartoEntity);
+            this.repartosDAO.Update(repartoEntity);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace API_Repartidor.Services
             {
                 List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
                 
-                foreach (var pedido in pedidosDAO.findAll())
+                foreach (var pedido in pedidosDAO.FindAll())
                 {
                     PedidoDTO pedDTO = new PedidoDTO();
                     List<ItemPedidoDTO> listItemPedidos = new List<ItemPedidoDTO>();
@@ -54,7 +54,7 @@ namespace API_Repartidor.Services
             {
                 List<PedidoCompletoDTO> pedidosDTO = new List<PedidoCompletoDTO>();
 
-                foreach (var pedido in pedidosDAO.findAllPending())
+                foreach (var pedido in pedidosDAO.FindAllPending())
                 {
                     PedidoCompletoDTO pedDTO = new PedidoCompletoDTO();
                     pedDTO = Mapper.Map<Entities.Pedido, PedidoCompletoDTO>(pedido);
@@ -85,13 +85,13 @@ namespace API_Repartidor.Services
         public PedidoDTO AddPedido(PedidoDTO pedido)
         {
             Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
-            this.pedidosDAO.save(pedidoEntity);
+            this.pedidosDAO.Save(pedidoEntity);
             return pedido;
         }
 
         public PedidoDTO GetPedidoByID(int id)
         {
-            var pedido = this.pedidosDAO.findByID(id);
+            var pedido = this.pedidosDAO.FindByID(id);
             if(pedido != null)
             { 
             PedidoDTO pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(pedido);
@@ -105,13 +105,13 @@ namespace API_Repartidor.Services
 
         public void DeletePedidoByID(int id)
         {
-            this.pedidosDAO.delete(this.pedidosDAO.findByID(id));
+            this.pedidosDAO.Delete(this.pedidosDAO.FindByID(id));
         }
 
         public void UpdatePedidoByID(PedidoDTO pedido)
         {
             Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
-            this.pedidosDAO.update(pedidoEntity);
+            this.pedidosDAO.Update(pedidoEntity);
         }
     }
 }

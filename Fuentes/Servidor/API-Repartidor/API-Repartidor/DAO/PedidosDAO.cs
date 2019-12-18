@@ -10,16 +10,9 @@ namespace API_Repartidor.DAO
         {
 
         }
-        public IList<Pedido> findAllPending()
+        public IList<Pedido> FindAllPending()
         {
-            try
-            {
-                return this.session.QueryOver<Pedido>().Where(x => x.entregado == 0).List();
-            }
-            catch
-            {
-                throw;
-            }
+            return this.session.QueryOver<Pedido>().Where(x => x.entregado == 0).List();
         }
     }
 }

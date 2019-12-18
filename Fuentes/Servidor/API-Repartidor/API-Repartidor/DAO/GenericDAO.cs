@@ -12,65 +12,30 @@ namespace API_Repartidor.DAO
             this.session = session;
         }
 
-        public T findByID(ID id)
+        public T FindByID(ID id)
         {
-            try
-            {
-                return this.session.Get<T>(id);
-            }
-            catch
-            {
-                throw new NullReferenceException();
-            }
+            return this.session.Get<T>(id);
         }
-        public IList<T> findAll()
+        public IList<T> FindAll()
         {
-            try
-            {
-                return this.session.CreateCriteria(typeof(T)).List<T>();
-            }
-            catch
-            {
-                throw;
-            }
+            return this.session.CreateCriteria(typeof(T)).List<T>();
         }
-        public T save(T entity)
+        public T Save(T entity)
         {
-            try
-            {
-                this.session.Save(entity);
-                this.session.Flush();
-                return entity;
-            }
-            catch
-            {
-                throw;
-            }
+            this.session.Save(entity);
+            this.session.Flush();
+            return entity;
         }
-        public void delete(T entity)
+        public void Delete(T entity)
         {
-            try
-            {
-                this.session.Delete(entity);
-                this.session.Flush();
-            }
-            catch
-            {
-                throw;
-            }
+            this.session.Delete(entity);
+            this.session.Flush();
         }
 
-        public void update(T entity)
+        public void Update(T entity)
         {
-            try
-            {
-                this.session.Update(entity);
-                this.session.Flush();
-            }
-            catch
-            {
-                throw;
-            }
+            this.session.Update(entity);
+            this.session.Flush();
         }
     }
 }

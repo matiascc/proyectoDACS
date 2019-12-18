@@ -53,7 +53,7 @@ namespace API_Repartidor.Services
             ProductDTO result = this.ApiProductsGetByID(id);
             ProductoCompletoDTO prodConPrecio = new ProductoCompletoDTO();
             prodConPrecio = Mapper.Map<ProductDTO, ProductoCompletoDTO>(result);
-            var prod = productosDAO.findByID(Convert.ToInt64(result.id));
+            var prod = productosDAO.FindByID(Convert.ToInt64(result.id));
             if (prod != null)
             {
                 prodConPrecio.precio = prod.precio;
