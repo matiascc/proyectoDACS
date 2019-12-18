@@ -144,7 +144,7 @@ namespace API_Repartidor.Services
             }
             else
             {
-                throw new IdNotFoundException("Pedido");
+                throw new IdNotFoundException("Reparto");
             }
             
         }
