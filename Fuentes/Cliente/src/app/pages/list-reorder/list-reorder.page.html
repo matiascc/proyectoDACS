@@ -20,7 +20,7 @@
     </ion-toolbar>
     
     <ion-toolbar color="light">
-      <ion-button fill="clear" slot="start" size="small" color="success">Registrar entrega</ion-button>
+      <ion-button (click)="registrarEntrega(pedido)" fill="clear" slot="start" size="small" color="success">Registrar entrega</ion-button>
       <ion-button (click)="verDetalles(pedido)" color="primary" fill="clear" slot="end"> Ver mas ...</ion-button>
     </ion-toolbar>
   </ion-card>

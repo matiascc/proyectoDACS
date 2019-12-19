@@ -1,0 +1,34 @@
+<app-header titulo="Registrar Entrega"></app-header>
+
+<ion-content>
+
+    <ion-card>
+            <ion-card-header color="primary">
+                <ion-card-title>Items del pedido</ion-card-title>
+            </ion-card-header>
+                  
+            <ion-card-content *ngFor="let item of pedido.itemPedido">
+                <ion-item class="back" >
+                    <ion-label><strong>Producto: </strong>{{item.producto.nombre}}</ion-label>
+                </ion-item>
+                <ion-item  color="light" class="activated">
+                        <ion-label><strong>Cantidad: </strong>{{item.cantidad}}</ion-label>
+                </ion-item>
+                <ion-item  color="light" class="activated">
+                  <ion-label><strong>Cantidad Rechazada: </strong>{{item.cantidadRechazada}}</ion-label>
+          </ion-item>
+                <ion-item color="light" class="activated">
+                    <ion-icon name="logo-usd" slot="start" color="success"></ion-icon>
+                    <ion-label>{{item.precio}}</ion-label>
+                </ion-item>
+                      
+            </ion-card-content>
+        </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-button shape="round" color="tertiary" > <ion-icon name="qr-scanner"> </ion-icon>Rechazar</ion-button>
+    <ion-button shape="round"  color="success" >Finalizar Recorrido</ion-button>
+  </ion-toolbar>
+</ion-footer>
