@@ -14,13 +14,21 @@ namespace API_Repartidor.Controllers
             this.clientesSrv = clientesSrv;
         }
 
-
+        /// <summary>
+        /// Trae todos los clientes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetClientes()
         {
             return Ok(this.clientesSrv.GetClientes());
         }
 
+
+        /// <summary>
+        /// Trae un cliente a partir de un ID
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route ("{id}")]
         public IActionResult GetClientByID(int id)

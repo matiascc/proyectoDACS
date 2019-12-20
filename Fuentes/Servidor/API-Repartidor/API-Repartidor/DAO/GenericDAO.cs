@@ -12,27 +12,27 @@ namespace API_Repartidor.DAO
             this.session = session;
         }
 
-        public T FindByID(ID id)
+        internal T FindByID(ID id)
         {
             return this.session.Get<T>(id);
         }
-        public IList<T> FindAll()
+        internal IList<T> FindAll()
         {
             return this.session.CreateCriteria(typeof(T)).List<T>();
         }
-        public T Save(T entity)
+        internal T Save(T entity)
         {
             this.session.Save(entity);
             this.session.Flush();
             return entity;
         }
-        public void Delete(T entity)
+        internal void Delete(T entity)
         {
             this.session.Delete(entity);
             this.session.Flush();
         }
 
-        public void Update(T entity)
+        internal void Update(T entity)
         {
             this.session.Update(entity);
             this.session.Flush();

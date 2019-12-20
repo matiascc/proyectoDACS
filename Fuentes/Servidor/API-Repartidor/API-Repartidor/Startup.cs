@@ -36,6 +36,26 @@ namespace API_Repartidor
 
         public IConfiguration Configuration { get; }
 
+        private Microsoft.AspNetCore.Http.HttpContext GenerateContextResponse(Microsoft.AspNetCore.Http.HttpContext context, int errorCode, string aMessage, string contentType)
+        {
+            context.Response.StatusCode = errorCode;
+            context.Response.ContentType = contentType;
+
+            using (var writer = new StreamWriter(context.Response.Body))
+            {
+                writer.Write(
+                    JsonSerializer.Serialize(
+                        new
+                        {
+                            message = aMessage
+                        }));
+                writer.FlushAsync().ConfigureAwait(false);
+            }
+            return context;
+
+        }
+
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -155,6 +175,7 @@ namespace API_Repartidor
 
             app.UseHttpsRedirection();
 
+#if DEBUG
             //Middleware autenticacion Firebase
             app.Use(async (context, next) =>
             {
@@ -173,6 +194,7 @@ namespace API_Repartidor
 
                 await next.Invoke();
             });
+#endif
 
             //Middleware autenticacion Firebase
 
@@ -214,52 +236,15 @@ namespace API_Repartidor
                 }
                 catch (UnauthorizedException e)
                 {
-                    context.Response.StatusCode = 401;
-                    context.Response.ContentType = "application/json";
-
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    {
-                        writer.Write(
-                            JsonSerializer.Serialize(
-                                new
-                                {
-                                    message = e.Message
-                                }));
-                        await writer.FlushAsync().ConfigureAwait(false);
-                    }
+                    this.GenerateContextResponse(context, 401, e.Message, "application/json");
                 }
                 catch (IdNotFoundException e)
                 {
-                    context.Response.StatusCode = 400;
-                    context.Response.ContentType = "application/json";
-
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    {
-                        writer.Write(
-                            JsonSerializer.Serialize(
-                                new
-                                {
-                                    message = e.Message
-                                }));
-                        await writer.FlushAsync().ConfigureAwait(false);
-                    }
+                    this.GenerateContextResponse(context, 400, e.Message, "application/json");
                 }
                 catch (Exception e) //Para cualquier excepcion desconocida
                 {
-                    context.Response.StatusCode = 500;
-                    context.Response.ContentType = "application/json";
-
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    {
-                        writer.Write(
-                            JsonSerializer.Serialize(
-                                new
-                                {
-                                    message = "Error desconocido",
-                                    detail = e.Message
-                                }));
-                        await writer.FlushAsync().ConfigureAwait(false);
-                    }
+                    this.GenerateContextResponse(context, 500, e.Message, "application/json");
                 }
             });
 

@@ -19,7 +19,7 @@ namespace API_Repartidor.Services
             this.clientesService = clientesService;
         }
 
-        public List<RepartoDTO> GetRepartos()
+        internal List<RepartoDTO> GetRepartos()
         {
             List<RepartoDTO> repartosDTO = new List<RepartoDTO>();
 
@@ -33,7 +33,7 @@ namespace API_Repartidor.Services
             return repartosDTO;
         }
 
-        public List<PedidoDTO> GetPedidosOfReparto(int id)
+        internal List<PedidoDTO> GetPedidosOfReparto(int id)
         {
             RepartoDTO repDTO = this.GetRepartoByID(id);
             List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
@@ -44,7 +44,7 @@ namespace API_Repartidor.Services
             return pedidosDTO;
         }
 
-        public RepartoDTO AddReparto(RepartoDTO reparto)
+        internal RepartoDTO AddReparto(RepartoDTO reparto)
         {
             //Cambiar la ubicacion por la que viene del dispositivo!!!
             Posicion ubicacionActual = new Posicion
@@ -134,7 +134,7 @@ namespace API_Repartidor.Services
             return Convert.ToSingle(Math.PI / 180) * valor;
         }
 
-        public RepartoDTO GetRepartoByID(int id)
+        internal RepartoDTO GetRepartoByID(int id)
         {
             var reparto = this.repartosDAO.FindByID(id);
             if (reparto != null)
@@ -149,12 +149,12 @@ namespace API_Repartidor.Services
             
         }
 
-        public void DeleteRepartoByID(int id)
+        internal void DeleteRepartoByID(int id)
         {
             this.repartosDAO.Delete(this.repartosDAO.FindByID(id));
         }
 
-        public void UpdateRepartoByID(RepartoDTO reparto)
+        internal void UpdateRepartoByID(RepartoDTO reparto)
         {
             Entities.Reparto repartoEntity = Mapper.Map<RepartoDTO, Entities.Reparto>(reparto);
             this.repartosDAO.Update(repartoEntity);

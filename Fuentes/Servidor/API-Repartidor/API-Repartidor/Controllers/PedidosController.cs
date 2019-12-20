@@ -66,7 +66,7 @@ namespace API_Repartidor.Controllers
         }
 
         /// <summary>
-        /// Obtiene un pedido a partid de un ID
+        /// Trae un pedido a partir de un ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

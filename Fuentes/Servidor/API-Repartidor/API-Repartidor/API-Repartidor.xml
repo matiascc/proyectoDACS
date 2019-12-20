@@ -4,6 +4,18 @@
         <name>API-Repartidor</name>
     </assembly>
     <members>
+        <member name="M:API_Repartidor.Controllers.ClientesController.GetClientes">
+            <summary>
+            Trae todos los clientes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.ClientesController.GetClientByID(System.Int32)">
+            <summary>
+            Trae un cliente a partir de un ID
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:API_Repartidor.Controllers.PedidosController.Get">
             <summary>
             Trae todos los pedidos
@@ -25,7 +37,7 @@
         </member>
         <member name="M:API_Repartidor.Controllers.PedidosController.Get(System.Int32)">
             <summary>
-            Obtiene un pedido a partid de un ID
+            Trae un pedido a partir de un ID
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -44,6 +56,18 @@
             <param name="pedido"></param>
             <returns></returns>
         </member>
+        <member name="M:API_Repartidor.Controllers.ProductosController.GetProductos">
+            <summary>
+            Trae todos los productos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.ProductosController.GetProductosById(System.Int32)">
+            <summary>
+            Trae un producto a partir de un ID
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:API_Repartidor.Controllers.RepartosController.Get">
             <summary>
             Trae todos los repartos
@@ -52,7 +76,7 @@
         </member>
         <member name="M:API_Repartidor.Controllers.RepartosController.Get(System.Int32)">
             <summary>
-            Pedidos de un reparto
+            Pedidos de un reparto a partir de un ID
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -66,7 +90,7 @@
         </member>
         <member name="M:API_Repartidor.Controllers.RepartosController.Get2(System.Int32)">
             <summary>
-            Obtiene un reparto a partid de un ID
+            Trae un reparto a partir de un ID
             </summary>
             <param name="id"></param>
             <returns></returns>
