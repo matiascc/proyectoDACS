@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API_Repartidor.DTOs;
 using API_Repartidor.DTOs.ExternalApiDTOs;
 using API_Repartidor.Exceptions;
@@ -25,21 +23,14 @@ namespace API_Repartidor.Services
         /// Obtiene y mapea todos los clientes recibidos de la API externa
         /// </summary>
         /// <returns></returns>
-        public List<ClienteDTO> GetClientes()
+        internal List<ClienteDTO> GetClientes()
         {
-            try
+            List<ClienteDTO> result = new List<ClienteDTO>();
+            foreach (var cliente in ApiClientsGetAll())
             {
-                List<ClienteDTO> result = new List<ClienteDTO>();
-                foreach (var cliente in ApiClientsGetAll())
-                {
-                    result.Add(Mapper.Map<ClientDTO, ClienteDTO>(cliente));
-                }
-                return result;
+                result.Add(Mapper.Map<ClientDTO, ClienteDTO>(cliente));
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return result;
         }
 
 
@@ -48,7 +39,7 @@ namespace API_Repartidor.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ClienteDTO GetClienteByID(int id)
+        internal ClienteDTO GetClienteByID(int id)
         {
             ClientDTO result = this.ApiClientsGetByID(id);
             if (result != null)

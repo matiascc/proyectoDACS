@@ -3,7 +3,6 @@ using API_Repartidor.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using API_Repartidor.Exceptions;
 using API_Repartidor.DataComponents;
@@ -20,11 +19,11 @@ namespace API_Repartidor.Services
             this.clientesService = clientesService;
         }
 
-        public List<RepartoDTO> GetRepartos()
+        internal List<RepartoDTO> GetRepartos()
         {
             List<RepartoDTO> repartosDTO = new List<RepartoDTO>();
 
-            foreach (var reparto in repartosDAO.findAll())
+            foreach (var reparto in repartosDAO.FindAll())
             {
                 RepartoDTO repDTO = new RepartoDTO();
 
@@ -34,7 +33,7 @@ namespace API_Repartidor.Services
             return repartosDTO;
         }
 
-        public List<PedidoDTO> GetPedidosOfReparto(int id)
+        internal List<PedidoDTO> GetPedidosOfReparto(int id)
         {
             RepartoDTO repDTO = this.GetRepartoByID(id);
             List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
@@ -45,7 +44,7 @@ namespace API_Repartidor.Services
             return pedidosDTO;
         }
 
-        public RepartoDTO AddReparto(RepartoDTO reparto)
+        internal RepartoDTO AddReparto(RepartoDTO reparto)
         {
             //Cambiar la ubicacion por la que viene del dispositivo!!!
             Posicion ubicacionActual = new Posicion
@@ -57,7 +56,7 @@ namespace API_Repartidor.Services
             reparto.pedidos = OrdenarPedidos(ubicacionActual, reparto.pedidos.ToList());
 
             Entities.Reparto repartoEntity = Mapper.Map<RepartoDTO, Entities.Reparto>(reparto);
-            this.repartosDAO.save(repartoEntity);
+            this.repartosDAO.Save(repartoEntity);
             return reparto;
         }
 
@@ -135,9 +134,9 @@ namespace API_Repartidor.Services
             return Convert.ToSingle(Math.PI / 180) * valor;
         }
 
-        public RepartoDTO GetRepartoByID(int id)
+        internal RepartoDTO GetRepartoByID(int id)
         {
-            var reparto = this.repartosDAO.findByID(id);
+            var reparto = this.repartosDAO.FindByID(id);
             if (reparto != null)
             {
                 RepartoDTO repDTO = Mapper.Map<Entities.Reparto, RepartoDTO>(reparto);
@@ -145,20 +144,20 @@ namespace API_Repartidor.Services
             }
             else
             {
-                throw new IdNotFoundException("Pedido");
+                throw new IdNotFoundException("Reparto");
             }
             
         }
 
-        public void DeleteRepartoByID(int id)
+        internal void DeleteRepartoByID(int id)
         {
-            this.repartosDAO.delete(this.repartosDAO.findByID(id));
+            this.repartosDAO.Delete(this.repartosDAO.FindByID(id));
         }
 
-        public void UpdateRepartoByID(RepartoDTO reparto)
+        internal void UpdateRepartoByID(RepartoDTO reparto)
         {
             Entities.Reparto repartoEntity = Mapper.Map<RepartoDTO, Entities.Reparto>(reparto);
-            this.repartosDAO.update(repartoEntity);
+            this.repartosDAO.Update(repartoEntity);
         }
     }
 }

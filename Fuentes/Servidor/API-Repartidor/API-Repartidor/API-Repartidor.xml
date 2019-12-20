@@ -4,9 +4,27 @@
         <name>API-Repartidor</name>
     </assembly>
     <members>
+        <member name="M:API_Repartidor.Controllers.ClientesController.GetClientes">
+            <summary>
+            Trae todos los clientes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.ClientesController.GetClientByID(System.Int32)">
+            <summary>
+            Trae un cliente a partir de un ID
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:API_Repartidor.Controllers.PedidosController.Get">
             <summary>
             Trae todos los pedidos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.PedidosController.GetPendientes">
+            <summary>
+            Trae todos los pedidos pendientes
             </summary>
             <returns></returns>
         </member>
@@ -15,6 +33,132 @@
             Agrega un nuevo pedido
             </summary>
             <param name="pedido"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.PedidosController.Get(System.Int32)">
+            <summary>
+            Trae un pedido a partir de un ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.PedidosController.Delete(System.Int32)">
+            <summary>
+            Elimina un pedido por ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.PedidosController.Update(API_Repartidor.DTOs.PedidoDTO)">
+            <summary>
+            Actualiza un pedido por ID
+            </summary>
+            <param name="pedido"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.ProductosController.GetProductos">
+            <summary>
+            Trae todos los productos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.ProductosController.GetProductosById(System.Int32)">
+            <summary>
+            Trae un producto a partir de un ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.RepartosController.Get">
+            <summary>
+            Trae todos los repartos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.RepartosController.Get(System.Int32)">
+            <summary>
+            Pedidos de un reparto a partir de un ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.RepartosController.Post(API_Repartidor.DTOs.RepartoDTO)">
+            <summary>
+            Agrega un nuevo reparto
+            </summary>
+            <param name="reparto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.RepartosController.Get2(System.Int32)">
+            <summary>
+            Trae un reparto a partir de un ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.RepartosController.Delete(System.Int32)">
+            <summary>
+            Elimina un reparto por ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Controllers.RepartosController.Update(API_Repartidor.DTOs.RepartoDTO)">
+            <summary>
+            Actualiza un reparto por ID
+            </summary>
+            <param name="reparto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ClientesService.GetClientes">
+            <summary>
+            Obtiene y mapea todos los clientes recibidos de la API externa
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ClientesService.GetClienteByID(System.Int32)">
+            <summary>
+            Obtiene y mapea un cliente determinado por su ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ClientesService.ApiClientsGetAll">
+            <summary>
+            Obtiene todos los clientes consultando la API externa.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ClientesService.ApiClientsGetByID(System.Int32)">
+            <summary>
+            Consulta API externa y obtiene un cliente determinado por la ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ProductosService.GetProductos">
+            <summary>
+            Obtiene y mapea todos los productos recibidos de la API externa
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ProductosService.GetProductoByID(System.Int32)">
+            <summary>
+            Obtiene y mapea un producto completo determinado por su ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ProductosService.ApiProductsGetByID(System.Int32)">
+            <summary>
+            Consulta API externa y obtiene un producto determinado por la ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API_Repartidor.Services.ProductosService.ApiProductsGetAll">
+            <summary>
+            Obtiene todos los productos consultando la API externa.
+            </summary>
             <returns></returns>
         </member>
     </members>

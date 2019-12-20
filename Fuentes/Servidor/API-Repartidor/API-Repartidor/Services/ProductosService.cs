@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API_Repartidor.DTOs;
 using API_Repartidor.DTOs.ExternalApiDTOs;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 using RestSharp.Serialization.Json;
-using NHibernate;
 using API_Repartidor.DAO;
 using API_Repartidor.Exceptions;
 
@@ -28,22 +25,14 @@ namespace API_Repartidor.Services
         /// Obtiene y mapea todos los productos recibidos de la API externa
         /// </summary>
         /// <returns></returns>
-        public List<ProductoDTO> GetProductos()
+        internal List<ProductoDTO> GetProductos()
         {
-            try
+            List<ProductoDTO> result = new List<ProductoDTO>();
+            foreach (var producto in ApiProductsGetAll())
             {
-                List<ProductoDTO> result = new List<ProductoDTO>();
-                foreach (var producto in ApiProductsGetAll())
-                {
-                    result.Add(Mapper.Map<ProductDTO, ProductoDTO>(producto));
-                }
-                return result;
+                result.Add(Mapper.Map<ProductDTO, ProductoDTO>(producto));
             }
-            catch (Exception e)
-            {
-
-                throw e;
-            }
+            return result;
         }
 
         /// <summary>
@@ -51,12 +40,12 @@ namespace API_Repartidor.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ProductoCompletoDTO GetProductoByID(int id)
+        internal ProductoCompletoDTO GetProductoByID(int id)
         {
             ProductDTO result = this.ApiProductsGetByID(id);
             ProductoCompletoDTO prodConPrecio = new ProductoCompletoDTO();
             prodConPrecio = Mapper.Map<ProductDTO, ProductoCompletoDTO>(result);
-            var prod = productosDAO.findByID(Convert.ToInt64(result.id));
+            var prod = productosDAO.FindByID(Convert.ToInt64(result.id));
             if (prod != null)
             {
                 prodConPrecio.precio = prod.precio;

@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using API_Repartidor.DTOs;
-using API_Repartidor.DTOs.ExternalApiDTOs;
 using API_Repartidor.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Connection;
@@ -28,7 +21,6 @@ using API_Repartidor.Exceptions;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using API_Repartidor.Mappings;
-using System.Text;
 using System.Text.Json;
 
 namespace API_Repartidor
@@ -43,6 +35,26 @@ namespace API_Repartidor
         }
 
         public IConfiguration Configuration { get; }
+
+        private Microsoft.AspNetCore.Http.HttpContext GenerateContextResponse(Microsoft.AspNetCore.Http.HttpContext context, int errorCode, string aMessage, string contentType)
+        {
+            context.Response.StatusCode = errorCode;
+            context.Response.ContentType = contentType;
+
+            using (var writer = new StreamWriter(context.Response.Body))
+            {
+                writer.Write(
+                    JsonSerializer.Serialize(
+                        new
+                        {
+                            message = aMessage
+                        }));
+                writer.FlushAsync().ConfigureAwait(false);
+            }
+            return context;
+
+        }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -142,6 +154,8 @@ namespace API_Repartidor
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_Repartidor", Version = "v-1.0" });
+
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "API-Repartidor.xml"));
             });
 
         }
@@ -161,6 +175,7 @@ namespace API_Repartidor
 
             app.UseHttpsRedirection();
 
+#if DEBUG
             //Middleware autenticacion Firebase
             app.Use(async (context, next) =>
             {
@@ -179,6 +194,7 @@ namespace API_Repartidor
 
                 await next.Invoke();
             });
+#endif
 
             //Middleware autenticacion Firebase
 
@@ -220,52 +236,15 @@ namespace API_Repartidor
                 }
                 catch (UnauthorizedException e)
                 {
-                    context.Response.StatusCode = 401;
-                    context.Response.ContentType = "application/json";
-
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    {
-                        writer.Write(
-                            JsonSerializer.Serialize(
-                                new
-                                {
-                                    message = e.Message
-                                }));
-                        await writer.FlushAsync().ConfigureAwait(false);
-                    }
+                    this.GenerateContextResponse(context, 401, e.Message, "application/json");
                 }
                 catch (IdNotFoundException e)
                 {
-                    context.Response.StatusCode = 400;
-                    context.Response.ContentType = "application/json";
-
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    {
-                        writer.Write(
-                            JsonSerializer.Serialize(
-                                new
-                                {
-                                    message = e.Message
-                                }));
-                        await writer.FlushAsync().ConfigureAwait(false);
-                    }
+                    this.GenerateContextResponse(context, 400, e.Message, "application/json");
                 }
                 catch (Exception e) //Para cualquier excepcion desconocida
                 {
-                    context.Response.StatusCode = 500;
-                    context.Response.ContentType = "application/json";
-
-                    using (var writer = new StreamWriter(context.Response.Body))
-                    {
-                        writer.Write(
-                            JsonSerializer.Serialize(
-                                new
-                                {
-                                    message = "Error desconocido",
-                                    detail = e.Message
-                                }));
-                        await writer.FlushAsync().ConfigureAwait(false);
-                    }
+                    this.GenerateContextResponse(context, 500, e.Message, "application/json");
                 }
             });
 

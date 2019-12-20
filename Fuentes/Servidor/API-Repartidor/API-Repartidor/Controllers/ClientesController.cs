@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace API_Repartidor.Controllers
 {
@@ -19,13 +14,21 @@ namespace API_Repartidor.Controllers
             this.clientesSrv = clientesSrv;
         }
 
-
+        /// <summary>
+        /// Trae todos los clientes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetClientes()
         {
             return Ok(this.clientesSrv.GetClientes());
         }
 
+
+        /// <summary>
+        /// Trae un cliente a partir de un ID
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route ("{id}")]
         public IActionResult GetClientByID(int id)

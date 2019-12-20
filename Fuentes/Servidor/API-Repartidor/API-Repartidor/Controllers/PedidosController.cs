@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API_Repartidor.DTOs;
-
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Repartidor.Controllers
@@ -71,7 +66,7 @@ namespace API_Repartidor.Controllers
         }
 
         /// <summary>
-        /// Obtiene un pedido a partid de un ID
+        /// Trae un pedido a partir de un ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

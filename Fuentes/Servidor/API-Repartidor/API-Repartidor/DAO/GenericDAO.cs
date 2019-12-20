@@ -1,8 +1,6 @@
 ﻿using NHibernate;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API_Repartidor.DAO
 {
@@ -14,65 +12,30 @@ namespace API_Repartidor.DAO
             this.session = session;
         }
 
-        public T findByID(ID id)
+        internal T FindByID(ID id)
         {
-            try
-            {
-                return this.session.Get<T>(id);
-            }
-            catch
-            {
-                throw new NullReferenceException();
-            }
+            return this.session.Get<T>(id);
         }
-        public IList<T> findAll()
+        internal IList<T> FindAll()
         {
-            try
-            {
-                return this.session.CreateCriteria(typeof(T)).List<T>();
-            }
-            catch
-            {
-                throw;
-            }
+            return this.session.CreateCriteria(typeof(T)).List<T>();
         }
-        public T save(T entity)
+        internal T Save(T entity)
         {
-            try
-            {
-                this.session.Save(entity);
-                this.session.Flush();
-                return entity;
-            }
-            catch
-            {
-                throw;
-            }
+            this.session.Save(entity);
+            this.session.Flush();
+            return entity;
         }
-        public void delete(T entity)
+        internal void Delete(T entity)
         {
-            try
-            {
-                this.session.Delete(entity);
-                this.session.Flush();
-            }
-            catch
-            {
-                throw;
-            }
+            this.session.Delete(entity);
+            this.session.Flush();
         }
 
-        public void update(T entity)
+        internal void Update(T entity)
         {
-            try
-            {
-                this.session.Update(entity);
-                this.session.Flush();
-            }
-            catch
-            {
-                throw;
-            }
+            this.session.Update(entity);
+            this.session.Flush();
         }
     }
 }

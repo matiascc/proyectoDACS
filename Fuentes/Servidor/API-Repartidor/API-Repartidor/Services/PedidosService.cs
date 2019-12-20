@@ -2,8 +2,6 @@
 using API_Repartidor.DAO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using API_Repartidor.Exceptions;
 
@@ -22,78 +20,64 @@ namespace API_Repartidor.Services
             this.clientesService = clientesService;
             this.productosService = productosService;
         }
-        public List<PedidoDTO> GetPedidos()
+        internal List<PedidoDTO> GetPedidos()
         {
-            try
-            {
-                List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
-                
-                foreach (var pedido in pedidosDAO.findAll())
-                {
-                    PedidoDTO pedDTO = new PedidoDTO();
-                    List<ItemPedidoDTO> listItemPedidos = new List<ItemPedidoDTO>();
+            List<PedidoDTO> pedidosDTO = new List<PedidoDTO>();
 
-                    pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(pedido);
-                    foreach (var item in pedido.itemPedido)
-                    {
-                        ItemPedidoDTO itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoDTO>(item);
-                        listItemPedidos.Add(itemPedDTO);
-                    }
-                    pedDTO.itemPedido = listItemPedidos;
-                    pedidosDTO.Add(pedDTO);
-                }
-                return pedidosDTO;
-            }
-            catch (Exception e)
+            foreach (var pedido in pedidosDAO.FindAll())
             {
-                throw e;
+                PedidoDTO pedDTO = new PedidoDTO();
+                List<ItemPedidoDTO> listItemPedidos = new List<ItemPedidoDTO>();
+
+                pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(pedido);
+                foreach (var item in pedido.itemPedido)
+                {
+                    ItemPedidoDTO itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoDTO>(item);
+                    listItemPedidos.Add(itemPedDTO);
+                }
+                pedDTO.itemPedido = listItemPedidos;
+                pedidosDTO.Add(pedDTO);
             }
+            return pedidosDTO;
         }
 
-        public List<PedidoCompletoDTO> GetPedidosCompletos()
+        internal List<PedidoCompletoDTO> GetPedidosCompletos()
         {
-            try
-            {
-                List<PedidoCompletoDTO> pedidosDTO = new List<PedidoCompletoDTO>();
+            List<PedidoCompletoDTO> pedidosDTO = new List<PedidoCompletoDTO>();
 
-                foreach (var pedido in pedidosDAO.findAllPending())
+            foreach (var pedido in pedidosDAO.FindAllPending())
+            {
+                PedidoCompletoDTO pedDTO = new PedidoCompletoDTO();
+                pedDTO = Mapper.Map<Entities.Pedido, PedidoCompletoDTO>(pedido);
+
+                var cli = clientesService.GetClienteByID(Convert.ToInt32(pedido.idCliente));
+                pedDTO.cliente = Mapper.Map<ClienteDTO, ClienteReducidoDTO>(cli);
+
+                List<ItemPedidoCompletoDTO> listItemPedidos = new List<ItemPedidoCompletoDTO>();
+
+                foreach (var item in pedido.itemPedido)
                 {
-                    PedidoCompletoDTO pedDTO = new PedidoCompletoDTO();
-                    pedDTO = Mapper.Map<Entities.Pedido, PedidoCompletoDTO>(pedido);
-
-                    var cli = clientesService.GetClienteByID(Convert.ToInt32(pedido.idCliente));
-                    pedDTO.cliente = Mapper.Map<ClienteDTO, ClienteReducidoDTO>(cli);
-
-                    List<ItemPedidoCompletoDTO> listItemPedidos = new List<ItemPedidoCompletoDTO>();
-
-                    foreach (var item in pedido.itemPedido)
-                    {
-                        ItemPedidoCompletoDTO itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoCompletoDTO>(item);
-                        var prod = productosService.GetProductoByID(Convert.ToInt32(item.idProducto));
-                        itemPedDTO.producto = Mapper.Map<ProductoCompletoDTO, ProductoCompletoReducidoDTO>(prod);
-                        listItemPedidos.Add(itemPedDTO);
-                    }
-                    pedDTO.itemPedido = listItemPedidos;
-                    pedidosDTO.Add(pedDTO);
+                    ItemPedidoCompletoDTO itemPedDTO = Mapper.Map<Entities.ItemPedido, ItemPedidoCompletoDTO>(item);
+                    var prod = productosService.GetProductoByID(Convert.ToInt32(item.idProducto));
+                    itemPedDTO.producto = Mapper.Map<ProductoCompletoDTO, ProductoCompletoReducidoDTO>(prod);
+                    listItemPedidos.Add(itemPedDTO);
                 }
-                return pedidosDTO;
+                pedDTO.itemPedido = listItemPedidos;
+                pedidosDTO.Add(pedDTO);
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return pedidosDTO;
         }
 
-        public PedidoDTO AddPedido(PedidoDTO pedido)
+        internal PedidoDTO AddPedido(PedidoDTO pedido)
         {
             Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
-            this.pedidosDAO.save(pedidoEntity);
+            this.pedidosDAO.Save(pedidoEntity);
             return pedido;
         }
 
         public PedidoDTO GetPedidoByID(int id)
         {
-            var pedido = this.pedidosDAO.findByID(id);
+            var pedido = this.pedidosDAO.FindByID(id);
             if(pedido != null)
             { 
             PedidoDTO pedDTO = Mapper.Map<Entities.Pedido, PedidoDTO>(pedido);
@@ -105,15 +89,15 @@ namespace API_Repartidor.Services
             }
         }
 
-        public void DeletePedidoByID(int id)
+        internal void DeletePedidoByID(int id)
         {
-            this.pedidosDAO.delete(this.pedidosDAO.findByID(id));
+            this.pedidosDAO.Delete(this.pedidosDAO.FindByID(id));
         }
 
-        public void UpdatePedidoByID(PedidoDTO pedido)
+        internal void UpdatePedidoByID(PedidoDTO pedido)
         {
             Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
-            this.pedidosDAO.update(pedidoEntity);
+            this.pedidosDAO.Update(pedidoEntity);
         }
     }
 }

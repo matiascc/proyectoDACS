@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using API_Repartidor.Entities;
-
-namespace API_Repartidor.DTOs
+﻿namespace API_Repartidor.DTOs
 {
     public class ItemPedidoDTO
     {
