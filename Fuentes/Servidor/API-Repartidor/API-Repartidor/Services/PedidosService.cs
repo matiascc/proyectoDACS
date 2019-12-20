@@ -20,7 +20,7 @@ namespace API_Repartidor.Services
             this.clientesService = clientesService;
             this.productosService = productosService;
         }
-        public List<PedidoDTO> GetPedidos()
+        internal List<PedidoDTO> GetPedidos()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace API_Repartidor.Services
             }
         }
 
-        public List<PedidoCompletoDTO> GetPedidosCompletos()
+        internal List<PedidoCompletoDTO> GetPedidosCompletos()
         {
             try
             {
@@ -82,14 +82,14 @@ namespace API_Repartidor.Services
             }
         }
 
-        public PedidoDTO AddPedido(PedidoDTO pedido)
+        internal PedidoDTO AddPedido(PedidoDTO pedido)
         {
             Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
             this.pedidosDAO.Save(pedidoEntity);
             return pedido;
         }
 
-        public PedidoDTO GetPedidoByID(int id)
+        internal PedidoDTO GetPedidoByID(int id)
         {
             var pedido = this.pedidosDAO.FindByID(id);
             if(pedido != null)
@@ -103,12 +103,12 @@ namespace API_Repartidor.Services
             }
         }
 
-        public void DeletePedidoByID(int id)
+        internal void DeletePedidoByID(int id)
         {
             this.pedidosDAO.Delete(this.pedidosDAO.FindByID(id));
         }
 
-        public void UpdatePedidoByID(PedidoDTO pedido)
+        internal void UpdatePedidoByID(PedidoDTO pedido)
         {
             Entities.Pedido pedidoEntity = Mapper.Map<PedidoDTO, Entities.Pedido>(pedido);
             this.pedidosDAO.Update(pedidoEntity);

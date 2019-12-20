@@ -23,7 +23,7 @@ namespace API_Repartidor.Services
         /// Obtiene y mapea todos los clientes recibidos de la API externa
         /// </summary>
         /// <returns></returns>
-        public List<ClienteDTO> GetClientes()
+        internal List<ClienteDTO> GetClientes()
         {
             try
             {
@@ -46,7 +46,7 @@ namespace API_Repartidor.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ClienteDTO GetClienteByID(int id)
+        internal ClienteDTO GetClienteByID(int id)
         {
             ClientDTO result = this.ApiClientsGetByID(id);
             if (result != null)

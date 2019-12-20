@@ -35,7 +35,7 @@ namespace API_Repartidor.Controllers
         }
         
         /// <summary>
-        /// Pedidos de un reparto
+        /// Pedidos de un reparto a partir de un ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace API_Repartidor.Controllers
         }
         
         /// <summary>
-        /// Obtiene un reparto a partid de un ID
+        /// Trae un reparto a partir de un ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

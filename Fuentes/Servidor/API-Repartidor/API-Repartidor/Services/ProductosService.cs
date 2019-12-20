@@ -25,7 +25,7 @@ namespace API_Repartidor.Services
         /// Obtiene y mapea todos los productos recibidos de la API externa
         /// </summary>
         /// <returns></returns>
-        public List<ProductoDTO> GetProductos()
+        internal List<ProductoDTO> GetProductos()
         {
             try
             {
@@ -48,7 +48,7 @@ namespace API_Repartidor.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ProductoCompletoDTO GetProductoByID(int id)
+        internal ProductoCompletoDTO GetProductoByID(int id)
         {
             ProductDTO result = this.ApiProductsGetByID(id);
             ProductoCompletoDTO prodConPrecio = new ProductoCompletoDTO();

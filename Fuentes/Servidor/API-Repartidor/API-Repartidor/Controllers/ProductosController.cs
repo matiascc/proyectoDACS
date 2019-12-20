@@ -13,12 +13,20 @@ namespace API_Repartidor.Controllers
             this.productosSrv = productosSrv;
         }
 
+        /// <summary>
+        /// Trae todos los productos
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetProductos ()
         {
             return Ok(this.productosSrv.GetProductos());
         }
 
+        /// <summary>
+        /// Trae un producto a partir de un ID
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetProductosById(int id)
