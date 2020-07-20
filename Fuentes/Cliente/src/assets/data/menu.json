@@ -1,0 +1,18 @@
+ [ 
+  {
+    "icon": "logo-model-s",
+    "name": "Entregas pendientes",
+    "redirecTo": "/entregas-pendientes"
+  },
+  {
+    "icon": "qr-scanner",
+    "name": "Escanear",
+    "redirecTo": "/escanear-codigo"
+  },
+  {
+    "icon": "add",
+    "name": "Agregar pedido",
+    "redirecTo": "/seleccionar-cliente"
+  }
+  
+ ]

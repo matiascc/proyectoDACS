@@ -1,0 +1,24 @@
+<app-header titulo="Pedidos"></app-header>
+
+
+<ion-content>
+ <ion-card *ngFor="let pedido of pedidos"  (click)="verDetalles(pedido)">
+    <ion-item >
+      <ion-label color="primary" position="stacked" >Cliente: </ion-label>
+      <ion-input readonly >{{pedido.cliente.nombre}}</ion-input>
+    </ion-item>
+    
+    <ion-item>
+        <ion-label color="primary" position="stacked">Direccion: </ion-label> 
+        <ion-input readonly type="text">{{pedido.cliente.direccion}}</ion-input>
+    </ion-item>
+  
+</ion-card>
+
+
+<ion-footer>
+  <ion-toolbar >
+      <ion-button expand="full" shape="round" routerLink="/entregas-pendientes">Modificar recorrido</ion-button>
+      <ion-button expand="full" shape="round" color="success"> Finalizar recorrido</ion-button>
+  </ion-toolbar>
+</ion-footer>

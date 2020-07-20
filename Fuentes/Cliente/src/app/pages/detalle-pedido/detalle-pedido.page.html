@@ -1,0 +1,40 @@
+<app-header titulo="Detallle pedido"></app-header>
+
+<ion-content>
+    <ion-card class="back">
+        <ion-card-header >
+            <ion-card-title>Datos del cliente</ion-card-title>
+        </ion-card-header>
+              
+        <ion-card-content >
+            <ion-item  >
+                <ion-icon name="person" slot="start" color="primary"></ion-icon>
+                <ion-label>{{pedido.cliente.nombre}}</ion-label>
+            </ion-item>
+            <ion-item  >
+                <ion-icon name="pin" slot="start" color="primary"></ion-icon>
+                <ion-label>{{pedido.cliente.direccion}}</ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+            <ion-card-header>
+                <ion-card-title>Items del pedido</ion-card-title>
+            </ion-card-header>
+                  
+            <ion-card-content *ngFor="let item of pedido.itemPedido">
+                <ion-item color="primary"  class="activated">
+                    <ion-label><strong>Producto: </strong>{{item.producto.nombre}}</ion-label>
+                </ion-item>
+                <ion-item  color="primary" class="activated">
+                        <ion-label><strong>Cantidad: </strong>{{item.cantidad}}</ion-label>
+                </ion-item>
+                <ion-item color="dark" class="activated">
+                    <ion-icon name="logo-usd" slot="start" color="success"></ion-icon>
+                    <ion-label>{{item.precio}}</ion-label>
+                </ion-item>
+                      
+            </ion-card-content>
+        </ion-card>
+</ion-content>
